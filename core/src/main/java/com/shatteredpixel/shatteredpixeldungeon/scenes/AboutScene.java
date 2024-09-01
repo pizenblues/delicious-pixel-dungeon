@@ -244,7 +244,8 @@ public class AboutScene extends PixelScene {
 		list.scrollTo(0, 0);
 
 		ExitButton btnExit = new ExitButton();
-		btnExit.setPos( Camera.main.width - btnExit.width(), 0 );
+		btnExit.setPos( 3, 3 );
+//		btnExit.setPos( Camera.main.width - btnExit.width(), 0 );
 		add( btnExit );
 
 		//fadeIn();

@@ -32,7 +32,6 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.ArmorAbility;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.ClassArmor;
-import com.shatteredpixel.shatteredpixeldungeon.items.trinkets.WondrousResin;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.CursedWand;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
@@ -144,44 +143,18 @@ public class WildMagic extends ArmorAbility {
 					@Override
 					public void call() {
 						cur.onZap(aim);
-						boolean alsoCursedZap = Random.Float() < WondrousResin.extraCurseEffectChance();
 						if (Game.timeTotal - startTime < 0.33f) {
 							hero.sprite.parent.add(new Delayer(0.33f - (Game.timeTotal - startTime)) {
 								@Override
 								protected void onComplete() {
-									if (alsoCursedZap){
-										CursedWand.cursedZap(cur,
-												hero,
-												new Ballistica(hero.pos, cell, Ballistica.MAGIC_BOLT),
-												new Callback() {
-													@Override
-													public void call() {
-														afterZap(cur, wands, hero, cell);
-													}
-												});
-									} else {
-										afterZap(cur, wands, hero, cell);
-									}
+									afterZap(cur, wands, hero, cell);
 								}
 							});
 						} else {
-							if (alsoCursedZap){
-								CursedWand.cursedZap(cur,
-										hero,
-										new Ballistica(hero.pos, cell, Ballistica.MAGIC_BOLT),
-										new Callback() {
-											@Override
-											public void call() {
-												afterZap(cur, wands, hero, cell);
-											}
-										});
-							} else {
-								afterZap(cur, wands, hero, cell);
-							}
+							afterZap(cur, wands, hero, cell);
 						}
 					}
 				});
-
 			} else {
 				CursedWand.cursedZap(cur,
 						hero,

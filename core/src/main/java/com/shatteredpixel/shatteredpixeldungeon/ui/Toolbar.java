@@ -65,9 +65,9 @@ public class Toolbar extends Component {
 	private Tool btnInventory;
 	private QuickslotTool[] btnQuick;
 	private SlotSwapTool btnSwap;
-	
+
 	private PickedUpItem pickedUp;
-	
+
 	private boolean lastEnabled = true;
 	public boolean examining = false;
 
@@ -487,23 +487,16 @@ public class Toolbar extends Component {
 
 		float right = width;
 
-		int quickslotsToShow = 4;
+		int quickslotsToShow = 2;
 		if (PixelScene.uiCamera.width > 152) quickslotsToShow ++;
 		if (PixelScene.uiCamera.width > 170) quickslotsToShow ++;
 
 		int startingSlot;
-		if (SPDSettings.quickSwapper() && quickslotsToShow < 6){
-			quickslotsToShow = 3;
-			startingSlot = swappedQuickslots ? 3 : 0;
-			btnSwap.visible = true;
-			btnSwap.active = lastEnabled;
-			QuickSlotButton.lastVisible = 6;
-		} else {
-			startingSlot = 0;
-			btnSwap.visible = btnSwap.active = false;
-			btnSwap.setPos(0, PixelScene.uiCamera.height);
-			QuickSlotButton.lastVisible = quickslotsToShow;
-		}
+		startingSlot = 0;
+		btnSwap.visible = btnSwap.active = false;
+		btnSwap.setPos(0, PixelScene.uiCamera.height);
+		QuickSlotButton.lastVisible = quickslotsToShow;
+
 		int endingSlot = startingSlot+quickslotsToShow-1;
 
 		for (int i = 0; i < btnQuick.length; i++){

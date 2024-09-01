@@ -571,8 +571,8 @@ public class ItemSpriteSheet {
 	public static final int LIQUID_METAL    = POTIONS+13;
 	static {
 		for (int i = POTIONS; i < POTIONS+16; i++)
-			assignItemRect(i, 12, 14);
-		assignItemRect(LIQUID_METAL,    8, 15);
+			assignItemRect(i, 16, 16);
+		assignItemRect(LIQUID_METAL,    16, 16);
 	}
 	
 	private static final int EXOTIC_POTIONS =                               xy(1, 23);  //16 slots
@@ -590,7 +590,7 @@ public class ItemSpriteSheet {
 	public static final int EXOTIC_IVORY    = EXOTIC_POTIONS+11;
 	static {
 		for (int i = EXOTIC_POTIONS; i < EXOTIC_POTIONS+16; i++)
-			assignItemRect(i, 12, 13);
+			assignItemRect(i, 16, 16);
 	}
 
 	private static final int SEEDS              =                           xy(1, 24);  //16 slots
@@ -608,7 +608,7 @@ public class ItemSpriteSheet {
 	public static final int SEED_BLINDWEED      = SEEDS+11;
 	static{
 		for (int i = SEEDS; i < SEEDS+16; i++)
-			assignItemRect(i, 10, 10);
+			assignItemRect(i, 16, 16);
 	}
 	
 	private static final int BREWS          =                               xy(1, 25);  //8 slots
@@ -630,9 +630,9 @@ public class ItemSpriteSheet {
 	public static final int ELIXIR_FEATHER  = ELIXIRS+7;
 	static{
 		for (int i = BREWS; i < BREWS+16; i++)
-			assignItemRect(i, 12, 14);
+			assignItemRect(i, 16, 16);
 
-		assignItemRect(BREW_AQUA, 9, 11);
+		assignItemRect(BREW_AQUA, 16, 16);
 	}
 	
 	                                                                                    //16 free slots
@@ -653,19 +653,19 @@ public class ItemSpriteSheet {
 	public static final int SUMMON_ELE      = SPELLS+12;
 
 	static{
-		assignItemRect(WILD_ENERGY,     12, 11);
-		assignItemRect(PHASE_SHIFT,     12, 11);
-		assignItemRect(TELE_GRAB,       12, 11);
-		assignItemRect(UNSTABLE_SPELL,  12, 13);
+		assignItemRect(WILD_ENERGY,     16, 16);
+		assignItemRect(PHASE_SHIFT,     16, 16);
+		assignItemRect(TELE_GRAB,       16, 16);
+		assignItemRect(UNSTABLE_SPELL,  16, 16);
 
-		assignItemRect(CURSE_INFUSE,    10, 15);
-		assignItemRect(MAGIC_INFUSE,    10, 15);
-		assignItemRect(ALCHEMIZE,       10, 15);
-		assignItemRect(RECYCLE,         10, 15);
+		assignItemRect(CURSE_INFUSE,    16, 16);
+		assignItemRect(MAGIC_INFUSE,    16, 16);
+		assignItemRect(ALCHEMIZE,       16, 16);
+		assignItemRect(RECYCLE,         16, 16);
 
-		assignItemRect(RECLAIM_TRAP,     8, 16);
-		assignItemRect(RETURN_BEACON,    8, 16);
-		assignItemRect(SUMMON_ELE,       8, 16);
+		assignItemRect(RECLAIM_TRAP,     16, 16);
+		assignItemRect(RETURN_BEACON,    16, 16);
+		assignItemRect(SUMMON_ELE,       16, 16);
 	}
 	
 	private static final int FOOD       =                                   xy(1, 28);  //16 slots
@@ -683,18 +683,18 @@ public class ItemSpriteSheet {
 	public static final int PHANTOM_MEAT    = FOOD+11;
 	public static final int SUPPLY_RATION   = FOOD+12;
 	static{
-		assignItemRect(MEAT,            15, 11);
-		assignItemRect(STEAK,           15, 11);
-		assignItemRect(STEWED,          15, 11);
-		assignItemRect(OVERPRICED,      14, 11);
-		assignItemRect(CARPACCIO,       15, 11);
-		assignItemRect(RATION,          16, 12);
-		assignItemRect(PASTY,           16, 11);
-		assignItemRect(MEAT_PIE,        16, 12);
-		assignItemRect(BLANDFRUIT,      9,  12);
-		assignItemRect(BLAND_CHUNKS,    14,  6);
-		assignItemRect(BERRY,           9,  11);
-		assignItemRect(PHANTOM_MEAT,    15, 11);
+		assignItemRect(MEAT,            16, 16);
+		assignItemRect(STEAK,           16, 16);
+		assignItemRect(STEWED,          16, 16);
+		assignItemRect(OVERPRICED,      16, 16);
+		assignItemRect(CARPACCIO,       16, 16);
+		assignItemRect(RATION,          16, 16);
+		assignItemRect(PASTY,           16, 16);
+		assignItemRect(MEAT_PIE,        16, 16);
+		assignItemRect(BLANDFRUIT,      16,  16);
+		assignItemRect(BLAND_CHUNKS,    16,  6);
+		assignItemRect(BERRY,           16,  11);
+		assignItemRect(PHANTOM_MEAT,    16, 11);
 		assignItemRect(SUPPLY_RATION,   16, 12);
 	}
 

@@ -40,6 +40,9 @@ public class Chrome {
 		TAB_SET,
 		TAB_SELECTED,
 		TAB_UNSELECTED,
+		TABAG_SET,
+		TABAG_SELECTED,
+		TABAG_UNSELECTED,
 		BLANK
 	}
 	
@@ -54,13 +57,13 @@ public class Chrome {
 			return new NinePatch( Asset, 20, 0, 9, 9, 4 );
 		case TOAST_TR:
 		case GREY_BUTTON_TR:
-			return new NinePatch( Asset, 20, 9, 9, 9, 4 );
+			return new NinePatch( Asset, 112, 0, 10, 9, 4 );
 		case TOAST_WHITE:
 			return new NinePatch( Asset, 29, 0, 9, 9, 4 );
 		case RED_BUTTON:
-			return new NinePatch( Asset, 38, 0, 6, 6, 2 );
+			return new NinePatch( Asset, 112, 9, 10, 9, 4 );
 		case GREY_BUTTON:
-			return new NinePatch( Asset, 38, 6, 6, 6, 2 );
+			return new NinePatch( Asset, 38, 6, 6, 6, 4 );
 		case TAG:
 			return new NinePatch( Asset, 22, 18, 16, 14, 3 );
 		case GEM:
@@ -73,6 +76,12 @@ public class Chrome {
 			return new NinePatch( Asset, 65, 22, 8, 13, 3, 7, 3, 5 );
 		case TAB_UNSELECTED:
 			return new NinePatch( Asset, 75, 22, 8, 13, 3, 7, 3, 5 );
+		case TABAG_SET:
+			return new NinePatch( Asset, 87, 0, 20, 20, 6 );
+		case TABAG_SELECTED:
+			return new NinePatch( Asset, 87, 22, 8, 13, 3, 7, 3, 5 );
+		case TABAG_UNSELECTED:
+			return new NinePatch( Asset, 97, 22, 8, 13, 3, 7, 3, 5 );
 		case BLANK:
 			return new NinePatch( Asset, 45, 0, 1, 1, 0, 0, 0, 0 );
 		default:

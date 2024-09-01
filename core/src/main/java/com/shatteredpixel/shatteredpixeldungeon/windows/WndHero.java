@@ -124,7 +124,7 @@ public class WndHero extends WndTabbed {
 
 	private class StatsTab extends Group {
 		
-		private static final int GAP = 6;
+		private static final int GAP = 4;
 		
 		private float pos;
 		
@@ -138,17 +138,16 @@ public class WndHero extends WndTabbed {
 				if (g != null) g.destroy();
 			}
 			clear();
-			
 			Hero hero = Dungeon.hero;
 
 			IconTitle title = new IconTitle();
-			title.icon( HeroSprite.avatar(hero.heroClass, hero.tier()) );
+			//title.icon( HeroSprite.avatar(hero.heroClass, hero.tier()) );
 			if (hero.name().equals(hero.className()))
 				title.label( Messages.get(this, "title", hero.lvl, hero.className() ).toUpperCase( Locale.ENGLISH ) );
 			else
 				title.label((hero.name() + "\n" + Messages.get(this, "title", hero.lvl, hero.className())).toUpperCase(Locale.ENGLISH));
 			title.color(Window.TITLE_COLOR);
-			title.setRect( 0, 0, WIDTH-16, 0 );
+			title.setRect( -16, 0, WIDTH, 0 );
 			add(title);
 
 			IconButton infoButton = new IconButton(Icons.get(Icons.INFO)){
@@ -185,18 +184,6 @@ public class WndHero extends WndTabbed {
 
 			statSlot( Messages.get(this, "gold"), Statistics.goldCollected );
 			statSlot( Messages.get(this, "depth"), Statistics.deepestFloor );
-			if (Dungeon.daily){
-				if (!Dungeon.dailyReplay) {
-					statSlot(Messages.get(this, "daily_for"), "_" + Dungeon.customSeedText + "_");
-				} else {
-					statSlot(Messages.get(this, "replay_for"), "_" + Dungeon.customSeedText + "_");
-				}
-			} else if (!Dungeon.customSeedText.isEmpty()){
-				statSlot( Messages.get(this, "custom_seed"), "_" + Dungeon.customSeedText + "_" );
-			} else {
-				statSlot( Messages.get(this, "dungeon_seed"), DungeonSeed.convertToCode(Dungeon.seed) );
-			}
-
 			pos += GAP;
 		}
 
@@ -210,7 +197,7 @@ public class WndHero extends WndTabbed {
 			txt.setPos(WIDTH * 0.55f, pos);
 			PixelScene.align(txt);
 			add( txt );
-			
+
 			pos += GAP + txt.height();
 		}
 		

@@ -51,7 +51,7 @@ import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.utils.PointF;
 
-public class WndBag extends WndTabbed {
+public class WndBag extends WndTabbedBag {
 	
 	//only one bag window can appear at a time
 	public static Window INSTANCE;
@@ -391,7 +391,7 @@ public class WndBag extends WndTabbed {
 	
 	@Override
 	protected int tabHeight() {
-		return 20;
+		return 25;
 	}
 	
 	private Image icon( Bag bag ) {

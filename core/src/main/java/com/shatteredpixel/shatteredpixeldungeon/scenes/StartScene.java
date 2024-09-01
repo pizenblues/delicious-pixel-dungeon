@@ -64,7 +64,7 @@ public class StartScene extends PixelScene {
 		add( archs );
 		
 		ExitButton btnExit = new ExitButton();
-		btnExit.setPos( w - btnExit.width(), 0 );
+		btnExit.setPos( 3, 3 );
 		add( btnExit );
 		
 		RenderedTextBlock title = PixelScene.renderTextBlock( Messages.get(this, "title"), 9);

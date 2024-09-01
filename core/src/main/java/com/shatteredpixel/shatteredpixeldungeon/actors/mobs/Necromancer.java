@@ -117,7 +117,7 @@ public class Necromancer extends Mob {
 			}
 		}
 		
-		if (mySkeleton != null && mySkeleton.isAlive() && mySkeleton.alignment == alignment){
+		if (mySkeleton != null && mySkeleton.isAlive()){
 			mySkeleton.die(null);
 		}
 		

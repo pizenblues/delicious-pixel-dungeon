@@ -52,7 +52,7 @@ public class WndGame extends Window {
 
 		//settings
 		RedButton curBtn;
-		addButton( curBtn = new RedButton( Messages.get(this, "settings") ) {
+		addButton( curBtn = new RedButton( Messages.get(this, " ") ) {
 			@Override
 			protected void onClick() {
 				hide();

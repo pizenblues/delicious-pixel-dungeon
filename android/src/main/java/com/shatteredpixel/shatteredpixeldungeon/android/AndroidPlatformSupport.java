@@ -46,7 +46,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AndroidPlatformSupport extends PlatformSupport {
-	
+
 	public void updateDisplaySize(){
 		if (SPDSettings.landscape() != null) {
 			AndroidLauncher.instance.setRequestedOrientation( SPDSettings.landscape() ?
@@ -55,10 +55,10 @@ public class AndroidPlatformSupport extends PlatformSupport {
 		}
 
 		GLSurfaceView view = (GLSurfaceView) ((AndroidGraphics)Gdx.graphics).getView();
-		
+
 		if (view.getMeasuredWidth() == 0 || view.getMeasuredHeight() == 0)
 			return;
-		
+
 		Game.dispWidth = view.getMeasuredWidth();
 		Game.dispHeight = view.getMeasuredHeight();
 
@@ -71,40 +71,40 @@ public class AndroidPlatformSupport extends PlatformSupport {
 			Game.dispWidth = Game.dispHeight;
 			Game.dispHeight = tmp;
 		}
-		
+
 		float dispRatio = Game.dispWidth / (float)Game.dispHeight;
-		
+
 		float renderWidth = dispRatio > 1 ? PixelScene.MIN_WIDTH_L : PixelScene.MIN_WIDTH_P;
 		float renderHeight = dispRatio > 1 ? PixelScene.MIN_HEIGHT_L : PixelScene.MIN_HEIGHT_P;
-		
+
 		//force power saver in this case as all devices must run at at least 2x scale.
 		if (Game.dispWidth < renderWidth*2 || Game.dispHeight < renderHeight*2)
 			SPDSettings.put( SPDSettings.KEY_POWER_SAVER, true );
-		
+
 		if (SPDSettings.powerSaver() && fullscreen){
-			
+
 			int maxZoom = (int)Math.min(Game.dispWidth/renderWidth, Game.dispHeight/renderHeight);
-			
+
 			renderWidth *= Math.max( 2, Math.round(1f + maxZoom*0.4f));
 			renderHeight *= Math.max( 2, Math.round(1f + maxZoom*0.4f));
-			
+
 			if (dispRatio > renderWidth / renderHeight){
 				renderWidth = renderHeight * dispRatio;
 			} else {
 				renderHeight = renderWidth / dispRatio;
 			}
-			
+
 			final int finalW = Math.round(renderWidth);
 			final int finalH = Math.round(renderHeight);
 			if (finalW != Game.width || finalH != Game.height){
-				
+
 				AndroidLauncher.instance.runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
 						view.getHolder().setFixedSize(finalW, finalH);
 					}
 				});
-				
+
 			}
 		} else {
 			AndroidLauncher.instance.runOnUiThread(new Runnable() {
@@ -115,16 +115,16 @@ public class AndroidPlatformSupport extends PlatformSupport {
 			});
 		}
 	}
-	
+
 	public void updateSystemUI() {
-		
+
 		AndroidLauncher.instance.runOnUiThread(new Runnable() {
 			@SuppressLint("NewApi")
 			@Override
 			public void run() {
 				boolean fullscreen = Build.VERSION.SDK_INT < Build.VERSION_CODES.N
 						|| !AndroidLauncher.instance.isInMultiWindowMode();
-				
+
 				if (fullscreen){
 					AndroidLauncher.instance.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 							WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
@@ -132,7 +132,7 @@ public class AndroidPlatformSupport extends PlatformSupport {
 					AndroidLauncher.instance.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,
 							WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
 				}
-				
+
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
 					if (SPDSettings.fullscreen()) {
 						AndroidLauncher.instance.getWindow().getDecorView().setSystemUiVisibility(
@@ -146,9 +146,9 @@ public class AndroidPlatformSupport extends PlatformSupport {
 				}
 			}
 		});
-		
+
 	}
-	
+
 	@Override
 	@SuppressWarnings("deprecation")
 	public boolean connectedToUnmeteredNetwork() {
@@ -160,9 +160,9 @@ public class AndroidPlatformSupport extends PlatformSupport {
 			NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 			return activeNetwork != null && activeNetwork.isConnectedOrConnecting() &&
 					(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI
-					|| activeNetwork.getType() == ConnectivityManager.TYPE_WIMAX
-					|| activeNetwork.getType() == ConnectivityManager.TYPE_BLUETOOTH
-					|| activeNetwork.getType() == ConnectivityManager.TYPE_ETHERNET);
+							|| activeNetwork.getType() == ConnectivityManager.TYPE_WIMAX
+							|| activeNetwork.getType() == ConnectivityManager.TYPE_BLUETOOTH
+							|| activeNetwork.getType() == ConnectivityManager.TYPE_ETHERNET);
 		}
 	}
 
@@ -172,7 +172,7 @@ public class AndroidPlatformSupport extends PlatformSupport {
 	}
 
 	/* FONT SUPPORT */
-	
+
 	//droid sans / roboto, or a custom pixel font, for use with Latin and Cyrillic languages
 	private static FreeTypeFontGenerator basicFontGenerator;
 	//droid sans / nanum gothic / noto sans, for use with Korean
@@ -181,10 +181,10 @@ public class AndroidPlatformSupport extends PlatformSupport {
 	private static FreeTypeFontGenerator SCFontGenerator;
 	//droid sans / noto sans, for use with Japanese
 	private static FreeTypeFontGenerator JPFontGenerator;
-	
+
 	//special logic for handling korean android 6.0 font oddities
 	private static boolean koreanAndroid6OTF = false;
-	
+
 	@Override
 	public void setupFontGenerators(int pageSize, boolean systemfont) {
 		//don't bother doing anything if nothing has changed
@@ -197,7 +197,7 @@ public class AndroidPlatformSupport extends PlatformSupport {
 		resetGenerators(false);
 		fonts = new HashMap<>();
 		basicFontGenerator = KRFontGenerator = SCFontGenerator = JPFontGenerator = null;
-		
+
 		if (systemfont && Gdx.files.absolute("/system/fonts/Roboto-Regular.ttf").exists()) {
 			basicFontGenerator = new FreeTypeFontGenerator(Gdx.files.absolute("/system/fonts/Roboto-Regular.ttf"));
 		} else if (systemfont && Gdx.files.absolute("/system/fonts/DroidSans.ttf").exists()){
@@ -205,7 +205,7 @@ public class AndroidPlatformSupport extends PlatformSupport {
 		} else {
 			basicFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/pixel_font.ttf"));
 		}
-		
+
 		//android 7.0+. all asian fonts are nicely contained in one spot
 		if (Gdx.files.absolute("/system/fonts/NotoSansCJK-Regular.ttc").exists()) {
 			//typefaces are 0-JP, 1-KR, 2-SC, 3-TC.
@@ -222,10 +222,10 @@ public class AndroidPlatformSupport extends PlatformSupport {
 					typeFace = 2;
 			}
 			KRFontGenerator = SCFontGenerator = JPFontGenerator = new FreeTypeFontGenerator(Gdx.files.absolute("/system/fonts/NotoSansCJK-Regular.ttc"), typeFace);
-			
-		//otherwise we have to go over a few possibilities.
+
+			//otherwise we have to go over a few possibilities.
 		} else {
-			
+
 			//Korean font generators
 			if (Gdx.files.absolute("/system/fonts/NanumGothic.ttf").exists()){
 				KRFontGenerator = new FreeTypeFontGenerator(Gdx.files.absolute("/system/fonts/NanumGothic.ttf"));
@@ -233,19 +233,19 @@ public class AndroidPlatformSupport extends PlatformSupport {
 				KRFontGenerator = new FreeTypeFontGenerator(Gdx.files.absolute("/system/fonts/NotoSansKR-Regular.otf"));
 				koreanAndroid6OTF = true;
 			}
-			
+
 			//Chinese font generators
 			if (Gdx.files.absolute("/system/fonts/NotoSansSC-Regular.otf").exists()){
 				SCFontGenerator = new FreeTypeFontGenerator(Gdx.files.absolute("/system/fonts/NotoSansSC-Regular.otf"));
 			} else if (Gdx.files.absolute("/system/fonts/NotoSansHans-Regular.otf").exists()){
 				SCFontGenerator = new FreeTypeFontGenerator(Gdx.files.absolute("/system/fonts/NotoSansHans-Regular.otf"));
 			}
-			
+
 			//Japaneses font generators
 			if (Gdx.files.absolute("/system/fonts/NotoSansJP-Regular.otf").exists()){
 				JPFontGenerator = new FreeTypeFontGenerator(Gdx.files.absolute("/system/fonts/NotoSansJP-Regular.otf"));
 			}
-			
+
 			//set up a fallback generator for any remaining fonts
 			FreeTypeFontGenerator fallbackGenerator;
 			if (Gdx.files.absolute("/system/fonts/DroidSansFallback.ttf").exists()){
@@ -254,18 +254,18 @@ public class AndroidPlatformSupport extends PlatformSupport {
 				//no fallback font, just set to null =/
 				fallbackGenerator = null;
 			}
-			
+
 			if (KRFontGenerator == null) KRFontGenerator = fallbackGenerator;
 			if (SCFontGenerator == null) SCFontGenerator = fallbackGenerator;
 			if (JPFontGenerator == null) JPFontGenerator = fallbackGenerator;
-			
+
 		}
-		
+
 		if (basicFontGenerator != null) fonts.put(basicFontGenerator, new HashMap<>());
 		if (KRFontGenerator != null) fonts.put(KRFontGenerator, new HashMap<>());
 		if (SCFontGenerator != null) fonts.put(SCFontGenerator, new HashMap<>());
 		if (JPFontGenerator != null) fonts.put(JPFontGenerator, new HashMap<>());
-		
+
 		//would be nice to use RGBA4444 to save memory, but this causes problems on some gpus =S
 		packer = new PixmapPacker(pageSize, pageSize, Pixmap.Format.RGBA8888, 1, false);
 	}
@@ -286,7 +286,7 @@ public class AndroidPlatformSupport extends PlatformSupport {
 			return basicFontGenerator;
 		}
 	}
-	
+
 	//splits on newlines, underscores, and chinese/japaneses characters
 	private Pattern regularsplitter = Pattern.compile(
 			"(?<=\n)|(?=\n)|(?<=_)|(?=_)|" +
@@ -295,7 +295,7 @@ public class AndroidPlatformSupport extends PlatformSupport {
 					"(?<=\\p{InCJK_Unified_Ideographs})|(?=\\p{InCJK_Unified_Ideographs})|" +
 					"(?<=\\p{InCJK_Symbols_and_Punctuation})|(?=\\p{InCJK_Symbols_and_Punctuation})|" +
 					"(?<=\\p{InHalfwidth_and_Fullwidth_Forms})|(?=\\p{InHalfwidth_and_Fullwidth_Forms})");
-	
+
 	//additionally splits on words, so that each word can be arranged individually
 	private Pattern regularsplitterMultiline = Pattern.compile(
 			"(?<= )|(?= )|(?<=\n)|(?=\n)|(?<=_)|(?=_)|" +
@@ -304,12 +304,12 @@ public class AndroidPlatformSupport extends PlatformSupport {
 					"(?<=\\p{InCJK_Unified_Ideographs})|(?=\\p{InCJK_Unified_Ideographs})|" +
 					"(?<=\\p{InCJK_Symbols_and_Punctuation})|(?=\\p{InCJK_Symbols_and_Punctuation})|" +
 					"(?<=\\p{InHalfwidth_and_Fullwidth_Forms})|(?=\\p{InHalfwidth_and_Fullwidth_Forms})");
-	
+
 	//splits on each non-hangul character. Needed for weird android 6.0 font files
 	private Pattern android6KRSplitter = Pattern.compile(
 			"(?<= )|(?= )|(?<=\n)|(?=\n)|(?<=_)|(?=_)|" +
 					"(?!\\p{InHangul_Syllables})|(?<!\\p{InHangul_Syllables})");
-	
+
 	@Override
 	public String[] splitforTextBlock(String text, boolean multiline) {
 		if (koreanAndroid6OTF && getGeneratorForString(text) == KRFontGenerator){
@@ -320,5 +320,6 @@ public class AndroidPlatformSupport extends PlatformSupport {
 			return regularsplitter.split(text);
 		}
 	}
-	
+
 }
+

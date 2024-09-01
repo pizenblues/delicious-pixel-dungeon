@@ -736,19 +736,22 @@ public abstract class Char extends Actor {
 		}
 
 		if (buff(Sickle.HarvestBleedTracker.class) != null){
-			buff(Sickle.HarvestBleedTracker.class).detach();
-
-			if (!isImmune(Bleeding.class)){
-				Bleeding b = buff(Bleeding.class);
-				if (b == null){
-					b = new Bleeding();
-				}
-				b.announced = false;
-				b.set(dmg, Sickle.HarvestBleedTracker.class);
-				b.attachTo(this);
-				sprite.showStatus(CharSprite.WARNING, Messages.titleCase(b.name()) + " " + (int)b.level());
+			if (isImmune(Bleeding.class)){
+				sprite.showStatus(CharSprite.POSITIVE, Messages.titleCase(Messages.get(this, "immune")));
+				buff(Sickle.HarvestBleedTracker.class).detach();
 				return;
 			}
+
+			Bleeding b = buff(Bleeding.class);
+			if (b == null){
+				b = new Bleeding();
+			}
+			b.announced = false;
+			b.set(dmg, Sickle.HarvestBleedTracker.class);
+			b.attachTo(this);
+			sprite.showStatus(CharSprite.WARNING, Messages.titleCase(b.name()) + " " + (int)b.level());
+			buff(Sickle.HarvestBleedTracker.class).detach();
+			return;
 		}
 
 		for (ChampionEnemy buff : buffs(ChampionEnemy.class)){

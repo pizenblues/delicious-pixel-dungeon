@@ -230,7 +230,7 @@ public abstract class Actor implements Bundlable {
 	}
 
 	public static int curActorPriority() {
-		return current != null ? current.actPriority : HERO_PRIO;
+		return current != null ? current.actPriority : DEFAULT;
 	}
 	
 	public static boolean keepActorThreadAlive = true;

@@ -37,7 +37,7 @@ public class RenderedTextBlock extends Component {
 
 	private static final RenderedText SPACE = new RenderedText();
 	private static final RenderedText NEWLINE = new RenderedText();
-	
+
 	protected String text;
 	protected String[] tokens = null;
 	protected ArrayList<RenderedText> words = new ArrayList<>();
@@ -46,7 +46,7 @@ public class RenderedTextBlock extends Component {
 	private int size;
 	private float zoom;
 	private int color = -1;
-	
+
 	private int hightlightColor = Window.TITLE_COLOR;
 	private boolean highlightingEnabled = true;
 
@@ -54,7 +54,7 @@ public class RenderedTextBlock extends Component {
 	public static final int CENTER_ALIGN = 2;
 	public static final int RIGHT_ALIGN = 3;
 	private int alignment = LEFT_ALIGN;
-	
+
 	public RenderedTextBlock(int size){
 		this.size = size;
 	}
@@ -68,9 +68,9 @@ public class RenderedTextBlock extends Component {
 		this.text = text;
 
 		if (text != null && !text.equals("")) {
-			
+
 			tokens = Game.platform.splitforTextBlock(text, multiline);
-			
+
 			build();
 		}
 	}
@@ -111,12 +111,12 @@ public class RenderedTextBlock extends Component {
 
 	private synchronized void build(){
 		if (tokens == null) return;
-		
+
 		clear();
 		words = new ArrayList<>();
 		boolean highlighting = false;
 		for (String str : tokens){
-			
+
 			if (str.equals("_") && highlightingEnabled){
 				highlighting = !highlighting;
 			} else if (str.equals("\n")){
@@ -125,14 +125,14 @@ public class RenderedTextBlock extends Component {
 				words.add(SPACE);
 			} else {
 				RenderedText word = new RenderedText(str, size);
-				
+
 				if (highlighting) word.hardlight(hightlightColor);
 				else if (color != -1) word.hardlight(color);
 				word.scale.set(zoom);
-				
+
 				words.add(word);
 				add(word);
-				
+
 				if (height < word.height()) height = word.height();
 			}
 		}
@@ -153,24 +153,24 @@ public class RenderedTextBlock extends Component {
 			if (word != null) word.hardlight( color );
 		}
 	}
-	
+
 	public synchronized void resetColor(){
 		this.color = -1;
 		for (RenderedText word : words) {
 			if (word != null) word.resetColor();
 		}
 	}
-	
+
 	public synchronized void alpha(float value){
 		for (RenderedText word : words) {
 			if (word != null) word.alpha( value );
 		}
 	}
-	
+
 	public synchronized void setHightlighting(boolean enabled){
 		setHightlighting(enabled, Window.TITLE_COLOR);
 	}
-	
+
 	public synchronized void setHightlighting(boolean enabled, int color){
 		if (enabled != highlightingEnabled || color != hightlightColor) {
 			hightlightColor = color;
@@ -252,7 +252,7 @@ public class RenderedTextBlock extends Component {
 				curLine.add(word);
 
 				if ((x - this.x) > width) width = (x - this.x);
-				
+
 				//Note that spacing currently doesn't factor in halfwidth and fullwidth characters
 				//(e.g. Ideographic full stop)
 				x -= 0.667f;
@@ -280,3 +280,4 @@ public class RenderedTextBlock extends Component {
 		}
 	}
 }
+

@@ -77,7 +77,7 @@ public class ScrollingListPane extends ScrollPane {
 
 		float pos = 0;
 		for (Component item : items){
-			item.setRect(0, pos, width, ITEM_HEIGHT);
+			item.setRect(0, pos, width, ITEM_HEIGHT+4);
 			pos += item.height();
 		}
 
@@ -138,7 +138,7 @@ public class ScrollingListPane extends ScrollPane {
 			label = PixelScene.renderTextBlock( 7 );
 			add( label );
 
-			line = new ColorBlock( 1, 1, 0xFF222222);
+			line = new ColorBlock( 1, 1, 0xFF746671);
 			add(line);
 
 		}
@@ -180,7 +180,7 @@ public class ScrollingListPane extends ScrollPane {
 			label.hardlight(Window.TITLE_COLOR);
 			add( label );
 
-			line = new ColorBlock( 1, 1, 0xFF222222);
+			line = new ColorBlock( 1, 1, 0xFF746671);
 			add(line);
 
 		}

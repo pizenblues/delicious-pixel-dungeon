@@ -69,7 +69,7 @@ public abstract class OptionSlider extends Component {
 
 		sliderTicks = new ColorBlock[(maxVal - minVal) + 1];
 		for (int i = 0; i < sliderTicks.length; i++){
-			add(sliderTicks[i] = new ColorBlock(1, 9, 0xFF222222));
+			add(sliderTicks[i] = new ColorBlock(1, 4, 0xFFB1A4A4));
 		}
 		add(sliderNode);
 	}
@@ -91,16 +91,16 @@ public abstract class OptionSlider extends Component {
 	protected void createChildren() {
 		super.createChildren();
 
-		add( BG = Chrome.get(Chrome.Type.RED_BUTTON));
-		BG.alpha(0.5f);
+		add( BG = Chrome.get(Chrome.Type.GREY_BUTTON_TR));
+		//BG.alpha(0.5f);
 
 		add(title = PixelScene.renderTextBlock(9));
 		add(this.minTxt = PixelScene.renderTextBlock(6));
 		add(this.maxTxt = PixelScene.renderTextBlock(6));
 
-		add(sliderBG = new ColorBlock(1, 1, 0xFF222222));
-		sliderNode = Chrome.get(Chrome.Type.RED_BUTTON);
-		sliderNode.size(4, 7);
+		add(sliderBG = new ColorBlock(1, 1, 0xFFB1A4A4));
+		sliderNode = Chrome.get(Chrome.Type.TOAST_TR);
+		sliderNode.size(6, 6);
 
 		pointerArea = new PointerArea(0, 0, 0, 0){
 			boolean pressed = false;
@@ -144,7 +144,7 @@ public abstract class OptionSlider extends Component {
 	@Override
 	protected void layout() {
 
-		if (title.width() > 0.7f*width){
+		if (title.width() > 0.2f*width){
 			String titleText = title.text;
 			remove(title);
 			title = PixelScene.renderTextBlock(6);
@@ -152,37 +152,36 @@ public abstract class OptionSlider extends Component {
 			title.text(titleText);
 		}
 
-		title.setPos(
-				x + (width-title.width())/2,
-				y+2
-		);
+		title.setPos(x + (width-title.width())/2, y+2);
+
 		PixelScene.align(title);
-		sliderBG.y = y + height() - 7;
-		sliderBG.x = x+2;
-		sliderBG.size(width-5, 1);
+		sliderBG.y = y + height() - 6;
+		sliderBG.x = x+7;
+		sliderBG.size(width-12, 1);
 		tickDist = sliderBG.width()/(maxVal - minVal);
+		
 		for (int i = 0; i < sliderTicks.length; i++){
 			sliderTicks[i].y = sliderBG.y-4;
-			sliderTicks[i].x = x + 2 + (tickDist*i);
+			sliderTicks[i].x = x + 7 + (tickDist*i);
 			PixelScene.align(sliderTicks[i]);
 		}
 
 		minTxt.setPos(
-				x+1,
-				sliderBG.y-5-minTxt.height()
+				x+4,
+				sliderBG.y-7-minTxt.height()
 		);
 		maxTxt.setPos(
-				x+width()-maxTxt.width()-1,
-				sliderBG.y-5-minTxt.height()
+				x+width()-maxTxt.width()-4,
+				sliderBG.y-7-minTxt.height()
 		);
 
 		sliderNode.x = x + tickDist*(selectedVal-minVal) + 0.5f;
 		sliderNode.y = sliderBG.y-3;
 		PixelScene.align(sliderNode);
 
-		pointerArea.x = x;
+		pointerArea.x = x + 5;
 		pointerArea.y = y;
-		pointerArea.width = width();
+		pointerArea.width = width() - 5;
 		pointerArea.height = height();
 
 		BG.size(width(), height());

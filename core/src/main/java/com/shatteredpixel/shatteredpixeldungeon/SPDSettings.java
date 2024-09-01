@@ -34,21 +34,21 @@ import com.watabou.utils.Point;
 import java.util.Locale;
 
 public class SPDSettings extends GameSettings {
-	
+
 	//Version info
-	
+
 	public static final String KEY_VERSION      = "version";
-	
+
 	public static void version( int value)  {
 		put( KEY_VERSION, value );
 	}
-	
+
 	public static int version() {
 		return getInt( KEY_VERSION, 0 );
 	}
-	
+
 	//Display
-	
+
 	public static final String KEY_FULLSCREEN	= "fullscreen";
 	public static final String KEY_LANDSCAPE	= "landscape";
 	public static final String KEY_POWER_SAVER 	= "power_saver";
@@ -57,22 +57,22 @@ public class SPDSettings extends GameSettings {
 	public static final String KEY_GRID 	    = "visual_grid";
 	public static final String KEY_CAMERA_FOLLOW= "camera_follow";
 	public static final String KEY_SCREEN_SHAKE = "screen_shake";
-	
+
 	public static void fullscreen( boolean value ) {
 		put( KEY_FULLSCREEN, value );
-		
+
 		ShatteredPixelDungeon.updateSystemUI();
 	}
-	
+
 	public static boolean fullscreen() {
 		return getBoolean( KEY_FULLSCREEN, DeviceCompat.isDesktop() );
 	}
-	
+
 	public static void landscape( boolean value ){
 		put( KEY_LANDSCAPE, value );
 		((ShatteredPixelDungeon)ShatteredPixelDungeon.instance).updateDisplaySize();
 	}
-	
+
 	//can return null because we need to directly handle the case of landscape not being set
 	// as there are different defaults for different devices
 	public static Boolean landscape(){
@@ -82,38 +82,38 @@ public class SPDSettings extends GameSettings {
 			return null;
 		}
 	}
-	
+
 	public static void powerSaver( boolean value ){
 		put( KEY_POWER_SAVER, value );
 		((ShatteredPixelDungeon)ShatteredPixelDungeon.instance).updateDisplaySize();
 	}
-	
+
 	public static boolean powerSaver(){
 		return getBoolean( KEY_POWER_SAVER, false );
 	}
-	
+
 	public static void zoom( int value ) {
 		put( KEY_ZOOM, value );
 	}
-	
+
 	public static int zoom() {
 		return getInt( KEY_ZOOM, 0 );
 	}
-	
+
 	public static void brightness( int value ) {
 		put( KEY_BRIGHTNESS, value );
 		GameScene.updateFog();
 	}
-	
+
 	public static int brightness() {
 		return getInt( KEY_BRIGHTNESS, 0, -1, 1 );
 	}
-	
+
 	public static void visualGrid( int value ){
 		put( KEY_GRID, value );
 		GameScene.updateMap();
 	}
-	
+
 	public static int visualGrid() {
 		return getInt( KEY_GRID, 0, -1, 2 );
 	}
@@ -133,7 +133,7 @@ public class SPDSettings extends GameSettings {
 	public static int screenShake() {
 		return getInt( KEY_SCREEN_SHAKE, 2, 0, 4 );
 	}
-	
+
 	//Interface
 
 	public static final String KEY_UI_SIZE 	    = "full_ui";
@@ -171,27 +171,27 @@ public class SPDSettings extends GameSettings {
 	public static int scale() {
 		return getInt( KEY_SCALE, 0 );
 	}
-	
+
 	public static void quickSwapper(boolean value ){ put( KEY_QUICK_SWAP, value ); }
-	
+
 	public static boolean quickSwapper(){ return getBoolean( KEY_QUICK_SWAP, true); }
-	
+
 	public static void flipToolbar( boolean value) {
 		put(KEY_FLIPTOOLBAR, value );
 	}
-	
+
 	public static boolean flipToolbar(){ return getBoolean(KEY_FLIPTOOLBAR, false); }
-	
+
 	public static void flipTags( boolean value) {
 		put(KEY_FLIPTAGS, value );
 	}
-	
+
 	public static boolean flipTags(){ return getBoolean(KEY_FLIPTAGS, false); }
-	
+
 	public static void toolbarMode( String value ) {
 		put( KEY_BARMODE, value );
 	}
-	
+
 	public static String toolbarMode() {
 		return getString(KEY_BARMODE, PixelScene.landscape() ? "GROUP" : "SPLIT");
 	}
@@ -222,7 +222,7 @@ public class SPDSettings extends GameSettings {
 	}
 
 	//Game State
-	
+
 	public static final String KEY_LAST_CLASS	= "last_class";
 	public static final String KEY_CHALLENGES	= "challenges";
 	public static final String KEY_CUSTOM_SEED	= "custom_seed";
@@ -230,27 +230,27 @@ public class SPDSettings extends GameSettings {
 	public static final String KEY_INTRO		= "intro";
 
 	public static final String KEY_SUPPORT_NAGGED= "support_nagged";
-	
+
 	public static void intro( boolean value ) {
 		put( KEY_INTRO, value );
 	}
-	
+
 	public static boolean intro() {
 		return getBoolean( KEY_INTRO, true );
 	}
-	
+
 	public static void lastClass( int value ) {
 		put( KEY_LAST_CLASS, value );
 	}
-	
+
 	public static int lastClass() {
 		return getInt( KEY_LAST_CLASS, 0, 0, 3 );
 	}
-	
+
 	public static void challenges( int value ) {
 		put( KEY_CHALLENGES, value );
 	}
-	
+
 	public static int challenges() {
 		return getInt( KEY_CHALLENGES, 0, 0, Challenges.MAX_VALUE );
 	}
@@ -350,46 +350,46 @@ public class SPDSettings extends GameSettings {
 	}
 
 	//Audio
-	
+
 	public static final String KEY_MUSIC		= "music";
 	public static final String KEY_MUSIC_VOL    = "music_vol";
 	public static final String KEY_SOUND_FX		= "soundfx";
 	public static final String KEY_SFX_VOL      = "sfx_vol";
 	public static final String KEY_IGNORE_SILENT= "ignore_silent";
 	public static final String KEY_MUSIC_BG     = "music_bg";
-	
+
 	public static void music( boolean value ) {
 		Music.INSTANCE.enable( value );
 		put( KEY_MUSIC, value );
 	}
-	
+
 	public static boolean music() {
 		return getBoolean( KEY_MUSIC, true );
 	}
-	
+
 	public static void musicVol( int value ){
 		Music.INSTANCE.volume(value*value/100f);
 		put( KEY_MUSIC_VOL, value );
 	}
-	
+
 	public static int musicVol(){
 		return getInt( KEY_MUSIC_VOL, 10, 0, 10 );
 	}
-	
+
 	public static void soundFx( boolean value ) {
 		Sample.INSTANCE.enable( value );
 		put( KEY_SOUND_FX, value );
 	}
-	
+
 	public static boolean soundFx() {
 		return getBoolean( KEY_SOUND_FX, true );
 	}
-	
+
 	public static void SFXVol( int value ) {
 		Sample.INSTANCE.volume(value*value/100f);
 		put( KEY_SFX_VOL, value );
 	}
-	
+
 	public static int SFXVol() {
 		return getInt( KEY_SFX_VOL, 10, 0, 10 );
 	}
@@ -410,15 +410,15 @@ public class SPDSettings extends GameSettings {
 	public static boolean playMusicInBackground(){
 		return getBoolean( KEY_MUSIC_BG, true);
 	}
-	
+
 	//Languages
-	
+
 	public static final String KEY_LANG         = "language";
-	
+
 	public static void language(Languages lang) {
 		put( KEY_LANG, lang.code());
 	}
-	
+
 	public static Languages language() {
 		String code = getString(KEY_LANG, null);
 		if (code == null){
@@ -429,27 +429,27 @@ public class SPDSettings extends GameSettings {
 	}
 
 	//Window management (desktop only atm)
-	
+
 	public static final String KEY_WINDOW_WIDTH     = "window_width";
 	public static final String KEY_WINDOW_HEIGHT    = "window_height";
 	public static final String KEY_WINDOW_MAXIMIZED = "window_maximized";
-	
+
 	public static void windowResolution( Point p ){
 		put(KEY_WINDOW_WIDTH, p.x);
 		put(KEY_WINDOW_HEIGHT, p.y);
 	}
-	
+
 	public static Point windowResolution(){
 		return new Point(
 				getInt( KEY_WINDOW_WIDTH, 800, 720, Integer.MAX_VALUE ),
 				getInt( KEY_WINDOW_HEIGHT, 600, 400, Integer.MAX_VALUE )
 		);
 	}
-	
+
 	public static void windowMaximized( boolean value ){
 		put( KEY_WINDOW_MAXIMIZED, value );
 	}
-	
+
 	public static boolean windowMaximized(){
 		return getBoolean( KEY_WINDOW_MAXIMIZED, false );
 	}
