@@ -94,7 +94,7 @@ public class WndSettings extends WndTabbed {
 		height = Math.max(height, ui.height());
 		add( ui );
 
-		add( new IconTab(Icons.get(Icons.PREFS)){
+		add( new IconTab(Icons.get(Icons.DISPLAY_LAND)){
 			@Override
 			protected void select(boolean value) {
 				super.select(value);

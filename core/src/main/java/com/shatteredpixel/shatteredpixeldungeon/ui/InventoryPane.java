@@ -61,40 +61,27 @@ public class InventoryPane extends Component {
 
 	private NinePatch bg;
 	private NinePatch bg2; //2 backgrounds to reduce transparency
-
 	//used to prevent clicks through the BG normally, or to cancel selectors if they're enabled
 	private PointerArea blocker;
-
 	private Signal.Listener<KeyEvent> keyBlocker;
-
 	private static InventoryPane instance;
-
 	private ArrayList<InventorySlot> equipped;
 	private ArrayList<InventorySlot> bagItems;
-
 	private Image gold;
 	private BitmapText goldTxt;
 	private Image energy;
 	private BitmapText energyTxt;
 	private RenderedTextBlock promptTxt;
-
 	private ArrayList<BagButton> bags;
-
 	public static final int WIDTH = 187;
 	public static final int HEIGHT = 82;
-
 	private static final int SLOT_WIDTH = 17;
 	private static final int SLOT_HEIGHT = 24;
-
 	private WndBag.ItemSelector selector;
-
 	public static Bag lastBag;
-
 	private boolean lastEnabled = true;
-
 	private static Image crossB;
 	private static Image crossM;
-
 	private static boolean targeting = false;
 	private static InventorySlot targetingSlot = null;
 	public static Char lastTarget = null;
@@ -261,18 +248,18 @@ public class InventoryPane extends Component {
 
 		super.layout();
 	}
-	
+
 	public void alpha( float value ){
 		bg.alpha( value );
 		bg2.alpha( value );
-		
+
 		for (InventorySlot slot : equipped){
 			slot.alpha( value );
 		}
 		for (InventorySlot slot : bagItems){
 			slot.alpha( value );
 		}
-		
+
 		gold.alpha(value);
 		goldTxt.alpha(value);
 		energy.alpha(value);
@@ -659,7 +646,7 @@ public class InventoryPane extends Component {
 			bgBottom.y = y+1;
 			bgBottom.x = x;
 		}
-		
+
 		public void alpha( float value ){
 			bgTop.alpha(value);
 			bgBottom.alpha(value);

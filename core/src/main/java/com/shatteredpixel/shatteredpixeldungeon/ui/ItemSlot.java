@@ -39,15 +39,20 @@ import com.watabou.noosa.Image;
 import com.watabou.utils.Rect;
 
 public class ItemSlot extends Button {
-
-	public static final int DEGRADED	= 0xFF4444;
-	public static final int UPGRADED	= 0x44FF44;
+	// red
+	public static final int DEGRADED	= 0xcc425e;
+	//green
+	public static final int UPGRADED	= 0x6bc96c;
+	// greish
 	public static final int FADED       = 0x999999;
-	public static final int WARNING		= 0xFF8800;
-	public static final int ENHANCED	= 0x3399FF;
-	public static final int MASTERED	= 0xFFFF44;
-	public static final int CURSE_INFUSED	= 0x8800FF;
-	
+	// orange
+	public static final int WARNING		= 0xdc682c;
+	// blue
+	public static final int ENHANCED	= 0x6d80fa;
+	// yellow
+	public static final int MASTERED	= 0xf0e276;
+	// purple
+	public static final int CURSE_INFUSED	= 0x834dc4;
 	private static final float ENABLED	= 1.0f;
 	private static final float DISABLED	= 0.3f;
 
@@ -59,7 +64,7 @@ public class ItemSlot extends Button {
 	protected BitmapText extra;
 	protected Image      itemIcon;
 	protected BitmapText level;
-	
+
 	private static final String TXT_STRENGTH	= ":%d";
 	private static final String TXT_TYPICAL_STR	= "%d?";
 
@@ -90,44 +95,44 @@ public class ItemSlot extends Button {
 		public int image() { return ItemSpriteSheet.REMAINS; }
 		public String name() { return Messages.get(Heap.class, "remains"); }
 	};
-	
+
 	public ItemSlot() {
 		super();
 		sprite.visible(false);
 		enable(false);
 	}
-	
+
 	public ItemSlot( Item item ) {
 		this();
 		item( item );
 	}
-		
+
 	@Override
 	protected void createChildren() {
-		
+
 		super.createChildren();
-		
+
 		sprite = new ItemSprite();
 		add(sprite);
-		
+
 		status = new BitmapText( PixelScene.pixelFont);
 		add(status);
-		
+
 		extra = new BitmapText( PixelScene.pixelFont);
 		add(extra);
-		
+
 		level = new BitmapText( PixelScene.pixelFont);
 		add(level);
 	}
-	
+
 	@Override
 	protected void layout() {
 		super.layout();
-		
+
 		sprite.x = x + margin.left + (width - sprite.width - (margin.left + margin.right)) / 2f;
 		sprite.y = y + margin.top + (height - sprite.height - (margin.top + margin.bottom)) / 2f;
 		PixelScene.align(sprite);
-		
+
 		if (status != null) {
 			status.measure();
 			if (status.width > width - (margin.left + margin.right)){
@@ -139,7 +144,7 @@ public class ItemSlot extends Button {
 			status.y = y + margin.top;
 			PixelScene.align(status);
 		}
-		
+
 		if (extra != null) {
 			extra.x = x + (width - extra.width()) - margin.right;
 			extra.y = y + margin.top;
@@ -157,7 +162,7 @@ public class ItemSlot extends Button {
 			itemIcon.y = y + (ItemSpriteSheet.Icons.SIZE - itemIcon.height)/2f + margin.top;
 			PixelScene.align(itemIcon);
 		}
-		
+
 		if (level != null) {
 			level.x = x + (width - level.width()) - margin.right;
 			level.y = y + (height - level.baseLine() - 1) - margin.bottom;
@@ -182,7 +187,7 @@ public class ItemSlot extends Button {
 		sprite.view(ItemSpriteSheet.SOMETHING, null);
 		layout();
 	}
-	
+
 	public void item( Item item ) {
 		if (this.item == item) {
 			if (item != null) {
@@ -195,17 +200,13 @@ public class ItemSlot extends Button {
 		this.item = item;
 
 		if (item == null) {
-
 			enable(false);
 			sprite.visible(false);
-
 			updateText();
-			
+
 		} else {
-			
 			enable(true);
 			sprite.visible(true);
-
 			sprite.view( item );
 			updateText();
 		}
@@ -279,7 +280,7 @@ public class ItemSlot extends Button {
 			if (trueLvl == buffedLvl || buffedLvl <= 0) {
 				if (buffedLvl > 0){
 					if ((item instanceof Weapon && ((Weapon) item).curseInfusionBonus)
-						|| (item instanceof Armor && ((Armor) item).curseInfusionBonus)
+							|| (item instanceof Armor && ((Armor) item).curseInfusionBonus)
 							|| (item instanceof Wand && ((Wand) item).curseInfusionBonus)){
 						level.hardlight(CURSE_INFUSED);
 					} else {
@@ -297,11 +298,11 @@ public class ItemSlot extends Button {
 
 		layout();
 	}
-	
+
 	public void enable( boolean value ) {
-		
+
 		active = value;
-		
+
 		float alpha = value ? ENABLED : DISABLED;
 		sprite.alpha( alpha );
 		status.alpha( alpha );
@@ -311,7 +312,6 @@ public class ItemSlot extends Button {
 	}
 
 	public void showExtraInfo( boolean show ){
-
 		if (show){
 			add(extra);
 		} else {
@@ -334,3 +334,4 @@ public class ItemSlot extends Button {
 		}
 	}
 }
+

@@ -21,6 +21,7 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.windows;
 
+import com.shatteredpixel.shatteredpixeldungeon.Chrome;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.GamesInProgress;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
@@ -34,6 +35,7 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.HeroSprite;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ActionIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Icons;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RedButton;
+import com.shatteredpixel.shatteredpixeldungeon.ui.StyledButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RenderedTextBlock;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
 import com.shatteredpixel.shatteredpixeldungeon.utils.DungeonSeed;
@@ -44,11 +46,8 @@ import java.util.Locale;
 public class WndGameInProgress extends Window {
 	
 	private static final int WIDTH    = 120;
-	
 	private int GAP	  = 6;
-	
 	private float pos;
-	
 	public WndGameInProgress(final int slot){
 		
 		final GamesInProgress.Info info = GamesInProgress.check(slot);
@@ -99,6 +98,8 @@ public class WndGameInProgress extends Window {
 		pos += GAP;
 		statSlot( Messages.get(this, "gold"), info.goldCollected );
 		statSlot( Messages.get(this, "depth"), info.maxDepth );
+
+		/*
 		if (info.daily) {
 			if (info.dailyReplay) {
 				statSlot(Messages.get(this, "replay_for"), "_" + info.customSeed + "_");
@@ -110,16 +111,15 @@ public class WndGameInProgress extends Window {
 		} else {
 			statSlot( Messages.get(this, "dungeon_seed"), DungeonSeed.convertToCode(info.seed) );
 		}
-		
+
 		pos += GAP;
-		
+		*/
+
 		RedButton cont = new RedButton(Messages.get(this, "continue")){
 			@Override
 			protected void onClick() {
 				super.onClick();
-				
 				GamesInProgress.curSlot = slot;
-				
 				Dungeon.hero = null;
 				Dungeon.daily = Dungeon.dailyReplay = false;
 				ActionIndicator.clearAction();
@@ -127,12 +127,12 @@ public class WndGameInProgress extends Window {
 				ShatteredPixelDungeon.switchScene(InterlevelScene.class);
 			}
 		};
-		
-		RedButton erase = new RedButton( Messages.get(this, "erase")){
+
+		StyledButton erase = new StyledButton( Chrome.Type.GREY_BUTTON_TR, Messages.get(this, "erase")){
 			@Override
 			protected void onClick() {
 				super.onClick();
-				
+
 				ShatteredPixelDungeon.scene().add(new WndOptions(Icons.get(Icons.WARNING),
 						Messages.get(WndGameInProgress.class, "erase_warn_title"),
 						Messages.get(WndGameInProgress.class, "erase_warn_body"),
@@ -150,14 +150,14 @@ public class WndGameInProgress extends Window {
 		};
 
 		cont.icon(Icons.get(Icons.ENTER));
-		cont.setRect(0, pos, WIDTH/2 -1, 20);
+		cont.setRect(0, pos+GAP+2, WIDTH, 20);
 		add(cont);
 
 		erase.icon(Icons.get(Icons.CLOSE));
-		erase.setRect(WIDTH/2 + 1, pos, WIDTH/2 - 1, 20);
+		erase.setRect(0, cont.bottom() + 2, WIDTH, 20);
 		add(erase);
 		
-		resize(WIDTH, (int)cont.bottom()+1);
+		resize(WIDTH, (int)erase.bottom()+1);
 	}
 	
 	private void statSlot( String label, String value ) {

@@ -50,7 +50,6 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Music;
 import com.watabou.utils.ColorMath;
 import com.watabou.utils.DeviceCompat;
-
 import java.util.Date;
 
 public class TitleScene extends PixelScene {
@@ -179,7 +178,7 @@ public class TitleScene extends PixelScene {
 		add(btnAbout);
 
 		// get values from screen size
-		final int BTN_HEIGHT = 20;
+		final int BTN_HEIGHT = 24;
 		int GAP = (int)(h - topRegion - (landscape() ? 3 : 4)*BTN_HEIGHT)/3;
 		GAP /= landscape() ? 3 : 5;
 		GAP = Math.max(GAP, 2);

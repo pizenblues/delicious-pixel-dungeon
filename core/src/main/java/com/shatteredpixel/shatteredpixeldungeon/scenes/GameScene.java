@@ -1328,7 +1328,7 @@ public class GameScene extends PixelScene {
 		gameOver.show( 0x000000, 2f );
 		scene.showBanner( gameOver );
 
-		StyledButton restart = new StyledButton(Chrome.Type.GREY_BUTTON_TR, Messages.get(StartScene.class, "new"), 9){
+		StyledButton restart = new StyledButton(Chrome.Type.RED_BUTTON, Messages.get(StartScene.class, "new"), 9){
 			@Override
 			protected void onClick() {
 				GamesInProgress.selectedClass = Dungeon.hero.heroClass;
@@ -1365,7 +1365,7 @@ public class GameScene extends PixelScene {
 				super.update();
 			}
 		};
-		menu.icon(Icons.get(Icons.PREFS));
+		//menu.icon(Icons.get(Icons.PREFS));
 		menu.alpha(0);
 		menu.camera = uiCamera;
 		menu.setSize(Math.max(80, menu.reqWidth()), 20);

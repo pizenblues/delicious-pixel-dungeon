@@ -34,8 +34,10 @@ import com.watabou.noosa.audio.Sample;
 
 public class InventorySlot extends ItemSlot {
 
-	private static final int NORMAL		= 0x9953564D;
-	private static final int EQUIPPED	= 0x9991938C;
+	private static final int NORMAL		= 0x99973f4e;
+	private static final int EQUIPPED	= 0xFFC97373;
+	private static final int UNKNOWN = 0x776a2b45;
+	private static final int CURSED = 0x778465ec;
 
 	private ColorBlock bg;
 
@@ -87,14 +89,14 @@ public class InventorySlot extends ItemSlot {
 			bg.texture( TextureCache.createSolid( equipped ? EQUIPPED : NORMAL ) );
 			bg.resetColor();
 			if (item.cursed && item.cursedKnown) {
-				bg.ra = +0.3f;
-				bg.ga = -0.15f;
+				//bg.ra = +0.3f;
+				//bg.ga = -0.15f;
+				bg.texture(TextureCache.createSolid(CURSED));
 			} else if (!item.isIdentified()) {
 				if ((item instanceof EquipableItem || item instanceof Wand) && item.cursedKnown){
 					bg.ba = 0.3f;
 				} else {
-					bg.ra = 0.3f;
-					bg.ba = 0.3f;
+					bg.texture(TextureCache.createSolid(UNKNOWN));
 				}
 			}
 
@@ -125,3 +127,4 @@ public class InventorySlot extends ItemSlot {
 	}
 
 }
+

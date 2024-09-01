@@ -21,6 +21,7 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.windows;
 
+import com.shatteredpixel.shatteredpixeldungeon.Chrome;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.GamesInProgress;
 import com.shatteredpixel.shatteredpixeldungeon.SPDSettings;
@@ -33,49 +34,24 @@ import com.shatteredpixel.shatteredpixeldungeon.scenes.RankingsScene;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.TitleScene;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Icons;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RedButton;
+import com.shatteredpixel.shatteredpixeldungeon.ui.StyledButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
 import com.watabou.noosa.Game;
 
 import java.io.IOException;
 
 public class WndGame extends Window {
-
 	private static final int WIDTH		= 120;
 	private static final int BTN_HEIGHT	= 20;
 	private static final int GAP		= 2;
-	
 	private int pos;
 	
 	public WndGame() {
-		
 		super();
-
-		//settings
 		RedButton curBtn;
-		addButton( curBtn = new RedButton( Messages.get(this, " ") ) {
-			@Override
-			protected void onClick() {
-				hide();
-				GameScene.show(new WndSettings());
-			}
-		});
-		curBtn.icon(Icons.get(Icons.PREFS));
+		StyledButton optBtn;
 
-		// Challenges window
-		if (Dungeon.challenges > 0) {
-			addButton( curBtn = new RedButton( Messages.get(this, "challenges") ) {
-				@Override
-				protected void onClick() {
-					hide();
-					GameScene.show( new WndChallenges( Dungeon.challenges, false ) );
-				}
-			} );
-			curBtn.icon(Icons.get(Icons.CHALLENGE_ON));
-		}
-
-		// Restart
 		if (Dungeon.hero == null || !Dungeon.hero.isAlive()) {
-
 			addButton( curBtn = new RedButton( Messages.get(this, "start") ) {
 				@Override
 				protected void onClick() {
@@ -86,19 +62,18 @@ public class WndGame extends Window {
 			} );
 			curBtn.icon(Icons.get(Icons.ENTER));
 			curBtn.textColor(Window.TITLE_COLOR);
-			
-			addButton( curBtn = new RedButton( Messages.get(this, "rankings") ) {
-				@Override
-				protected void onClick() {
-					InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
-					Game.switchScene( RankingsScene.class );
-				}
-			} );
-			curBtn.icon(Icons.get(Icons.RANKINGS));
 		}
 
-		// Main menu
-		addButton(curBtn = new RedButton(Messages.get(this, "menu")) {
+		addGreyButton( optBtn = new StyledButton(Chrome.Type.GREY_BUTTON_TR, Messages.get(this, "settings") ) {
+			@Override
+			protected void onClick() {
+				hide();
+				GameScene.show(new WndSettings());
+			}
+		});
+		optBtn.icon(Icons.get(Icons.PREFS));
+
+		addGreyButton(optBtn = new StyledButton(Chrome.Type.GREY_BUTTON_TR, Messages.get(this, "menu")) {
 			@Override
 			protected void onClick() {
 				try {
@@ -109,15 +84,20 @@ public class WndGame extends Window {
 				Game.switchScene(TitleScene.class);
 			}
 		});
-		curBtn.icon(Icons.get(Icons.DISPLAY));
-		if (SPDSettings.intro()) curBtn.enable(false);
 
+		if (SPDSettings.intro()) optBtn.enable(false);
 		resize( WIDTH, pos );
 	}
 	
 	private void addButton( RedButton btn ) {
 		add( btn );
 		btn.setRect( 0, pos > 0 ? pos += GAP : 0, WIDTH, BTN_HEIGHT );
+		pos += BTN_HEIGHT;
+	}
+
+	private void addGreyButton( StyledButton button ) {
+		add( button );
+		button.setRect( 0, pos > 0 ? pos += GAP : 0, WIDTH, BTN_HEIGHT );
 		pos += BTN_HEIGHT;
 	}
 
