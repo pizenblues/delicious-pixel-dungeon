@@ -49,6 +49,7 @@ public class SkeletonKey extends Key {
 
 	@Override
 	public boolean doPickUp(Hero hero, int pos) {
+		/*
 		if(!SPDSettings.supportNagged()){
 			try {
 				Dungeon.saveAll();
@@ -61,9 +62,8 @@ public class SkeletonKey extends Key {
 			} catch (IOException e) {
 				ShatteredPixelDungeon.reportException(e);
 			}
-			
 		}
-		
+		 */
 		return super.doPickUp(hero, pos);
 	}
 

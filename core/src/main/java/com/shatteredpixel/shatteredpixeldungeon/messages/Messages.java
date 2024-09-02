@@ -44,11 +44,9 @@ import java.util.Locale;
 	This means that an object can just ask for "name" rather than, say, "items.weapon.enchantments.death.name"
  */
 public class Messages {
-
 	private static ArrayList<I18NBundle> bundles;
 	private static Languages lang;
 	private static Locale locale;
-
 	public static final String NO_TEXT_FOUND = "!!!NO TEXT FOUND!!!";
 
 	public static Languages lang(){
@@ -58,7 +56,6 @@ public class Messages {
 	public static Locale locale(){
 		return locale;
 	}
-
 	/**
 	 * Setup Methods
 	 */
@@ -98,8 +95,6 @@ public class Messages {
 			bundles.add(I18NBundle.createBundle(Gdx.files.internal(file), bundleLocal));
 		}
 	}
-
-
 
 	/**
 	 * Resource grabbing methods
@@ -148,8 +143,6 @@ public class Messages {
 		}
 		return null;
 	}
-
-
 
 	/**
 	 * String Utility Methods
