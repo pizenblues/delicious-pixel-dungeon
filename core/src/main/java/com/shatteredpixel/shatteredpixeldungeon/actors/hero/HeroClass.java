@@ -157,75 +157,67 @@ public enum HeroClass {
 	}
 
 	private static void initWarrior( Hero hero ) {
+		// starting stats
+		hero.STR += 1;
+
+		// starting items
 		(hero.belongings.weapon = new WornShortsword()).identify();
-		ThrowingStone stones = new ThrowingStone();
-		stones.quantity(3).collect();
-		Dungeon.quickslot.setSlot(0, stones);
 
-		if (hero.belongings.armor != null){
-			hero.belongings.armor.affixSeal(new BrokenSeal());
-		}
-
-		new PotionOfHealing().identify();
-		new ScrollOfRage().identify();
+		// items to identify
+		new PotionOfStrength().identify();
 	}
 
 	private static void initMage( Hero hero ) {
+		// starting items
 		MagesStaff staff;
-
 		staff = new MagesStaff(new WandOfMagicMissile());
-
 		(hero.belongings.weapon = staff).identify();
 		hero.belongings.weapon.activate(hero);
-
 		Dungeon.quickslot.setSlot(0, staff);
 
+		// items to identify
 		new ScrollOfUpgrade().identify();
-		new PotionOfLiquidFlame().identify();
 	}
 
 	private static void initRogue( Hero hero ) {
+		// starting stats
+		hero.HP = (hero.HT -= 3);
+		// rogue needs less food
+
+		// starting items
 		(hero.belongings.weapon = new Dagger()).identify();
-
-		CloakOfShadows cloak = new CloakOfShadows();
-		(hero.belongings.artifact = cloak).identify();
-		hero.belongings.artifact.activate( hero );
-
 		ThrowingKnife knives = new ThrowingKnife();
 		knives.quantity(3).collect();
+		Dungeon.quickslot.setSlot(0, knives);
 
-		Dungeon.quickslot.setSlot(0, cloak);
-		Dungeon.quickslot.setSlot(1, knives);
-
+		// items to identify
 		new ScrollOfMagicMapping().identify();
 		new PotionOfInvisibility().identify();
 	}
 
 	private static void initHuntress( Hero hero ) {
+		// starting stats
+		hero.HP = (hero.HT += 5);
 
+		// starting items
 		(hero.belongings.weapon = new Gloves()).identify();
-		SpiritBow bow = new SpiritBow();
-		bow.identify().collect();
 
-		Dungeon.quickslot.setSlot(0, bow);
-
+		// items to identify
 		new PotionOfMindVision().identify();
 		new ScrollOfLullaby().identify();
 	}
 
 	private static void initDuelist( Hero hero ) {
+		// starting stats
+		hero.STR = hero.STR + 1;
 
+		// rapier and spikes
 		(hero.belongings.weapon = new Rapier()).identify();
 		hero.belongings.weapon.activate(hero);
-
 		ThrowingSpike spikes = new ThrowingSpike();
 		spikes.quantity(2).collect();
-
 		Dungeon.quickslot.setSlot(0, hero.belongings.weapon);
 		Dungeon.quickslot.setSlot(1, spikes);
-
-		new PotionOfStrength().identify();
-		new ScrollOfMirrorImage().identify();
 	}
 
 	public String title() {

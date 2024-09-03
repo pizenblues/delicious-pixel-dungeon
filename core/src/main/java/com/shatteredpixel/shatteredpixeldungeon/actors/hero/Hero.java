@@ -171,20 +171,16 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 
 public class Hero extends Char {
-
 	{
 		actPriority = HERO_PRIO;
-		
 		alignment = Alignment.ALLY;
 	}
 	
 	public static final int MAX_LEVEL = 30;
-
 	public static final int STARTING_STR = 10;
-	
-	private static final float TIME_TO_REST		    = 1f;
-	private static final float TIME_TO_SEARCH	    = 2f;
-	private static final float HUNGER_FOR_SEARCH	= 6f;
+	private static final float TIME_TO_REST = 1f;
+	private static final float TIME_TO_SEARCH = 2f;
+	private static final float HUNGER_FOR_SEARCH = 6f;
 	
 	public HeroClass heroClass = HeroClass.ROGUE;
 	public HeroSubClass subClass = HeroSubClass.NONE;
@@ -201,18 +197,13 @@ public class Hero extends Char {
 	public HeroAction lastAction = null;
 
 	private Char enemy;
-	
 	public boolean resting = false;
-	
 	public Belongings belongings;
-	
+
 	public int STR;
-	
 	public float awareness;
-	
 	public int lvl = 1;
 	public int exp = 0;
-	
 	public int HTBoost = 0;
 	
 	private ArrayList<Mob> visibleEnemies;
@@ -269,7 +260,6 @@ public class Hero extends Char {
 	private static final String CLASS       = "class";
 	private static final String SUBCLASS    = "subClass";
 	private static final String ABILITY     = "armorAbility";
-
 	private static final String ATTACK		= "attackSkill";
 	private static final String DEFENSE		= "defenseSkill";
 	private static final String STRENGTH	= "STR";

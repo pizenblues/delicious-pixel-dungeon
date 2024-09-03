@@ -34,6 +34,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.Artifact;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.HornOfPlenty;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRecharging;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
@@ -76,6 +77,21 @@ public class Food extends Item {
 			
 			satisfy(hero);
 			GLog.i( Messages.get(this, "eat_msg") );
+
+			switch (hero.heroClass) {
+				case WARRIOR:
+					if (hero.HP < hero.HT) {
+						hero.HP = Math.min( hero.HP + 5, hero.HT );
+					}
+					break;
+				case MAGE:
+					//hero.belongings.charge( false );
+					ScrollOfRecharging.charge( hero );
+					break;
+				case ROGUE:
+				case HUNTRESS:
+					break;
+			}
 			
 			hero.sprite.operate( hero.pos );
 			hero.busy();
