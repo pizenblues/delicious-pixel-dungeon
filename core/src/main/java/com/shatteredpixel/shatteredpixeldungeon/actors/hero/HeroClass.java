@@ -192,7 +192,6 @@ public enum HeroClass {
 
 		// items to identify
 		new ScrollOfMagicMapping().identify();
-		new PotionOfInvisibility().identify();
 	}
 
 	private static void initHuntress( Hero hero ) {
