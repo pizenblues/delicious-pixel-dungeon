@@ -86,6 +86,6 @@ public class PotionOfHealing extends Potion {
 
 	@Override
 	public int value() {
-		return isKnown() ? 30 * quantity : super.value();
+		return isKnown() ? 15 * quantity : super.value();
 	}
 }

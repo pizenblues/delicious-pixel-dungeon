@@ -110,7 +110,7 @@ public class Stylus extends Item {
 	
 	@Override
 	public int value() {
-		return 30 * quantity;
+		return 0 * quantity;
 	}
 
 	private final WndBag.ItemSelector itemSelector = new WndBag.ItemSelector() {

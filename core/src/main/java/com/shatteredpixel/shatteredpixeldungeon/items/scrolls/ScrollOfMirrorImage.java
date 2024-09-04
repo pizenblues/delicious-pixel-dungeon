@@ -90,6 +90,6 @@ public class ScrollOfMirrorImage extends Scroll {
 
 	@Override
 	public int value() {
-		return isKnown() ? 30 * quantity : super.value();
+		return isKnown() ? 15 * quantity : super.value();
 	}
 }

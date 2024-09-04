@@ -83,6 +83,6 @@ public class ScrollOfRetribution extends Scroll {
 	
 	@Override
 	public int value() {
-		return isKnown() ? 40 * quantity : super.value();
+		return isKnown() ? 20 * quantity : super.value();
 	}
 }
