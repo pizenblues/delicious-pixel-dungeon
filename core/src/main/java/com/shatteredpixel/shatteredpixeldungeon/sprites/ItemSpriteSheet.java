@@ -92,12 +92,10 @@ public class ItemSpriteSheet {
 	static{
 		assignItemRect(GOLD,        14, 13);
 		assignItemRect(ENERGY,      16, 16);
-
 		assignItemRect(DEWDROP,     9, 9);
 		assignItemRect(PETAL,       8,  8);
 		assignItemRect(SANDBAG,     10, 10);
 		assignItemRect(SPIRIT_ARROW,11, 11);
-		
 		assignItemRect(TENGU_BOMB,      10, 10);
 		assignItemRect(TENGU_SHOCKER,   10, 10);
 		assignItemRect(GEO_BOULDER,     16, 14);
@@ -213,7 +211,7 @@ public class ItemSpriteSheet {
 		assignItemRect(GLOVES,          14, 14);
 		assignItemRect(RAPIER,          14, 13);
 		assignItemRect(DAGGER,          13, 14);
-		assignItemRect(MAGES_STAFF,     15, 16);
+		assignItemRect(MAGES_STAFF,     16, 16);
 	}
 
 	private static final int WEP_TIER2      = xy(9, 7);   //8 slots
@@ -258,11 +256,11 @@ public class ItemSpriteSheet {
 	public static final int KATANA          = WEP_TIER4+6;
 	static{
 		assignItemRect(LONGSWORD,       15, 15);
-		assignItemRect(BATTLE_AXE,      16, 16);
-		assignItemRect(FLAIL,           15, 15);
+		assignItemRect(BATTLE_AXE,      15, 15);
+		assignItemRect(FLAIL,           16, 16);
 		assignItemRect(RUNIC_BLADE,     16, 16);
 		assignItemRect(ASSASSINS_BLADE, 16, 16);
-		assignItemRect(CROSSBOW,        16, 16);
+		assignItemRect(CROSSBOW,        15, 16);
 		assignItemRect(KATANA,          16, 16);
 	}
 
@@ -276,12 +274,12 @@ public class ItemSpriteSheet {
 	public static final int WAR_SCYTHE      = WEP_TIER5+6;
 	static{
 		assignItemRect(GREATSWORD,  16, 16);
-		assignItemRect(WAR_HAMMER,  16, 16);
+		assignItemRect(WAR_HAMMER,  15, 16);
 		assignItemRect(GLAIVE,      16, 16);
-		assignItemRect(GREATAXE,    12, 16);
-		assignItemRect(GREATSHIELD, 12, 16);
-		assignItemRect(GAUNTLETS,   13, 15);
-		assignItemRect(WAR_SCYTHE,  14, 15);
+		assignItemRect(GREATAXE,    15, 16);
+		assignItemRect(GREATSHIELD, 16, 16);
+		assignItemRect(GAUNTLETS,   15, 16);
+		assignItemRect(WAR_SCYTHE,  15, 16);
 	}
 
 //8 free slots
@@ -352,11 +350,11 @@ public class ItemSpriteSheet {
 	public static final int ARMOR_HUNTRESS  = ARMOR+8;
 	public static final int ARMOR_DUELIST   = ARMOR+9;
 	static{
-		assignItemRect(ARMOR_CLOTH,     15, 12);
-		assignItemRect(ARMOR_LEATHER,   14, 13);
-		assignItemRect(ARMOR_MAIL,      14, 12);
-		assignItemRect(ARMOR_SCALE,     14, 11);
-		assignItemRect(ARMOR_PLATE,     12, 12);
+		assignItemRect(ARMOR_CLOTH,     13, 12);
+		assignItemRect(ARMOR_LEATHER,   15, 13);
+		assignItemRect(ARMOR_MAIL,      15, 13);
+		assignItemRect(ARMOR_SCALE,     15, 13);
+		assignItemRect(ARMOR_PLATE,     15, 13);
 		assignItemRect(ARMOR_WARRIOR,   12, 12);
 		assignItemRect(ARMOR_MAGE,      15, 15);
 		assignItemRect(ARMOR_ROGUE,     14, 12);
@@ -382,7 +380,7 @@ public class ItemSpriteSheet {
 	public static final int WAND_TRANSFUSION    = WANDS+12;
 	static {
 		for (int i = WANDS; i < WANDS+16; i++)
-			assignItemRect(i, 14, 14);
+			assignItemRect(i, 16, 16);
 	}
 
 	private static final int RINGS          = xy(1, 15);  //16 slots
