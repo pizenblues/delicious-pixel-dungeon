@@ -303,19 +303,19 @@ public class ItemSpriteSheet {
 	static{
 		assignItemRect(SPIRIT_BOW,      16, 16);
 		assignItemRect(THROWING_SPIKE,  11, 10);
-		assignItemRect(THROWING_KNIFE,  12, 13);
+		assignItemRect(THROWING_KNIFE,  13, 13);
 		assignItemRect(THROWING_STONE,  12, 10);
-		assignItemRect(FISHING_SPEAR,   11, 11);
-		assignItemRect(SHURIKEN,        12, 12);
-		assignItemRect(THROWING_CLUB,   12, 12);
-		assignItemRect(THROWING_SPEAR,  13, 13);
-		assignItemRect(BOLAS,           15, 14);
+		assignItemRect(FISHING_SPEAR,   13, 13);
+		assignItemRect(SHURIKEN,        13, 12);
+		assignItemRect(THROWING_CLUB,   13, 13);
+		assignItemRect(THROWING_SPEAR,  15, 15);
+		assignItemRect(BOLAS,           13, 12);
 		assignItemRect(KUNAI,           15, 15);
-		assignItemRect(JAVELIN,         16, 16);
-		assignItemRect(TOMAHAWK,        13, 13);
+		assignItemRect(JAVELIN,         13, 13);
+		assignItemRect(TOMAHAWK,        12, 13);
 		assignItemRect(BOOMERANG,       14, 14);
-		assignItemRect(TRIDENT,         16, 16);
-		assignItemRect(THROWING_HAMMER, 12, 12);
+		assignItemRect(TRIDENT,         13, 12);
+		assignItemRect(THROWING_HAMMER, 13, 13);
 		assignItemRect(FORCE_CUBE,      11, 12);
 	}
 	

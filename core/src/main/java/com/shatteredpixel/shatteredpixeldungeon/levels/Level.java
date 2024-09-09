@@ -230,10 +230,10 @@ public abstract class Level implements Bundlable {
 				Dungeon.LimitedDrops.INT_STONE.drop();
 				addItemToSpawn( new StoneOfIntuition() );
 			}
-			if ( Dungeon.trinketCataNeeded() ){
+			/*if ( Dungeon.trinketCataNeeded() ){
 				Dungeon.LimitedDrops.TRINKET_CATA.drop();
 				addItemToSpawn( new TrinketCatalyst());
-			}
+			}*/
 			
 			if (Dungeon.depth > 1) {
 				//50% chance of getting a level feeling

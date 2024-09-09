@@ -443,23 +443,33 @@ abstract public class MissileWeapon extends Weapon {
 	@Override
 	public String info() {
 
-		String info = desc();
+		String description = desc();
+		String info;
+		String uses_left;
+
+		if (durabilityPerUse() > 0){
+			uses_left = Messages.get(this, "uses_left",
+					(int)Math.ceil(durability/durabilityPerUse()),
+					(int)Math.ceil(MAX_DURABILITY/durabilityPerUse()));
+		} else {
+			uses_left = Messages.get(this, "unlimited_uses");
+		}
 		
-		info += "\n\n" + Messages.get( MissileWeapon.class, "stats",
-				tier,
+		info = Messages.get( MissileWeapon.class,
+				"stats",tier,
 				Math.round(augment.damageFactor(min())),
 				Math.round(augment.damageFactor(max())),
-				STRReq());
+				STRReq()) + "\n" + uses_left +  "\n\n" + description;
 
 		if (STRReq() > Dungeon.hero.STR()) {
-			info += " " + Messages.get(Weapon.class, "too_heavy");
+			info += "\n\n" + Messages.get(Weapon.class, "too_heavy");
 		} else if (Dungeon.hero.STR() > STRReq()){
-			info += " " + Messages.get(Weapon.class, "excess_str", Dungeon.hero.STR() - STRReq());
+			info += "\n\n" + Messages.get(Weapon.class, "excess_str", Dungeon.hero.STR() - STRReq());
 		}
 
 		if (enchantment != null && (cursedKnown || !enchantment.curse())){
 			info += "\n\n" + Messages.get(Weapon.class, "enchanted", enchantment.name());
-			info += " " + Messages.get(enchantment, "desc");
+			info += "\n\n" + Messages.get(enchantment, "desc");
 		}
 
 		if (cursed && isEquipped( Dungeon.hero )) {
@@ -470,19 +480,6 @@ abstract public class MissileWeapon extends Weapon {
 			info += "\n\n" + Messages.get(Weapon.class, "not_cursed");
 		}
 
-		info += "\n\n" + Messages.get(MissileWeapon.class, "distance");
-		
-		info += "\n\n" + Messages.get(this, "durability");
-		
-		if (durabilityPerUse() > 0){
-			info += " " + Messages.get(this, "uses_left",
-					(int)Math.ceil(durability/durabilityPerUse()),
-					(int)Math.ceil(MAX_DURABILITY/durabilityPerUse()));
-		} else {
-			info += " " + Messages.get(this, "unlimited_uses");
-		}
-		
-		
 		return info;
 	}
 	

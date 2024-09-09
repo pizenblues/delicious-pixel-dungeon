@@ -356,19 +356,20 @@ public class MeleeWeapon extends Weapon {
 	@Override
 	public String info() {
 
-		String info = desc();
+		String info;
+		String description = desc();
 
 		if (levelKnown) {
-			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_known", tier, augment.damageFactor(min()), augment.damageFactor(max()), STRReq());
+			info = Messages.get(MeleeWeapon.class, "stats_known", tier, augment.damageFactor(min()), augment.damageFactor(max()), STRReq()) + "\n\n" + description;
 			if (STRReq() > Dungeon.hero.STR()) {
-				info += " " + Messages.get(Weapon.class, "too_heavy");
+				info += "\n\n" + Messages.get(Weapon.class, "too_heavy");
 			} else if (Dungeon.hero.STR() > STRReq()){
-				info += " " + Messages.get(Weapon.class, "excess_str", Dungeon.hero.STR() - STRReq());
+				info += "\n\n" + Messages.get(Weapon.class, "excess_str", Dungeon.hero.STR() - STRReq());
 			}
 		} else {
-			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", tier, min(0), max(0), STRReq(0));
+			info = Messages.get(MeleeWeapon.class, "stats_unknown", tier, min(0), max(0), STRReq(0)) + "\n\n" + description;
 			if (STRReq(0) > Dungeon.hero.STR()) {
-				info += " " + Messages.get(MeleeWeapon.class, "probably_too_heavy");
+				info += "\n\n" + Messages.get(MeleeWeapon.class, "probably_too_heavy");
 			}
 		}
 

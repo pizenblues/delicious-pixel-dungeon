@@ -578,10 +578,10 @@ public class Dungeon {
 		return depth < 5 && !LimitedDrops.INT_STONE.dropped() && Random.Int(4-depth) == 0;
 	}
 
-	public static boolean trinketCataNeeded(){
+	/*public static boolean trinketCataNeeded(){
 		//one trinket catalyst on floors 1-3
 		return depth < 5 && !LimitedDrops.TRINKET_CATA.dropped() && Random.Int(4-depth) == 0;
-	}
+	}*/
 
 	public static boolean labRoomNeeded(){
 		//one laboratory each floor set, in floor 3 or 4, 1/2 chance each floor
