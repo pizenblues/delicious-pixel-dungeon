@@ -153,11 +153,10 @@ public class HeroSelectScene extends PixelScene {
 
 		if(landscape()){
 			title.setPos(0, btnExit.bottom()+6);
-			heroDesc.setPos(0, title.bottom()+4);
 			float gridGap = 2;
 			float buttonWidth = 60;
 			float positionX = 0;
-			float positionY = heroDesc.bottom() + (gridGap*4);
+			float positionY = title.bottom() + (gridGap*4);
 			for (StyledButton button : heroBtns) {
 				button.setRect(positionX, positionY, buttonWidth, HeroBtn.HEIGHT);
 				if(positionX < buttonWidth){
@@ -170,12 +169,11 @@ public class HeroSelectScene extends PixelScene {
 			}
 		}else{
 			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height / 2));
-			heroDesc.setPos((Camera.main.width - heroDesc.width()) / 2f, title.bottom()+2);
 			float gridGap = 2;
 			float buttonWidth = 60;
 			float originalCenter = (Camera.main.width - ((buttonWidth*2) + gridGap)) / 2;
 			float positionX = originalCenter;
-			float positionY = heroDesc.bottom() + (gridGap*5);
+			float positionY = title.bottom() + (gridGap*5);
 			for (StyledButton button : heroBtns) {
 				button.setRect(positionX, positionY, buttonWidth, HeroBtn.HEIGHT);
 				if(positionX < (originalCenter + buttonWidth)){
@@ -203,11 +201,8 @@ public class HeroSelectScene extends PixelScene {
 
 		background.visible = true;
 		background.hardlight(1.5f,1.5f,1.5f);
-		heroDesc.visible = heroDesc.active = true;
-		heroDesc.maxWidth(140);
 
 		title.text("Play as " + Messages.titleCase(cl.title()));
-		heroDesc.text(Messages.titleCase(cl.shortDesc()));
 
 		startBtn.visible = startBtn.active = true;
 		startBtn.text("Start");
@@ -215,11 +210,9 @@ public class HeroSelectScene extends PixelScene {
 
 		if(landscape()){
 			title.setPos(0, btnExit.bottom()+6);
-			heroDesc.setPos(0, title.bottom()+4);
 			startBtn.setPos(0, (Camera.main.height) - 30 );
 		}else{
 			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height / 2));
-			heroDesc.setPos((Camera.main.width - heroDesc.width()) / 2f, title.bottom()+2);
 			startBtn.setPos((Camera.main.width - startBtn.width())/2f, (Camera.main.height) - 30 );
 		}
 

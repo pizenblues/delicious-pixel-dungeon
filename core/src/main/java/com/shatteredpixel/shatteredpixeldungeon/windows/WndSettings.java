@@ -230,7 +230,7 @@ public class WndSettings extends WndTabbed {
 			title.hardlight(TITLE_COLOR);
 			add(title);
 
-			chkFullscreen = new CheckBox( Messages.get(this, "fullscreen") ) {
+			/*chkFullscreen = new CheckBox( Messages.get(this, "fullscreen") ) {
 				@Override
 				protected void onClick() {
 					super.onClick();
@@ -243,7 +243,7 @@ public class WndSettings extends WndTabbed {
 				chkFullscreen.checked(true);
 				chkFullscreen.enable(false);
 			}
-			add(chkFullscreen);
+			add(chkFullscreen);*/
 
 			if (DeviceCompat.isAndroid()) {
 				Boolean landscape = SPDSettings.landscape();
@@ -270,7 +270,7 @@ public class WndSettings extends WndTabbed {
 				}
 			};
 			optBrightness.setSelectedValue(SPDSettings.brightness());
-			add(optBrightness);
+			//add(optBrightness);
 
 			optVisGrid = new OptionSlider(Messages.get(this, "visual_grid"),
 					Messages.get(this, "off"), Messages.get(this, "high"), -1, 2) {
@@ -312,9 +312,8 @@ public class WndSettings extends WndTabbed {
 			title.setPos((width - title.width())/2, bottom + GAP);
 			bottom = title.bottom();
 
-			if (width > 200 && chkSaver != null) {
+			/*if (width > 200 && chkSaver != null) {
 				chkFullscreen.setRect(0, bottom + GAP*3, width/2-1, BTN_HEIGHT);
-				chkSaver.setRect(chkFullscreen.right()+ GAP, bottom + GAP*3, width/2-1, BTN_HEIGHT);
 				bottom = chkFullscreen.bottom();
 			} else {
 				chkFullscreen.setRect(0, bottom + GAP*3, width, BTN_HEIGHT);
@@ -324,10 +323,10 @@ public class WndSettings extends WndTabbed {
 					chkSaver.setRect(0, bottom + GAP, width, BTN_HEIGHT);
 					bottom = chkSaver.bottom();
 				}
-			}
+			}*/
 
 			if (btnOrientation != null) {
-				btnOrientation.setRect(0, bottom + GAP, width, BTN_HEIGHT);
+				btnOrientation.setRect(0, bottom + GAP*3, width, BTN_HEIGHT);
 				bottom = btnOrientation.bottom();
 			}
 
@@ -336,16 +335,16 @@ public class WndSettings extends WndTabbed {
 				bottom = optScale.bottom();
 			}
 
-			if (width > 200){
-				optBrightness.setRect(0, bottom + GAP, width/2-GAP/2, SLIDER_HEIGHT);
-				optVisGrid.setRect(optBrightness.right() + GAP, optBrightness.top(), width/2-GAP/2, SLIDER_HEIGHT);
+			optVisGrid.setRect(0, bottom + GAP, width, SLIDER_HEIGHT);
 
+			if (width > 200){
+				//optBrightness.setRect(0, bottom + GAP, width/2-GAP/2, SLIDER_HEIGHT);
+				//optVisGrid.setRect(optBrightness.right() + GAP, optBrightness.top(), width/2-GAP/2, SLIDER_HEIGHT);
 				optFollowIntensity.setRect(0, optVisGrid.bottom() + GAP, width/2-GAP/2, SLIDER_HEIGHT);
 				optScreenShake.setRect(optFollowIntensity.right() + GAP, optFollowIntensity.top(), width/2-GAP/2, SLIDER_HEIGHT);
 			} else {
-				optBrightness.setRect(0, bottom + GAP, width, SLIDER_HEIGHT);
-				optVisGrid.setRect(0, optBrightness.bottom() + GAP, width, SLIDER_HEIGHT);
-
+				//optBrightness.setRect(0, bottom + GAP, width, SLIDER_HEIGHT);
+				//optVisGrid.setRect(0, optBrightness.bottom() + GAP, width, SLIDER_HEIGHT);
 				optFollowIntensity.setRect(0, optVisGrid.bottom() + GAP, width, SLIDER_HEIGHT);
 				optScreenShake.setRect(0, optFollowIntensity.bottom() + GAP, width, SLIDER_HEIGHT);
 			}

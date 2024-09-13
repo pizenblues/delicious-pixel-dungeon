@@ -148,7 +148,7 @@ public class TitleScene extends PixelScene {
 		add(btnRankings);
 		Dungeon.daily = Dungeon.dailyReplay = false;
 */
-		StyledButton btnBadges = new StyledButton(GREY_TR, Messages.get(this, "badges")){
+		/*StyledButton btnBadges = new StyledButton(GREY_TR, Messages.get(this, "badges")){
 			@Override
 			protected void onClick() {
 				ShatteredPixelDungeon.switchNoFade( BadgesScene.class );
@@ -156,6 +156,8 @@ public class TitleScene extends PixelScene {
 		};
 		btnBadges.icon(Icons.get(Icons.BADGES));
 		add(btnBadges);
+
+		 */
 /*
 		StyledButton btnNews = new NewsButton(GREY_TR, Messages.get(this, "news"));
 		btnNews.icon(Icons.get(Icons.NEWS));
@@ -184,10 +186,10 @@ public class TitleScene extends PixelScene {
 		GAP = Math.max(GAP, 2);
 
 		// buttons placements and size
-		btnPlay.setRect(title.x, topRegion+GAP, title.width(), BTN_HEIGHT);
-		btnBadges.setRect(btnPlay.left(), btnPlay.bottom()+ GAP, btnPlay.width(), BTN_HEIGHT);
-		btnSettings.setRect(btnBadges.left(), btnBadges.bottom()+GAP, (btnBadges.width() / 2) - 1, BTN_HEIGHT);
-		btnAbout.setRect(btnSettings.right()+2, btnBadges.bottom()+GAP, btnSettings.width(), BTN_HEIGHT);
+		btnPlay.setRect(title.x, Camera.main.height - 100, title.width(), BTN_HEIGHT);
+		//btnBadges.setRect(btnPlay.left(), btnPlay.bottom()+ GAP, btnPlay.width(), BTN_HEIGHT);
+		btnSettings.setRect(btnPlay.left(), btnPlay.bottom()+GAP, (btnPlay.width() / 2) - 1, BTN_HEIGHT);
+		btnAbout.setRect(btnSettings.right()+2, btnPlay.bottom()+GAP, btnSettings.width(), BTN_HEIGHT);
 
 		BitmapText version = new BitmapText( "v" + Game.version, pixelFont);
 		version.measure();
