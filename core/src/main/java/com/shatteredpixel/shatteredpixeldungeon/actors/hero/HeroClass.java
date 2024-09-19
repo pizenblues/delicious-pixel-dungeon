@@ -268,6 +268,21 @@ public enum HeroClass {
 				return Assets.Splashes.DUELIST;
 		}
 	}
+
+	public String portraits(){
+		switch (this) {
+			case WARRIOR: default:
+				return Assets.Portraits.WARRIOR;
+			case MAGE:
+				return Assets.Portraits.MAGE;
+			case ROGUE:
+				return Assets.Portraits.ROGUE;
+			case HUNTRESS:
+				return Assets.Portraits.HUNTRESS;
+			case DUELIST:
+				return Assets.Portraits.DUELIST;
+		}
+	}
 	
 	public boolean isUnlocked(){
 		//always unlock on debug builds

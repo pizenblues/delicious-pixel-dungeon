@@ -250,6 +250,14 @@ public class Assets {
 		public static final String DUELIST  = "splashes/duelist.jpg";
 	}
 
+	public static class Portraits {
+		public static final String WARRIOR  = "portraits/warrior.png";
+		public static final String MAGE     = "portraits/mage.png";
+		public static final String ROGUE    = "portraits/rogue.png";
+		public static final String HUNTRESS = "portraits/huntress.png";
+		public static final String DUELIST  = "portraits/duelist.png";
+	}
+
 	public static class Sprites {
 		public static final String ITEMS        = "sprites/items.png";
 		public static final String ITEM_ICONS   = "sprites/item_icons.png";
