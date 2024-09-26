@@ -86,7 +86,7 @@ public class TitleScene extends PixelScene {
 		placeTorch(title.x + 22, title.y + 46);
 		placeTorch(title.x + title.width - 22, title.y + 46);
 */
-		Image signs = new Image( BannerSprites.get( BannerSprites.Type.PIXEL_DUNGEON_SIGNS ) ) {
+		/*Image signs = new Image( BannerSprites.get( BannerSprites.Type.PIXEL_DUNGEON_SIGNS ) ) {
 			private float time = 0;
 			@Override
 			public void update() {
@@ -104,6 +104,7 @@ public class TitleScene extends PixelScene {
 		signs.x = title.x + (title.width() - signs.width())/2f;
 		signs.y = title.y;
 		add( signs );
+		 */
 
 		final Chrome.Type GREY_TR = Chrome.Type.GREY_BUTTON_TR;
 		final Chrome.Type RED_TR = Chrome.Type.RED_BUTTON;
