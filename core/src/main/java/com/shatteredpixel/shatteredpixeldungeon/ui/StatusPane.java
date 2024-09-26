@@ -54,6 +54,7 @@ public class StatusPane extends Component {
 	private float warning;
 	public static final float FLASH_RATE = (float)(Math.PI*1.5f); //1.5 blinks per second
 	private int lastTier = 0;
+	private int currentStatus = 0;
 	private Image rawShielding;
 	private Image shieldedHP;
 	private Image hp;
@@ -96,7 +97,7 @@ public class StatusPane extends Component {
 		};
 		add(heroInfo);
 
-		avatar = HeroPortraitSprite.avatar( Dungeon.hero.heroClass, lastTier );
+		avatar = HeroPortraitSprite.avatar( Dungeon.hero.heroClass, currentStatus );
 		add( avatar );
 
 		talentBlink = 0;
@@ -202,14 +203,25 @@ public class StatusPane extends Component {
 
 		if (!Dungeon.hero.isAlive()) {
 			avatar.tint(0x000000, 0.5f);
-		} else if ((health/(float)max) <= 0.3f) {
-			warning += Game.elapsed * 5f *(0.4f - (health/(float)max));
-			warning %= 1f;
-			avatar.tint(ColorMath.interpolate(warning, warningColors), 0.5f );
+		}else if ((health/(float)max) <= 0.8f){
+			avatar.copy(HeroPortraitSprite.avatar( Dungeon.hero.heroClass, 1));
+
+			if((health/(float)max) <= 0.5f){
+				avatar.copy(HeroPortraitSprite.avatar( Dungeon.hero.heroClass, 2));
+			}
+
+			if((health/(float)max) <= 0.2f){
+				warning += Game.elapsed * 5f *(0.4f - (health/(float)max));
+				warning %= 1f;
+				//avatar.tint(ColorMath.interpolate(warning, warningColors), 0.5f );
+				avatar.copy(HeroPortraitSprite.avatar( Dungeon.hero.heroClass, 3));
+			}
 		} else if (talentBlink > 0.33f){ //stops early so it doesn't end in the middle of a blink
 			talentBlink -= Game.elapsed;
+			avatar.copy( HeroPortraitSprite.avatar( Dungeon.hero.heroClass, 4 ));
 			avatar.tint(1, 1, 0, (float)Math.abs(Math.cos(talentBlink*FLASH_RATE))/2f);
 		} else {
+			avatar.copy(HeroPortraitSprite.avatar( Dungeon.hero.heroClass, 0));
 			avatar.resetColor();
 		}
 
@@ -258,12 +270,6 @@ public class StatusPane extends Component {
 		strength.x = x + 58;
 		strength.y = y + 22;
 		PixelScene.align(level);
-
-		int tier = Dungeon.hero.tier();
-		if (tier != lastTier) {
-			lastTier = tier;
-			avatar.copy( HeroPortraitSprite.avatar( Dungeon.hero.heroClass, tier ) );
-		}
 
 		counter.setSweep((1f - Actor.now()%1f)%1f);
 	}

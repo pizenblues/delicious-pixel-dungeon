@@ -27,7 +27,22 @@ import com.watabou.utils.RectF;
 public class HeroPortraitSprite extends CharSprite {
     public static Image avatar( HeroClass cl, int status ) {
         Image avatar = new Image( cl.portraits() );
-        RectF frame = avatar.texture.uvRect( 0, 0, 40, 48 );
+        RectF frame;
+
+        if (status == 0){
+            frame = avatar.texture.uvRect( 0, 0, 40, 48 );
+        }else if(status == 1){
+            frame = avatar.texture.uvRect( 40, 0, 80, 48 );
+        }else if (status == 2){
+            frame = avatar.texture.uvRect( 80, 0, 120, 48 );
+        }else if (status == 3) {
+            frame = avatar.texture.uvRect(120, 0, 160, 48);
+        }else if(status == 4){
+            frame = avatar.texture.uvRect( 0, 48, 40, 96 );
+        }else{
+            frame = avatar.texture.uvRect( 0, 0, 40, 48 );
+        }
+
         frame.shift( 0,0);
         avatar.frame( frame );
         return avatar;
