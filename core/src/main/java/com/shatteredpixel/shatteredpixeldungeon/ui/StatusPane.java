@@ -105,14 +105,14 @@ public class StatusPane extends Component {
 		compass = new Compass( Statistics.amuletObtained ? Dungeon.level.entrance() : Dungeon.level.exit() );
 		add( compass );
 
-		rawShielding = new Image(asset, 0, 40, 32, 4);
+		rawShielding = new Image(asset, 0, 40, 44, 4);
 		rawShielding.alpha(0.5f);
 		add(rawShielding);
 
-		shieldedHP = new Image(asset, 0, 40, 32, 4);
+		shieldedHP = new Image(asset, 0, 40, 44, 4);
 		add(shieldedHP);
 
-		hp = new Image(asset, 0, 36, 32, 4);
+		hp = new Image(asset, 0, 36, 44, 4);
 		add( hp );
 
 		hpText = new BitmapText(PixelScene.pixelFont);
@@ -128,15 +128,15 @@ public class StatusPane extends Component {
 		};
 		add(heroInfoOnBar);
 
-		exp = new Image(asset, 0, 44, 32, 4);
+		exp = new Image(asset, 0, 44, 44, 4);
 		add( exp );
 
 		level = new BitmapText( PixelScene.pixelFont);
-		level.hardlight( 0xFFFFAA );
+		level.hardlight( 0xFFFFFF );
 		add( level );
 
 		strength = new BitmapText( PixelScene.pixelFont);
-		strength.hardlight(0xFFFFFF);
+		strength.hardlight(0xFFFFAA);
 		add(strength);
 
 		buffs = new BuffIndicator( Dungeon.hero, large );
@@ -154,9 +154,9 @@ public class StatusPane extends Component {
 	protected void layout() {
 		bg.x = x;
 		bg.y = y;
-		bg.size( width, bg.height );
+		bg.size( 140, bg.height );
 
-		avatar.x = bg.x - avatar.width / 2f + 21;
+		avatar.x = bg.x - avatar.width / 2f + 22;
 		avatar.y = bg.y - avatar.height / 2f + 26;
 		PixelScene.align(avatar);
 
@@ -166,7 +166,7 @@ public class StatusPane extends Component {
 		compass.y = avatar.y;
 		PixelScene.align(compass);
 
-		hp.x = shieldedHP.x = rawShielding.x = x + 50;
+		hp.x = shieldedHP.x = rawShielding.x = x + 53;
 		hp.y = shieldedHP.y = rawShielding.y = y + 5;
 
 		hpText.scale.set(PixelScene.align(0.5f));
@@ -175,12 +175,12 @@ public class StatusPane extends Component {
 		hpText.y -= 0.001f; //prefer to be slightly higher
 		PixelScene.align(hpText);
 
-		exp.x = 50;
+		exp.x = 53;
 		exp.y = 14;
 
 		heroInfoOnBar.setRect(heroInfo.right(), y, 32, 9);
 
-		buffs.setRect( x + 38, y + 30, 50, 8 );
+		buffs.setRect( x + 42, y + 30, 50, 8 );
 
 		busy.x = x + 1;
 		busy.y = y + 33;
@@ -219,7 +219,7 @@ public class StatusPane extends Component {
 		} else if (talentBlink > 0.33f){ //stops early so it doesn't end in the middle of a blink
 			talentBlink -= Game.elapsed;
 			avatar.copy( HeroPortraitSprite.avatar( Dungeon.hero.heroClass, 4 ));
-			avatar.tint(1, 1, 0, (float)Math.abs(Math.cos(talentBlink*FLASH_RATE))/2f);
+			//avatar.tint(1, 1, 0, (float)Math.abs(Math.cos(talentBlink*FLASH_RATE))/2f);
 		} else {
 			avatar.copy(HeroPortraitSprite.avatar( Dungeon.hero.heroClass, 0));
 			avatar.resetColor();
@@ -258,7 +258,7 @@ public class StatusPane extends Component {
 			level.scale.set(PixelScene.align(0.8f));
 			level.text( "LVL " + Integer.toString( lastLvl ) );
 			level.measure();
-			level.x = x + 39;
+			level.x = x + 42;
 			level.y = y + 22;
 			PixelScene.align(level);
 		}
@@ -267,7 +267,7 @@ public class StatusPane extends Component {
 		strength.scale.set(PixelScene.align(0.8f));
 		strength.text( "STR " + Integer.toString( currentStrength ) );
 		strength.measure();
-		strength.x = x + 58;
+		strength.x = x + 60;
 		strength.y = y + 22;
 		PixelScene.align(level);
 

@@ -573,29 +573,41 @@ public class Toolbar extends Component {
 
 			//center = group but.. well.. centered, so all we need to do is pre-emptively set the right side further in.
 			case CENTER:
-				float toolbarWidth = btnWait.width() + btnSearch.width() + btnInventory.width();
-				for(Button slot : btnQuick){
-					if (slot.visible) toolbarWidth += slot.width();
-				}
-				if (btnSwap.visible) toolbarWidth += btnSwap.width()-2;
-				right = (width + toolbarWidth)/2;
+				btnWait.setPos(x, y);
+				btnSearch.setPos(btnWait.right(), y);
 
-			case GROUP:
-				btnWait.setPos(right - btnWait.width(), y);
-				btnSearch.setPos(btnWait.left() - btnSearch.width(), y);
-				btnInventory.setPos(btnSearch.left() - btnInventory.width(), y);
+				btnInventory.setPos(right - btnInventory.width(), y);
 
 				btnQuick[startingSlot].setPos(btnInventory.left() - btnQuick[startingSlot].width(), y + 2);
 				for (int i = startingSlot+1; i <= endingSlot; i++) {
 					btnQuick[i].setPos(btnQuick[i-1].left() - btnQuick[i].width(), y + 2);
-					shift = -btnQuick[i].left();
+					shift = btnSearch.right() - btnQuick[i].left();
 				}
 
 				if (btnSwap.visible){
 					btnSwap.setPos(btnQuick[endingSlot].left() - (btnSwap.width()-2), y+3);
-					shift = -btnSwap.left();
+					shift = btnSearch.right() - btnSwap.left();
 				}
-				
+
+				break;
+
+			case GROUP:
+				btnWait.setPos(x, y);
+				btnSearch.setPos(btnWait.right(), y);
+
+				btnInventory.setPos(right - btnInventory.width(), y);
+
+				btnQuick[startingSlot].setPos(btnInventory.left() - btnQuick[startingSlot].width(), y + 2);
+				for (int i = startingSlot+1; i <= endingSlot; i++) {
+					btnQuick[i].setPos(btnQuick[i-1].left() - btnQuick[i].width(), y + 2);
+					shift = btnSearch.right() - btnQuick[i].left();
+				}
+
+				if (btnSwap.visible){
+					btnSwap.setPos(btnQuick[endingSlot].left() - (btnSwap.width()-2), y+3);
+					shift = btnSearch.right() - btnSwap.left();
+				}
+
 				break;
 		}
 

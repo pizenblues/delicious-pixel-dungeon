@@ -63,7 +63,7 @@ public class HeroSelectScene extends PixelScene {
 		Badges.loadGlobal();
 		Journal.loadGlobal();
 
-		background = new Image(TextureCache.createSolid(0xFF2d2f31), 0, 0, 800, 450){
+		background = new Image(TextureCache.createSolid(0xFF1f102a), 0, 0, 444, 250){
 			@Override
 			public void update() {
 				if (GamesInProgress.selectedClass != null) {
@@ -81,6 +81,16 @@ public class HeroSelectScene extends PixelScene {
 		background.x = (Camera.main.width - background.width())/2f;
 		background.y = (Camera.main.height - background.height())/2f;
 		PixelScene.align(background);
+
+		try {
+			//loading these big jpgs fails sometimes, so we have a catch for it
+			background.texture("splashes/background.png");
+		} catch (Exception e){
+			Game.reportException(e);
+			background.texture(TextureCache.createSolid(0xFF1f102a));
+			background.frame(0, 0, 444, 250);
+		}
+
 		add(background);
 
 		title = PixelScene.renderTextBlock(Messages.get(this, "title"), 10);
@@ -145,17 +155,17 @@ public class HeroSelectScene extends PixelScene {
 		}
 
 		// Initiate character selection screen
-		background.visible = false;
+		background.visible = true;
 		btnExit = new ExitButton();
 		btnExit.setPos( 3, 3 );
 		add( btnExit );
 		btnExit.visible = btnExit.active = !SPDSettings.intro();
 
 		if(landscape()){
-			title.setPos(0, btnExit.bottom()+6);
+			title.setPos(12, btnExit.bottom()+6);
 			float gridGap = 2;
 			float buttonWidth = 60;
-			float positionX = 0;
+			float positionX = 12;
 			float positionY = title.bottom() + (gridGap*4);
 			for (StyledButton button : heroBtns) {
 				button.setRect(positionX, positionY, buttonWidth, HeroBtn.HEIGHT);
@@ -163,17 +173,17 @@ public class HeroSelectScene extends PixelScene {
 					positionX = button.right() + gridGap;
 					positionY = button.top();
 				}else{
-					positionX = 0;
+					positionX = 12;
 					positionY += HeroBtn.HEIGHT + gridGap;
 				}
 			}
 		}else{
-			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height / 2));
+			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 124));
 			float gridGap = 2;
 			float buttonWidth = 60;
 			float originalCenter = (Camera.main.width - ((buttonWidth*2) + gridGap)) / 2;
 			float positionX = originalCenter;
-			float positionY = title.bottom() + (gridGap*5);
+			float positionY = Camera.main.height - 110;
 			for (StyledButton button : heroBtns) {
 				button.setRect(positionX, positionY, buttonWidth, HeroBtn.HEIGHT);
 				if(positionX < (originalCenter + buttonWidth)){
@@ -209,10 +219,10 @@ public class HeroSelectScene extends PixelScene {
 		startBtn.setSize(120, 21);
 
 		if(landscape()){
-			title.setPos(0, btnExit.bottom()+6);
-			startBtn.setPos(0, (Camera.main.height) - 30 );
+			title.setPos(12, btnExit.bottom()+6);
+			startBtn.setPos(12, (Camera.main.height) - 30 );
 		}else{
-			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height / 2));
+			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 124));
 			startBtn.setPos((Camera.main.width - startBtn.width())/2f, (Camera.main.height) - 30 );
 		}
 

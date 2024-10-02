@@ -243,11 +243,11 @@ public class Assets {
 	}
 
 	public static class Splashes {
-		public static final String WARRIOR  = "splashes/warrior.jpg";
-		public static final String MAGE     = "splashes/mage.jpg";
-		public static final String ROGUE    = "splashes/rogue.jpg";
-		public static final String HUNTRESS = "splashes/huntress.jpg";
-		public static final String DUELIST  = "splashes/duelist.jpg";
+		public static final String WARRIOR  = "splashes/warrior.png";
+		public static final String MAGE     = "splashes/mage.png";
+		public static final String ROGUE    = "splashes/rogue.png";
+		public static final String HUNTRESS = "splashes/huntress.png";
+		public static final String DUELIST  = "splashes/duelist.png";
 	}
 
 	public static class Portraits {
