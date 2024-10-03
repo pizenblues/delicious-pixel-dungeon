@@ -65,14 +65,14 @@ public class TitleScene extends PixelScene {
 		Music.INSTANCE.playTracks(
 				new String[]{Assets.Music.THEME_1, Assets.Music.THEME_2},
 				new float[]{1, 1},
-				false);
+				false
+		);
 
 		uiCamera.visible = false;
 		
 		int w = Camera.main.width;
 		int h = Camera.main.height;
 
-		// Adding background
 		background = new Image(TextureCache.createSolid(0xFF1f102a), 0, 0, 444, 250);
 		//background.scale.set(Camera.main.height/background.height);
 		background.x = (w - background.width())/2f;
@@ -86,8 +86,6 @@ public class TitleScene extends PixelScene {
 			background.texture(TextureCache.createSolid(0xFF1f102a));
 			background.frame(0, 0, 444, 250);
 		}
-
-		//add(background);
 		
 		Archs archs = new Archs();
 		archs.setSize( w, h );
@@ -95,36 +93,11 @@ public class TitleScene extends PixelScene {
 		
 		Image title = BannerSprites.get( BannerSprites.Type.PIXEL_DUNGEON );
 		add( title );
-
 		float topRegion = Math.max(title.height - 6, h*0.45f);
-
 		title.x = (w - title.width()) / 2f;
-		title.y = 10 + (topRegion - title.height()) / 2f;
+		title.y = landscape() ? 16 : ((topRegion - title.height()) / 2f);
 
 		align(title);
-/*
-		placeTorch(title.x + 22, title.y + 46);
-		placeTorch(title.x + title.width - 22, title.y + 46);
-*/
-		/*Image signs = new Image( BannerSprites.get( BannerSprites.Type.PIXEL_DUNGEON_SIGNS ) ) {
-			private float time = 0;
-			@Override
-			public void update() {
-				super.update();
-				am = Math.max(0f, (float)Math.sin( time += Game.elapsed ));
-				if (time >= 1.5f*Math.PI) time = 0;
-			}
-			@Override
-			public void draw() {
-				Blending.setLightMode();
-				super.draw();
-				Blending.setNormalMode();
-			}
-		};
-		signs.x = title.x + (title.width() - signs.width())/2f;
-		signs.y = title.y;
-		add( signs );
-		 */
 
 		final Chrome.Type GREY_TR = Chrome.Type.GREY_BUTTON_TR;
 		final Chrome.Type RED_TR = Chrome.Type.RED_BUTTON;
@@ -155,39 +128,7 @@ public class TitleScene extends PixelScene {
 		};
 		btnPlay.icon(Icons.get(Icons.ENTER));
 		add(btnPlay);
-/*
-		StyledButton btnSupport = new SupportButton(GREY_TR, Messages.get(this, "support"));
-		add(btnSupport);
 
-		StyledButton btnRankings = new StyledButton(GREY_TR,Messages.get(this, "rankings")){
-			@Override
-			protected void onClick() {
-				ShatteredPixelDungeon.switchNoFade( RankingsScene.class );
-			}
-		};
-		btnRankings.icon(Icons.get(Icons.RANKINGS));
-		add(btnRankings);
-		Dungeon.daily = Dungeon.dailyReplay = false;
-*/
-		/*StyledButton btnBadges = new StyledButton(GREY_TR, Messages.get(this, "badges")){
-			@Override
-			protected void onClick() {
-				ShatteredPixelDungeon.switchNoFade( BadgesScene.class );
-			}
-		};
-		btnBadges.icon(Icons.get(Icons.BADGES));
-		add(btnBadges);
-
-		 */
-/*
-		StyledButton btnNews = new NewsButton(GREY_TR, Messages.get(this, "news"));
-		btnNews.icon(Icons.get(Icons.NEWS));
-		add(btnNews);
-
-		StyledButton btnChanges = new ChangesButton(GREY_TR, Messages.get(this, "changes"));
-		btnChanges.icon(Icons.get(Icons.CHANGES));
-		add(btnChanges);
-*/
 		StyledButton btnSettings = new SettingsButton(GREY_TR, Messages.get(this, "settings"));
 		add(btnSettings);
 
@@ -203,15 +144,14 @@ public class TitleScene extends PixelScene {
 		final int buttonHeight = 24;
 		int buttonWidth = 60;
 		int GAP = 3;
-		int bottonPadding = landscape() ? 30 : 60;
+		int bottomPadding = landscape() ? 30 : 60;
 
 		if(landscape()){
-			btnPlay.setRect((Camera.main.width - buttonWidth*2) / 2, Camera.main.height - bottonPadding, buttonWidth*2, buttonHeight);
-
-			btnSettings.setRect(GAP, GAP, buttonWidth, buttonHeight);
-			btnAbout.setRect(Camera.main.width - (buttonWidth + GAP), GAP, buttonWidth, buttonHeight);
+			btnPlay.setRect((Camera.main.width - buttonWidth*2) / 2, Camera.main.height - bottomPadding, buttonWidth*2, buttonHeight);
+			btnAbout.setRect(GAP, GAP, buttonWidth, buttonHeight);
+			btnSettings.setRect(Camera.main.width - (buttonWidth + GAP), GAP, buttonWidth, buttonHeight);
 		}else{
-			btnSettings.setRect((Camera.main.width - (buttonWidth*2 + GAP)) / 2, Camera.main.height - bottonPadding, buttonWidth, buttonHeight);
+			btnSettings.setRect((Camera.main.width - (buttonWidth*2 + GAP)) / 2, Camera.main.height - bottomPadding, buttonWidth, buttonHeight);
 			btnAbout.setRect(btnSettings.right() + GAP, btnSettings.top(), buttonWidth, buttonHeight);
 			btnPlay.setRect(btnSettings.left(), btnSettings.top() - (buttonHeight + GAP), buttonWidth*2, buttonHeight);
 		}
@@ -231,13 +171,7 @@ public class TitleScene extends PixelScene {
 
 		fadeIn();
 	}
-	/*
-	private void placeTorch( float x, float y ) {
-		Fireball fb = new Fireball();
-		fb.setPos( x, y );
-		add( fb );
-	}
-*/
+
 	private static class NewsButton extends StyledButton {
 
 		public NewsButton(Chrome.Type type, String label ){
