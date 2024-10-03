@@ -42,6 +42,7 @@ import com.shatteredpixel.shatteredpixeldungeon.ui.StyledButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndOptions;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndSettings;
+import com.watabou.gltextures.TextureCache;
 import com.watabou.glwrap.Blending;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.Camera;
@@ -53,6 +54,8 @@ import com.watabou.utils.DeviceCompat;
 import java.util.Date;
 
 public class TitleScene extends PixelScene {
+
+	private Image background;
 	
 	@Override
 	public void create() {
@@ -68,6 +71,23 @@ public class TitleScene extends PixelScene {
 		
 		int w = Camera.main.width;
 		int h = Camera.main.height;
+
+		// Adding background
+		background = new Image(TextureCache.createSolid(0xFF1f102a), 0, 0, 444, 250);
+		//background.scale.set(Camera.main.height/background.height);
+		background.x = (w - background.width())/2f;
+		//background.y = (h - background.height())/2f;
+		PixelScene.align(background);
+
+		try {
+			background.texture("splashes/title.png");
+		} catch (Exception e){
+			Game.reportException(e);
+			background.texture(TextureCache.createSolid(0xFF1f102a));
+			background.frame(0, 0, 444, 250);
+		}
+
+		//add(background);
 		
 		Archs archs = new Archs();
 		archs.setSize( w, h );
@@ -79,7 +99,7 @@ public class TitleScene extends PixelScene {
 		float topRegion = Math.max(title.height - 6, h*0.45f);
 
 		title.x = (w - title.width()) / 2f;
-		title.y = 2 + (topRegion - title.height()) / 2f;
+		title.y = 10 + (topRegion - title.height()) / 2f;
 
 		align(title);
 /*
@@ -180,17 +200,21 @@ public class TitleScene extends PixelScene {
 		btnAbout.icon(Icons.get(Icons.SHPX));
 		add(btnAbout);
 
-		// get values from screen size
-		final int BTN_HEIGHT = 24;
-		int GAP = (int)(h - topRegion - (landscape() ? 3 : 4)*BTN_HEIGHT)/3;
-		GAP /= landscape() ? 3 : 5;
-		GAP = Math.max(GAP, 2);
+		final int buttonHeight = 24;
+		int buttonWidth = 60;
+		int GAP = 3;
+		int bottonPadding = landscape() ? 30 : 60;
 
-		// buttons placements and size
-		btnPlay.setRect(title.x, Camera.main.height - 100, title.width(), BTN_HEIGHT);
-		//btnBadges.setRect(btnPlay.left(), btnPlay.bottom()+ GAP, btnPlay.width(), BTN_HEIGHT);
-		btnSettings.setRect(btnPlay.left(), btnPlay.bottom()+GAP, (btnPlay.width() / 2) - 1, BTN_HEIGHT);
-		btnAbout.setRect(btnSettings.right()+2, btnPlay.bottom()+GAP, btnSettings.width(), BTN_HEIGHT);
+		if(landscape()){
+			btnPlay.setRect((Camera.main.width - buttonWidth*2) / 2, Camera.main.height - bottonPadding, buttonWidth*2, buttonHeight);
+
+			btnSettings.setRect(GAP, GAP, buttonWidth, buttonHeight);
+			btnAbout.setRect(Camera.main.width - (buttonWidth + GAP), GAP, buttonWidth, buttonHeight);
+		}else{
+			btnSettings.setRect((Camera.main.width - (buttonWidth*2 + GAP)) / 2, Camera.main.height - bottonPadding, buttonWidth, buttonHeight);
+			btnAbout.setRect(btnSettings.right() + GAP, btnSettings.top(), buttonWidth, buttonHeight);
+			btnPlay.setRect(btnSettings.left(), btnSettings.top() - (buttonHeight + GAP), buttonWidth*2, buttonHeight);
+		}
 
 		BitmapText version = new BitmapText( "v" + Game.version, pixelFont);
 		version.measure();
