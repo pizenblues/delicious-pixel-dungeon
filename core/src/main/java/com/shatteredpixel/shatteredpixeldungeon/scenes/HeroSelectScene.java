@@ -90,7 +90,6 @@ public class HeroSelectScene extends PixelScene {
 			background.texture(TextureCache.createSolid(0xFF1f102a));
 			background.frame(0, 0, 444, 250);
 		}
-
 		add(background);
 
 		title = PixelScene.renderTextBlock(Messages.get(this, "title"), 10);
@@ -119,6 +118,7 @@ public class HeroSelectScene extends PixelScene {
 				Game.switchScene( InterlevelScene.class );
 			}
 		};
+
 		startBtn.icon(Icons.get(Icons.ENTER));
 		startBtn.setSize(80, 21);
 		startBtn.textColor(Window.TITLE_COLOR);
@@ -132,9 +132,6 @@ public class HeroSelectScene extends PixelScene {
 				HeroClass cls = GamesInProgress.selectedClass;
 				if (cls != null) {
 					Window w = new WndHeroInfo(GamesInProgress.selectedClass);
-					if (landscape()) {
-						w.offset(Camera.main.width / 6, 0);
-					}
 					ShatteredPixelDungeon.scene().addToFront(w);
 				}
 			}
@@ -155,45 +152,21 @@ public class HeroSelectScene extends PixelScene {
 		}
 
 		// Initiate character selection screen
-		background.visible = true;
 		btnExit = new ExitButton();
 		btnExit.setPos( 3, 3 );
 		add( btnExit );
 		btnExit.visible = btnExit.active = !SPDSettings.intro();
 
-		if(landscape()){
-			title.setPos(12, btnExit.bottom()+6);
-			float gridGap = 2;
-			float buttonWidth = 60;
-			float positionX = 12;
-			float positionY = title.bottom() + (gridGap*4);
-			for (StyledButton button : heroBtns) {
-				button.setRect(positionX, positionY, buttonWidth, HeroBtn.HEIGHT);
-				if(positionX < buttonWidth){
-					positionX = button.right() + gridGap;
-					positionY = button.top();
-				}else{
-					positionX = 12;
-					positionY += HeroBtn.HEIGHT + gridGap;
-				}
-			}
-		}else{
-			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 124));
-			float gridGap = 2;
-			float buttonWidth = 60;
-			float originalCenter = (Camera.main.width - ((buttonWidth*2) + gridGap)) / 2;
-			float positionX = originalCenter;
-			float positionY = Camera.main.height - 110;
-			for (StyledButton button : heroBtns) {
-				button.setRect(positionX, positionY, buttonWidth, HeroBtn.HEIGHT);
-				if(positionX < (originalCenter + buttonWidth)){
-					positionX = button.right() + gridGap;
-					positionY = button.top();
-				}else{
-					positionX = originalCenter;
-					positionY += HeroBtn.HEIGHT + gridGap;
-				}
-			}
+		title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 79));
+		float gridGap = 2;
+		float buttonWidth = 24;
+		float originalCenter = (Camera.main.width - ((buttonWidth*5) + gridGap)) / 2;
+		float positionX = originalCenter;
+		float positionY = title.bottom() + 10;
+
+		for (StyledButton button : heroBtns) {
+			button.setRect(positionX, positionY, buttonWidth, HeroBtn.HEIGHT);
+			positionX = button.right() + gridGap;
 		}
 	}
 
@@ -206,29 +179,19 @@ public class HeroSelectScene extends PixelScene {
 		} catch (Exception e){
 			Game.reportException(e);
 			background.texture(TextureCache.createSolid(0xFF2d2f31));
-			background.frame(0, 0, 800, 450);
+			background.frame(0, 0, 444, 240);
 		}
 
-		background.visible = true;
 		background.hardlight(1.5f,1.5f,1.5f);
-
 		title.text("Play as " + Messages.titleCase(cl.title()));
-
 		startBtn.visible = startBtn.active = true;
 		startBtn.text("Start");
 		startBtn.setSize(120, 21);
-
-		if(landscape()){
-			title.setPos(12, btnExit.bottom()+6);
-			startBtn.setPos(12, (Camera.main.height) - 30 );
-		}else{
-			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 124));
-			startBtn.setPos((Camera.main.width - startBtn.width())/2f, (Camera.main.height) - 30 );
-		}
-
+		title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 79));
+		startBtn.setPos((Camera.main.width - startBtn.width())/2f, (Camera.main.height) - 30 );
 		PixelScene.align(startBtn);
 		infoButton.visible = infoButton.active = true;
-		infoButton.setPos( Camera.main.width - infoButton.width(), 0 );
+		infoButton.setPos( title.right(), title.top() - title.height() );
 	}
 
 	@Override
@@ -254,7 +217,7 @@ public class HeroSelectScene extends PixelScene {
 		private static final int HEIGHT = 24;
 
 		HeroBtn ( HeroClass cl ){
-			super(Chrome.Type.GREY_BUTTON_TR, Messages.titleCase(cl.title()), 7);
+			super(Chrome.Type.GREY_BUTTON_TR, Messages.titleCase(""), 7);
 			this.cl = cl;
 			icon(new Image(cl.spritesheet(), 0, 15, 12, 15));
 		}
