@@ -81,7 +81,7 @@ public class HeroSelectScene extends PixelScene {
 		background.x = (Camera.main.width - background.width())/2f;
 		background.y = (Camera.main.height - background.height())/2f;
 		PixelScene.align(background);
-
+		/*
 		try {
 			//loading these big jpgs fails sometimes, so we have a catch for it
 			background.texture("splashes/background.png");
@@ -90,6 +90,7 @@ public class HeroSelectScene extends PixelScene {
 			background.texture(TextureCache.createSolid(0xFF1f102a));
 			background.frame(0, 0, 444, 250);
 		}
+		*/
 		add(background);
 
 		title = PixelScene.renderTextBlock(Messages.get(this, "title"), 10);
@@ -157,12 +158,16 @@ public class HeroSelectScene extends PixelScene {
 		add( btnExit );
 		btnExit.visible = btnExit.active = !SPDSettings.intro();
 
-		title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 79));
+		if (landscape()){
+			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 86));
+		}else{
+			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 80));
+		}
+
 		float gridGap = 2;
 		float buttonWidth = 24;
-		float originalCenter = (Camera.main.width - ((buttonWidth*5) + gridGap)) / 2;
-		float positionX = originalCenter;
-		float positionY = title.bottom() + 10;
+		float positionX = (Camera.main.width - (buttonWidth*5 + gridGap*4)) / 2;
+		float positionY = Camera.main.height - 55;
 
 		for (StyledButton button : heroBtns) {
 			button.setRect(positionX, positionY, buttonWidth, HeroBtn.HEIGHT);
@@ -178,7 +183,7 @@ public class HeroSelectScene extends PixelScene {
 			background.texture(cl.splashArt());
 		} catch (Exception e){
 			Game.reportException(e);
-			background.texture(TextureCache.createSolid(0xFF2d2f31));
+			background.texture(TextureCache.createSolid(0xFF1f102a));
 			background.frame(0, 0, 444, 240);
 		}
 
@@ -187,11 +192,17 @@ public class HeroSelectScene extends PixelScene {
 		startBtn.visible = startBtn.active = true;
 		startBtn.text("Start");
 		startBtn.setSize(120, 21);
-		title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 79));
+
+		if (landscape()){
+			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 86));
+		}else{
+			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 80));
+		}
+
 		startBtn.setPos((Camera.main.width - startBtn.width())/2f, (Camera.main.height) - 30 );
 		PixelScene.align(startBtn);
 		infoButton.visible = infoButton.active = true;
-		infoButton.setPos( title.right(), title.top() - title.height() );
+		infoButton.setPos( Camera.main.width - infoButton.width() - 3, 3 );
 	}
 
 	@Override
