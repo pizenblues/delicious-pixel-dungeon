@@ -81,7 +81,7 @@ public class HeroSelectScene extends PixelScene {
 		background.x = (Camera.main.width - background.width())/2f;
 		background.y = (Camera.main.height - background.height())/2f;
 		PixelScene.align(background);
-		/*
+
 		try {
 			//loading these big jpgs fails sometimes, so we have a catch for it
 			background.texture("splashes/background.png");
@@ -90,7 +90,6 @@ public class HeroSelectScene extends PixelScene {
 			background.texture(TextureCache.createSolid(0xFF1f102a));
 			background.frame(0, 0, 444, 250);
 		}
-		*/
 		add(background);
 
 		title = PixelScene.renderTextBlock(Messages.get(this, "title"), 10);
