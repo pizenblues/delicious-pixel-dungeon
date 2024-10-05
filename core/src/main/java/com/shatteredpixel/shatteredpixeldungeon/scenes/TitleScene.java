@@ -35,9 +35,9 @@ import com.shatteredpixel.shatteredpixeldungeon.services.news.News;
 import com.shatteredpixel.shatteredpixeldungeon.services.updates.AvailableUpdateData;
 import com.shatteredpixel.shatteredpixeldungeon.services.updates.Updates;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
-import com.shatteredpixel.shatteredpixeldungeon.ui.Archs;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ExitButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Icons;
+import com.shatteredpixel.shatteredpixeldungeon.ui.RenderedTextBlock;
 import com.shatteredpixel.shatteredpixeldungeon.ui.StyledButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndOptions;
@@ -56,11 +56,12 @@ import java.util.Date;
 public class TitleScene extends PixelScene {
 
 	private Image background;
-	
+
 	@Override
 	public void create() {
 		
 		super.create();
+		String currentClass;
 
 		Music.INSTANCE.playTracks(
 				new String[]{Assets.Music.THEME_1, Assets.Music.THEME_2},
@@ -69,34 +70,37 @@ public class TitleScene extends PixelScene {
 		);
 
 		uiCamera.visible = false;
-		
 		int w = Camera.main.width;
 		int h = Camera.main.height;
+		int topPadding = landscape() ? 50 : 30;
+		float scaleGraph = landscape() ? 0.5f : 0.85f;
 
-		background = new Image(TextureCache.createSolid(0xFF1f102a), 0, 0, 444, 250);
-		//background.scale.set(Camera.main.height/background.height);
+		background = new Image(TextureCache.createSolid(0xFF1f102a), 0, 0, 800, 800);
+		background.scale.set(scaleGraph);
 		background.x = (w - background.width())/2f;
-		//background.y = (h - background.height())/2f;
+		background.y = ((h - background.height() + topPadding)/2f);
 		PixelScene.align(background);
 
+		if (GamesInProgress.checkAll().size() != 0){
+			currentClass = GamesInProgress.checkAll().get(GamesInProgress.checkAll().size() - 1).heroClass.name();
+		} else {
+			currentClass = "none";
+		}
+
 		try {
-			background.texture("splashes/title.png");
+			background.texture("splashes/"+ currentClass + "bg.png");
 		} catch (Exception e){
 			Game.reportException(e);
 			background.texture(TextureCache.createSolid(0xFF1f102a));
-			background.frame(0, 0, 444, 250);
+			background.frame(0, 0, 800, 800);
 		}
-		
-		Archs archs = new Archs();
-		archs.setSize( w, h );
-		add( archs );
+		add(background);
 		
 		Image title = BannerSprites.get( BannerSprites.Type.PIXEL_DUNGEON );
 		add( title );
 		float topRegion = Math.max(title.height - 6, h*0.45f);
 		title.x = (w - title.width()) / 2f;
-		title.y = landscape() ? 16 : ((topRegion - title.height()) / 2f);
-
+		title.y = landscape() ? 8 : ((topRegion - title.height() - 20) / 2f);
 		align(title);
 
 		final Chrome.Type GREY_TR = Chrome.Type.GREY_BUTTON_TR;
@@ -144,7 +148,7 @@ public class TitleScene extends PixelScene {
 		final int buttonHeight = 24;
 		int buttonWidth = 60;
 		int GAP = 3;
-		int bottomPadding = landscape() ? 30 : 60;
+		int bottomPadding = landscape() ? 30 : 40;
 
 		if(landscape()){
 			btnPlay.setRect((Camera.main.width - buttonWidth*2) / 2, Camera.main.height - bottomPadding, buttonWidth*2, buttonHeight);
@@ -172,102 +176,7 @@ public class TitleScene extends PixelScene {
 		fadeIn();
 	}
 
-	private static class NewsButton extends StyledButton {
-
-		public NewsButton(Chrome.Type type, String label ){
-			super(type, label);
-			if (SPDSettings.news()) News.checkForNews();
-		}
-
-		int unreadCount = -1;
-
-		@Override
-		public void update() {
-			super.update();
-
-			if (unreadCount == -1 && News.articlesAvailable()){
-				long lastRead = SPDSettings.newsLastRead();
-				if (lastRead == 0){
-					if (News.articles().get(0) != null) {
-						SPDSettings.newsLastRead(News.articles().get(0).date.getTime());
-					}
-				} else {
-					unreadCount = News.unreadArticles(new Date(SPDSettings.newsLastRead()));
-					if (unreadCount > 0) {
-						unreadCount = Math.min(unreadCount, 9);
-						text(text() + "(" + unreadCount + ")");
-					}
-				}
-			}
-
-			if (unreadCount > 0){
-				textColor(ColorMath.interpolate( 0xFFFFFF, Window.SHPX_COLOR, 0.5f + (float)Math.sin(Game.timeTotal*5)/2f));
-			}
-		}
-
-		@Override
-		protected void onClick() {
-			super.onClick();
-			ShatteredPixelDungeon.switchNoFade( NewsScene.class );
-		}
-	}
-
-	private static class ChangesButton extends StyledButton {
-
-		public ChangesButton( Chrome.Type type, String label ){
-			super(type, label);
-			if (SPDSettings.updates()) Updates.checkForUpdate();
-		}
-
-		boolean updateShown = false;
-
-		@Override
-		public void update() {
-			super.update();
-
-			if (!updateShown && Updates.updateAvailable()){
-				updateShown = true;
-				text(Messages.get(TitleScene.class, "update"));
-			}
-
-			if (updateShown){
-				textColor(ColorMath.interpolate( 0xFFFFFF, Window.SHPX_COLOR, 0.5f + (float)Math.sin(Game.timeTotal*5)/2f));
-			}
-		}
-
-		@Override
-		protected void onClick() {
-			if (Updates.updateAvailable()){
-				AvailableUpdateData update = Updates.updateData();
-
-				ShatteredPixelDungeon.scene().addToFront( new WndOptions(
-						Icons.get(Icons.CHANGES),
-						update.versionName == null ? Messages.get(this,"title") : Messages.get(this,"versioned_title", update.versionName),
-						update.desc == null ? Messages.get(this,"desc") : update.desc,
-						Messages.get(this,"update"),
-						Messages.get(this,"changes")
-				) {
-					@Override
-					protected void onSelect(int index) {
-						if (index == 0) {
-							Updates.launchUpdate(Updates.updateData());
-						} else if (index == 1){
-							ChangesScene.changesSelected = 0;
-							ShatteredPixelDungeon.switchNoFade( ChangesScene.class );
-						}
-					}
-				});
-
-			} else {
-				ChangesScene.changesSelected = 0;
-				ShatteredPixelDungeon.switchNoFade( ChangesScene.class );
-			}
-		}
-
-	}
-
 	private static class SettingsButton extends StyledButton {
-
 		public SettingsButton( Chrome.Type type, String label ){
 			super(type, label);
 			if (Messages.lang().status() == Languages.Status.X_UNFINISH){
@@ -296,17 +205,4 @@ public class TitleScene extends PixelScene {
 		}
 	}
 
-	private static class SupportButton extends StyledButton{
-
-		public SupportButton( Chrome.Type type, String label ){
-			super(type, label);
-			icon(Icons.get(Icons.GOLD));
-			textColor(Window.TITLE_COLOR);
-		}
-
-		@Override
-		protected void onClick() {
-			ShatteredPixelDungeon.switchNoFade(SupporterScene.class);
-		}
-	}
 }
