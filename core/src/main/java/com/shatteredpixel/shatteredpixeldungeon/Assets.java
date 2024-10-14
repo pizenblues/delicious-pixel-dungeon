@@ -117,32 +117,32 @@ public class Assets {
 	}
 
 	public static class Music {
-		public static final String THEME_1              = "music/theme_1.ogg";
+		public static final String THEME_1              = "music/new/goblins.ogg";
 		public static final String THEME_2              = "music/theme_2.ogg";
 		public static final String THEME_FINALE         = "music/theme_finale.ogg";
 
-		public static final String SEWERS_1             = "music/sewers_1.ogg";
-		public static final String SEWERS_2             = "music/sewers_2.ogg";
-		public static final String SEWERS_3             = "music/sewers_3.ogg";
-		public static final String SEWERS_TENSE         = "music/sewers_tense.ogg";
-		public static final String SEWERS_BOSS          = "music/sewers_boss.ogg";
+		public static final String SEWERS_1             = "music/new/taka.ogg";
+		public static final String SEWERS_2             = "music/new/goblins.ogg";
+		public static final String SEWERS_3             = "music/new/mistery toy.ogg";
+		public static final String SEWERS_TENSE         = "music/new/choirs.ogg";
+		public static final String SEWERS_BOSS          = "music/new/boss.ogg";
 
-		public static final String PRISON_1             = "music/prison_1.ogg";
-		public static final String PRISON_2             = "music/prison_2.ogg";
-		public static final String PRISON_3             = "music/prison_3.ogg";
-		public static final String PRISON_TENSE         = "music/prison_tense.ogg";
-		public static final String PRISON_BOSS          = "music/prison_boss.ogg";
+		public static final String PRISON_1             = "music/new/certain.ogg";
+		public static final String PRISON_2             = "music/new/fly.ogg";
+		public static final String PRISON_3             = "music/new/cherry tomato.ogg";
+		public static final String PRISON_TENSE         = "music/new/explorer.ogg";
+		public static final String PRISON_BOSS          = "music/new/digital.ogg";
 
-		public static final String CAVES_1              = "music/caves_1.ogg";
-		public static final String CAVES_2              = "music/caves_2.ogg";
-		public static final String CAVES_3              = "music/caves_3.ogg";
-		public static final String CAVES_TENSE          = "music/caves_tense.ogg";
+		public static final String CAVES_1              = "music/new/trombone.ogg";
+		public static final String CAVES_2              = "music/new/ramp.ogg";
+		public static final String CAVES_3              = "music/new/shimmer.ogg";
+		public static final String CAVES_TENSE          = "music/bass and drums.ogg";
 		public static final String CAVES_BOSS           = "music/caves_boss.ogg";
 		public static final String CAVES_BOSS_FINALE    = "music/caves_boss_finale.ogg";
 
-		public static final String CITY_1               = "music/city_1.ogg";
-		public static final String CITY_2               = "music/city_2.ogg";
-		public static final String CITY_3               = "music/city_3.ogg";
+		public static final String CITY_1               = "music/new/it crawls.ogg";
+		public static final String CITY_2               = "music/new/threads.ogg";
+		public static final String CITY_3               = "music/new/das model.ogg";
 		public static final String CITY_TENSE           = "music/city_tense.ogg";
 		public static final String CITY_BOSS            = "music/city_boss.ogg";
 		public static final String CITY_BOSS_FINALE     = "music/city_boss_finale.ogg";

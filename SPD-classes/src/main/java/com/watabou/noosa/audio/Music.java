@@ -35,13 +35,10 @@ public enum Music {
 	INSTANCE;
 	
 	private com.badlogic.gdx.audio.Music player;
-	
 	private String lastPlayed;
 	private boolean looping;
-	
 	private boolean enabled = true;
 	private float volume = 1f;
-
 	private float fadeTime = -1f;
 	private float fadeTotal = -1f;
 	private Callback onFadeOut = null;
@@ -59,7 +56,7 @@ public enum Music {
 		}
 		
 		if (isPlaying() && lastPlayed != null && lastPlayed.equals( assetName )) {
-			player.setVolume(volumeWithFade());
+			player.setVolume(volume);
 			return;
 		}
 		
@@ -110,7 +107,7 @@ public enum Music {
 			}
 
 			if (sameList) {
-				player.setVolume(volumeWithFade());
+				player.setVolume(volume);
 				return;
 			}
 		}
@@ -154,7 +151,7 @@ public enum Music {
 			fadeTime += Game.elapsed;
 
 			if (player != null) {
-				player.setVolume(volumeWithFade());
+				player.setVolume(volume);
 			}
 
 			if (fadeTime >= fadeTotal) {
@@ -216,7 +213,7 @@ public enum Music {
 
 			player = Gdx.audio.newMusic(Gdx.files.internal(track));
 			player.setLooping(looping);
-			player.setVolume(volumeWithFade());
+			player.setVolume(volume);
 			if (!paused) player.play();
 			if (listener != null) {
 				player.setOnCompletionListener(listener);
@@ -260,17 +257,17 @@ public enum Music {
 	public synchronized void volume( float value ) {
 		volume = value;
 		if (player != null) {
-			player.setVolume( volumeWithFade() );
+			player.setVolume(volume);
 		}
 	}
 
-	private synchronized float volumeWithFade(){
+	/*private synchronized float volumeWithFade(){
 		if (fadeTotal > 0f){
 			return Math.max(0, volume * ((fadeTotal - fadeTime) / fadeTotal));
 		} else {
 			return volume;
 		}
-	}
+	}*/
 	
 	public synchronized boolean isPlaying() {
 		return player != null && player.isPlaying();

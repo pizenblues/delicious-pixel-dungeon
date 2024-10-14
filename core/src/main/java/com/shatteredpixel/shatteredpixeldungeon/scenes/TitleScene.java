@@ -64,8 +64,8 @@ public class TitleScene extends PixelScene {
 		String currentClass;
 
 		Music.INSTANCE.playTracks(
-				new String[]{Assets.Music.THEME_1, Assets.Music.THEME_2},
-				new float[]{1, 1},
+				new String[]{Assets.Music.THEME_1},
+				new float[]{1},
 				false
 		);
 
