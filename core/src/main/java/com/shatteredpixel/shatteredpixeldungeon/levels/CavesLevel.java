@@ -74,9 +74,8 @@ public class CavesLevel extends RegularLevel {
 	}
 
 	public static final String[] CAVES_TRACK_LIST
-			= new String[]{Assets.Music.CAVES_1, Assets.Music.CAVES_2, Assets.Music.CAVES_2,
-			Assets.Music.CAVES_1, Assets.Music.CAVES_3, Assets.Music.CAVES_3};
-	public static final float[] CAVES_TRACK_CHANCES = new float[]{1f, 1f, 0.5f, 0.25f, 1f, 0.5f};
+			= new String[]{Assets.Music.CAVES_1, Assets.Music.CAVES_2, Assets.Music.CAVES_3};
+	public static final float[] CAVES_TRACK_CHANCES = new float[]{1f, 1f, 1f};
 
 	@Override
 	public void playLevelMusic() {

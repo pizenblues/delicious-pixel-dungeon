@@ -66,9 +66,8 @@ public class PrisonLevel extends RegularLevel {
 	}
 
 	public static final String[] PRISON_TRACK_LIST
-			= new String[]{Assets.Music.PRISON_1, Assets.Music.PRISON_2, Assets.Music.PRISON_2,
-			Assets.Music.PRISON_1, Assets.Music.PRISON_3, Assets.Music.PRISON_3};
-	public static final float[] PRISON_TRACK_CHANCES = new float[]{1f, 1f, 0.5f, 0.25f, 1f, 0.5f};
+			= new String[]{Assets.Music.PRISON_1, Assets.Music.PRISON_2, Assets.Music.PRISON_3};
+	public static final float[] PRISON_TRACK_CHANCES = new float[]{1f, 1f, 1f};
 
 	@Override
 	public void playLevelMusic() {

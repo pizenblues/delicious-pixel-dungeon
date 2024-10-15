@@ -71,9 +71,8 @@ public class HallsLevel extends RegularLevel {
 	}
 
 	public static final String[] HALLS_TRACK_LIST
-			= new String[]{Assets.Music.HALLS_1, Assets.Music.HALLS_2, Assets.Music.HALLS_2,
-			Assets.Music.HALLS_1, Assets.Music.HALLS_3, Assets.Music.HALLS_3};
-	public static final float[] HALLS_TRACK_CHANCES = new float[]{1f, 1f, 0.5f, 0.25f, 1f, 0.5f};
+			= new String[]{Assets.Music.HALLS_1, Assets.Music.HALLS_2, Assets.Music.HALLS_3};
+	public static final float[] HALLS_TRACK_CHANCES = new float[]{1f, 1f, 1f};
 
 
 	@Override
