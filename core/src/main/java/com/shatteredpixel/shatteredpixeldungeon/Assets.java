@@ -157,6 +157,7 @@ public class Assets {
 
 	public static class Sounds {
 		public static final String CLICK    = "sounds/click.mp3";
+		public static final String SCRATCH = "sounds/new/scratch in.wav";
 		public static final String BADGE    = "sounds/badge.mp3";
 		public static final String GOLD     = "sounds/gold.mp3";
 
@@ -229,6 +230,8 @@ public class Assets {
 
 		public static final String[] all = new String[]{
 				CLICK, BADGE, GOLD,
+
+				SCRATCH,
 
 				OPEN, UNLOCK, ITEM, DEWDROP, STEP, WATER, GRASS, TRAMPLE, STURDY,
 

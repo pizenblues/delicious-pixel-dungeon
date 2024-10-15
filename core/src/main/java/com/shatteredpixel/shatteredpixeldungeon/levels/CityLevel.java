@@ -48,6 +48,7 @@ import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.tiles.DungeonTilemap;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;
@@ -68,6 +69,7 @@ public class CityLevel extends RegularLevel {
 	@Override
 	public void playLevelMusic() {
 		if (Statistics.amuletObtained){
+			Sample.INSTANCE.play( Assets.Sounds.SCRATCH );
 			Music.INSTANCE.play(Assets.Music.CITY_TENSE, true);
 		} else {
 			Music.INSTANCE.playTracks(CITY_TRACK_LIST, CITY_TRACK_CHANCES, false);

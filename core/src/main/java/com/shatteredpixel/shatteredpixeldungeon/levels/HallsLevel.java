@@ -53,6 +53,7 @@ import com.watabou.glwrap.Blending;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
@@ -78,6 +79,7 @@ public class HallsLevel extends RegularLevel {
 	@Override
 	public void playLevelMusic() {
 		if (Statistics.amuletObtained){
+			Sample.INSTANCE.play( Assets.Sounds.SCRATCH );
 			Music.INSTANCE.play(Assets.Music.HALLS_TENSE, true);
 		} else {
 			Music.INSTANCE.playTracks(HALLS_TRACK_LIST, HALLS_TRACK_CHANCES, false);

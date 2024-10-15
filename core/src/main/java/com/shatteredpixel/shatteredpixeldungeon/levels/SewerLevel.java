@@ -50,6 +50,7 @@ import com.shatteredpixel.shatteredpixeldungeon.windows.WndMessage;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.Callback;
@@ -65,15 +66,16 @@ public class SewerLevel extends RegularLevel {
 	}
 
 	public static final String[] SEWER_TRACK_LIST
-			= new String[]{Assets.Music.SEWERS_1, Assets.Music.SEWERS_2, Assets.Music.SEWERS_2,
-			Assets.Music.SEWERS_1, Assets.Music.SEWERS_3, Assets.Music.SEWERS_3};
-	public static final float[] SEWER_TRACK_CHANCES = new float[]{1f, 1f, 0.5f, 0.25f, 1f, 0.5f};
+			= new String[]{Assets.Music.SEWERS_1, Assets.Music.SEWERS_2, Assets.Music.SEWERS_3};
+	public static final float[] SEWER_TRACK_CHANCES = new float[]{1f, 1f, 1f};
 
 	public void playLevelMusic(){
 		if (Ghost.Quest.active() || Statistics.amuletObtained){
 			if (Statistics.amuletObtained && Dungeon.depth == 1){
+				Sample.INSTANCE.play( Assets.Sounds.SCRATCH );
 				Music.INSTANCE.play(Assets.Music.THEME_FINALE, true);
 			} else {
+				Sample.INSTANCE.play( Assets.Sounds.SCRATCH );
 				Music.INSTANCE.play(Assets.Music.SEWERS_TENSE, true);
 			}
 		} else {

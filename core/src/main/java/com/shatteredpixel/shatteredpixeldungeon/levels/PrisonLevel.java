@@ -50,6 +50,7 @@ import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.Halo;
 import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PointF;
@@ -72,8 +73,10 @@ public class PrisonLevel extends RegularLevel {
 	@Override
 	public void playLevelMusic() {
 		if (Wandmaker.Quest.active() || Statistics.amuletObtained){
+			Sample.INSTANCE.play( Assets.Sounds.SCRATCH );
 			Music.INSTANCE.play(Assets.Music.PRISON_TENSE, true);
 		} else {
+			Sample.INSTANCE.play( Assets.Sounds.SCRATCH );
 			Music.INSTANCE.playTracks(PRISON_TRACK_LIST, PRISON_TRACK_CHANCES, false);
 		}
 		wandmakerQuestWasActive = Wandmaker.Quest.active();

@@ -58,6 +58,7 @@ import com.shatteredpixel.shatteredpixeldungeon.windows.WndTitledMessage;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PointF;
@@ -80,6 +81,7 @@ public class CavesLevel extends RegularLevel {
 	@Override
 	public void playLevelMusic() {
 		if (Statistics.amuletObtained){
+			Sample.INSTANCE.play( Assets.Sounds.SCRATCH );
 			Music.INSTANCE.play(Assets.Music.CAVES_TENSE, true);
 		} else {
 			Music.INSTANCE.playTracks(CAVES_TRACK_LIST, CAVES_TRACK_CHANCES, false);
