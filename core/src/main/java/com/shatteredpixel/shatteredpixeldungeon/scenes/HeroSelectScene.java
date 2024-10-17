@@ -30,6 +30,7 @@ import com.shatteredpixel.shatteredpixeldungeon.SPDSettings;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Journal;
+import com.shatteredpixel.shatteredpixeldungeon.effects.Fireball;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ActionIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ExitButton;
@@ -159,6 +160,8 @@ public class HeroSelectScene extends PixelScene {
 		add( btnExit );
 		btnExit.visible = btnExit.active = !SPDSettings.intro();
 
+		placeTorch(maxWidth/2, maxHeight/2 + 50);
+
 		if (landscape()){
 			title.setPos((maxWidth - title.width()) / 2f, 16);
 		}else{
@@ -222,6 +225,12 @@ public class HeroSelectScene extends PixelScene {
 		} else {
 			super.onBackPressed();
 		}
+	}
+
+	private void placeTorch( float x, float y ) {
+		Fireball fb = new Fireball();
+		fb.setPos( x, y );
+		add( fb );
 	}
 
 	private class HeroBtn extends StyledButton {
