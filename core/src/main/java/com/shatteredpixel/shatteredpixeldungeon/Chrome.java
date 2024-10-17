@@ -34,6 +34,7 @@ public class Chrome {
 		RED_BUTTON,
 		GREY_BUTTON,
 		GREY_BUTTON_TR,
+		NOBG_BUTTON,
 		TAG,
 		GEM,
 		SCROLL,
@@ -60,6 +61,8 @@ public class Chrome {
 			return new NinePatch( Asset, 112, 0, 10, 9, 4 );
 		case TOAST_WHITE:
 			return new NinePatch( Asset, 29, 0, 9, 9, 4 );
+		case NOBG_BUTTON:
+			return new NinePatch( Asset, 0, 20, 10, 9, 4 );
 		case RED_BUTTON:
 			return new NinePatch( Asset, 112, 9, 10, 9, 4 );
 		case GREY_BUTTON:

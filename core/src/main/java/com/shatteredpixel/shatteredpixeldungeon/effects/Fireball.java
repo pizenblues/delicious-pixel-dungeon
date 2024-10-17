@@ -40,20 +40,19 @@ public class Fireball extends Component {
 	private static final RectF FLIGHT = new RectF( 0.25f, 0, 0.5f, 1 );
 	private static final RectF FLAME1 = new RectF( 0.50f, 0, 0.75f, 1 );
 	private static final RectF FLAME2 = new RectF( 0.75f, 0, 1.00f, 1 );
-	
-	private static final int COLOR = 0xFF66FF;
-	
+	private static final int COLOR = 0xFF0000;
 	private Image bLight;
 	private Image fLight;
 	private Emitter emitter;
 	private Group sparks;
-	
+
 	@Override
 	protected void createChildren() {
 		
 		sparks = new Group();
 		add( sparks );
-		
+		add( sparks );
+
 		bLight = new Image( Assets.Effects.FIREBALL );
 		bLight.frame( BLIGHT );
 		bLight.origin.set( bLight.width / 2 );
@@ -105,11 +104,11 @@ public class Fireball extends Component {
 		
 		if (Random.Float() < Game.elapsed) {
 			PixelParticle spark = (PixelParticle)sparks.recycle( PixelParticle.Shrinking.class );
-			spark.reset( x, y, ColorMath.random( COLOR, 0x66FF66 ), 2, Random.Float( 0.5f, 1.0f ) );
+			spark.reset( x, y, ColorMath.random( COLOR, 0xFFFFFF ), 2, Random.Float( 0.5f, 6f ) );
 			spark.speed.set(
-				Random.Float( -40, +40 ),
-				Random.Float( -60, +20 ) );
-			spark.acc.set( 0, +80 );
+				Random.Float( -20, +80 ),
+				Random.Float( 0, +10 ) );
+			spark.acc.set( 0, +30 );
 			sparks.add( spark );
 		}
 	}
@@ -124,20 +123,18 @@ public class Fireball extends Component {
 	public static class Flame extends Image {
 		
 		private static float LIFESPAN	= 1f;
-		
+
 		private static float SPEED	= -40f;
 		private static float ACC	= -20f;
-		
+
 		private float timeLeft;
 		private float heightLimit;
 		
 		public Flame() {
-			
-			super( Assets.Effects.FIREBALL );
-			
+			/*super( Assets.Effects.FIREBALL );
 			frame( Random.Int( 2 ) == 0 ? FLAME1 : FLAME2 );
 			origin.set( width / 2, height / 2 );
-			acc.set( 0, ACC );
+			acc.set( 0, ACC );*/
 		}
 		
 		public void reset() {

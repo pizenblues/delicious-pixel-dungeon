@@ -136,15 +136,15 @@ public class Assets {
 		public static final String CAVES_1              = "music/new/trombone.ogg";
 		public static final String CAVES_2              = "music/new/ramp.ogg";
 		public static final String CAVES_3              = "music/new/shimmer.ogg";
-		public static final String CAVES_TENSE          = "music/bass and drums.ogg";
+		public static final String CAVES_TENSE          = "music/new/bass and drums.ogg";
 		public static final String CAVES_BOSS           = "music/caves_boss.ogg";
 		public static final String CAVES_BOSS_FINALE    = "music/caves_boss_finale.ogg";
 
 		public static final String CITY_1               = "music/new/it crawls.ogg";
 		public static final String CITY_2               = "music/new/threads.ogg";
 		public static final String CITY_3               = "music/new/das model.ogg";
-		public static final String CITY_TENSE           = "music/city_tense.ogg";
-		public static final String CITY_BOSS            = "music/city_boss.ogg";
+		public static final String CITY_TENSE           = "music/new/ant.ogg";
+		public static final String CITY_BOSS            = "music/new/dark elves.ogg";
 		public static final String CITY_BOSS_FINALE     = "music/city_boss_finale.ogg";
 
 		public static final String HALLS_1              = "music/halls_1.ogg";

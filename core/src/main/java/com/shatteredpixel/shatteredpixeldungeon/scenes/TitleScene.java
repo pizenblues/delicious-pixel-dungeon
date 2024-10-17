@@ -23,41 +23,28 @@ package com.shatteredpixel.shatteredpixeldungeon.scenes;
 
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Chrome;
-import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.GamesInProgress;
-import com.shatteredpixel.shatteredpixeldungeon.SPDSettings;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
 import com.shatteredpixel.shatteredpixeldungeon.effects.BannerSprites;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Fireball;
-import com.shatteredpixel.shatteredpixeldungeon.messages.Languages;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
-import com.shatteredpixel.shatteredpixeldungeon.services.news.News;
-import com.shatteredpixel.shatteredpixeldungeon.services.updates.AvailableUpdateData;
-import com.shatteredpixel.shatteredpixeldungeon.services.updates.Updates;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ExitButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Icons;
-import com.shatteredpixel.shatteredpixeldungeon.ui.RenderedTextBlock;
-import com.shatteredpixel.shatteredpixeldungeon.ui.StyledButton;
-import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
-import com.shatteredpixel.shatteredpixeldungeon.windows.WndOptions;
+import com.shatteredpixel.shatteredpixeldungeon.ui.ClickableArea;
+import com.shatteredpixel.shatteredpixeldungeon.ui.IconButton;
+import com.shatteredpixel.shatteredpixeldungeon.windows.WndKeyBindings;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndSettings;
 import com.watabou.gltextures.TextureCache;
-import com.watabou.glwrap.Blending;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Music;
-import com.watabou.utils.ColorMath;
 import com.watabou.utils.DeviceCompat;
-import java.util.Date;
 
 public class TitleScene extends PixelScene {
 
-	private Image background;
-
-	@Override
+    @Override
 	public void create() {
 		
 		super.create();
@@ -75,7 +62,7 @@ public class TitleScene extends PixelScene {
 		int topPadding = landscape() ? 50 : 30;
 		float scaleGraph = landscape() ? 0.5f : 0.85f;
 
-		background = new Image(TextureCache.createSolid(0xFF1f102a), 0, 0, 800, 800);
+        Image background = new Image(TextureCache.createSolid(0xFF1f102a), 0, 0, 800, 800);
 		background.scale.set(scaleGraph);
 		background.x = (w - background.width())/2f;
 		background.y = ((h - background.height() + topPadding)/2f);
@@ -100,13 +87,10 @@ public class TitleScene extends PixelScene {
 		add( title );
 		float topRegion = Math.max(title.height - 6, h*0.45f);
 		title.x = (w - title.width()) / 2f;
-		title.y = landscape() ? 8 : ((topRegion - title.height() - 20) / 2f);
+		title.y = landscape() ? 8 : ((topRegion - title.height() + 40) / 2f);
 		align(title);
 
-		final Chrome.Type GREY_TR = Chrome.Type.GREY_BUTTON_TR;
-		final Chrome.Type RED_TR = Chrome.Type.RED_BUTTON;
-
-		StyledButton btnPlay = new StyledButton(RED_TR, Messages.get(this, "enter")){
+		ClickableArea btnPlay = new ClickableArea(Messages.get(this, "enter")){
 			@Override
 			protected void onClick() {
 				if (GamesInProgress.checkAll().size() == 0){
@@ -117,7 +101,7 @@ public class TitleScene extends PixelScene {
 					ShatteredPixelDungeon.switchNoFade( StartScene.class );
 				}
 			}
-			
+
 			@Override
 			protected boolean onLongClick() {
 				//making it easier to start runs quickly while debugging
@@ -130,35 +114,44 @@ public class TitleScene extends PixelScene {
 				return super.onLongClick();
 			}
 		};
-		btnPlay.icon(Icons.get(Icons.ENTER));
+		btnPlay.icon(Icons.get(Icons.ARROW));
 		add(btnPlay);
 
-		StyledButton btnSettings = new SettingsButton(GREY_TR, Messages.get(this, "settings"));
+		IconButton btnSettings = new IconButton(Icons.get(Icons.PREFS)){
+			@Override
+			protected String hoverText() {
+				return Messages.titleCase(Messages.get(WndKeyBindings.class, "settings"));
+			}
+
+			@Override
+			public void update() {
+				super.update();
+			}
+
+			@Override
+			protected void onClick() {
+				ShatteredPixelDungeon.scene().add(new WndSettings());
+			}
+		};
 		add(btnSettings);
 
-		StyledButton btnAbout = new StyledButton(GREY_TR, Messages.get(this, "about")){
+		IconButton btnAbout = new IconButton(Icons.get(Icons.INFO)){
 			@Override
 			protected void onClick() {
 				ShatteredPixelDungeon.switchScene( AboutScene.class );
 			}
 		};
-		btnAbout.icon(Icons.get(Icons.SHPX));
 		add(btnAbout);
 
 		final int buttonHeight = 24;
-		int buttonWidth = 60;
 		int GAP = 3;
-		int bottomPadding = landscape() ? 30 : 40;
+		int clickableArea = 140;
+		int bottomPadding = 20;
 
-		if(landscape()){
-			btnPlay.setRect((Camera.main.width - buttonWidth*2) / 2, Camera.main.height - bottomPadding, buttonWidth*2, buttonHeight);
-			btnAbout.setRect(GAP, GAP, buttonWidth, buttonHeight);
-			btnSettings.setRect(Camera.main.width - (buttonWidth + GAP), GAP, buttonWidth, buttonHeight);
-		}else{
-			btnSettings.setRect((Camera.main.width - (buttonWidth*2 + GAP)) / 2, Camera.main.height - bottomPadding, buttonWidth, buttonHeight);
-			btnAbout.setRect(btnSettings.right() + GAP, btnSettings.top(), buttonWidth, buttonHeight);
-			btnPlay.setRect(btnSettings.left(), btnSettings.top() - (buttonHeight + GAP), buttonWidth*2, buttonHeight);
-		}
+		placeTorch(w/2, h/2 + 50);
+		btnAbout.setRect(GAP, GAP, buttonHeight, buttonHeight);
+		btnSettings.setRect(w - (buttonHeight + GAP), GAP, buttonHeight, buttonHeight);
+		btnPlay.setRect((w-120) / 2, h - clickableArea - bottomPadding, 120, clickableArea);
 
 		BitmapText version = new BitmapText( "v" + Game.version, pixelFont);
 		version.measure();
@@ -169,40 +162,18 @@ public class TitleScene extends PixelScene {
 
 		if (DeviceCompat.isDesktop()) {
 			ExitButton btnExit = new ExitButton();
-			btnExit.setPos( 3, 3 );
+			btnExit.setPos( GAP,w - 30 );
+			btnSettings.setRect(btnExit.left(), GAP, buttonHeight, buttonHeight);
 			add( btnExit );
 		}
 
 		fadeIn();
 	}
 
-	private static class SettingsButton extends StyledButton {
-		public SettingsButton( Chrome.Type type, String label ){
-			super(type, label);
-			if (Messages.lang().status() == Languages.Status.X_UNFINISH){
-				icon(Icons.get(Icons.LANGS));
-				icon.hardlight(1.5f, 0, 0);
-			} else {
-				icon(Icons.get(Icons.PREFS));
-			}
-		}
-
-		@Override
-		public void update() {
-			super.update();
-
-			if (Messages.lang().status() == Languages.Status.X_UNFINISH){
-				textColor(ColorMath.interpolate( 0xFFFFFF, CharSprite.NEGATIVE, 0.5f + (float)Math.sin(Game.timeTotal*5)/2f));
-			}
-		}
-
-		@Override
-		protected void onClick() {
-			if (Messages.lang().status() == Languages.Status.X_UNFINISH){
-				WndSettings.last_index = 4;
-			}
-			ShatteredPixelDungeon.scene().add(new WndSettings());
-		}
+	private void placeTorch( float x, float y ) {
+		Fireball fb = new Fireball();
+		fb.setPos( x, y );
+		add( fb );
 	}
 
 }
