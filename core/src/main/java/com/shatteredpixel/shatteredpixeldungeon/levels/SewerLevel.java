@@ -34,9 +34,7 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.painters.SewerPainter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.AlarmTrap;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.ChillingTrap;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.ConfusionTrap;
-import com.shatteredpixel.shatteredpixeldungeon.levels.traps.FlockTrap;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.GatewayTrap;
-import com.shatteredpixel.shatteredpixeldungeon.levels.traps.OozeTrap;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.ShockingTrap;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.SummoningTrap;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.TeleportationTrap;
@@ -87,14 +85,14 @@ public class SewerLevel extends RegularLevel {
 	protected int standardRooms(boolean forceMax) {
 		if (forceMax) return 6;
 		//4 to 6, average 5
-		return 4+Random.chances(new float[]{1, 3, 1});
+		return 4+Random.chances(new float[]{1, 3, 2});
 	}
 	
 	@Override
 	protected int specialRooms(boolean forceMax) {
 		if (forceMax) return 2;
 		//1 to 2, average 1.8
-		return 1+Random.chances(new float[]{1, 4});
+		return 1+Random.chances(new float[]{1, 0});
 	}
 	
 	@Override
@@ -121,8 +119,8 @@ public class SewerLevel extends RegularLevel {
 				new Class<?>[]{ WornDartTrap.class } :
 				new Class<?>[]{
 						ChillingTrap.class, ShockingTrap.class, ToxicTrap.class, WornDartTrap.class,
-						AlarmTrap.class, OozeTrap.class,
-						ConfusionTrap.class, FlockTrap.class, SummoningTrap.class, TeleportationTrap.class, GatewayTrap.class };
+						AlarmTrap.class, ConfusionTrap.class, SummoningTrap.class,
+						TeleportationTrap.class, GatewayTrap.class };
 }
 
 	@Override
@@ -130,9 +128,8 @@ public class SewerLevel extends RegularLevel {
 		return Dungeon.depth == 1 ?
 				new float[]{1} :
 				new float[]{
-						4, 4, 4, 4,
-						2, 2,
-						1, 1, 1, 1, 1};
+						3, 3, 3, 1,
+						2, 1, 1, 1, 1};
 	}
 
 	@Override

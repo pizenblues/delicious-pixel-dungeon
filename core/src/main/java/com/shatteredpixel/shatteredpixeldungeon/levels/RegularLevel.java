@@ -720,8 +720,7 @@ public abstract class RegularLevel extends Level {
 					if (t == null ||
 							! (t instanceof BurningTrap || t instanceof BlazingTrap
 							|| t instanceof ChillingTrap || t instanceof FrostTrap
-							|| t instanceof ExplosiveTrap || t instanceof DisintegrationTrap
-							|| t instanceof PitfallTrap)) {
+							|| t instanceof ExplosiveTrap || t instanceof PitfallTrap)) {
 						
 						return pos;
 					}

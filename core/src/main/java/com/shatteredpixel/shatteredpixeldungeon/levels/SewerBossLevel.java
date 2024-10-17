@@ -60,10 +60,7 @@ public class SewerBossLevel extends SewerLevel {
 	
 	@Override
 	public void playLevelMusic() {
-		if (locked){
-			Music.INSTANCE.play(Assets.Music.SEWERS_BOSS, true);
-			return;
-		}
+		Music.INSTANCE.play(Assets.Music.SEWERS_BOSS, true);
 
 		boolean gooAlive = false;
 		for (Mob m : mobs){
@@ -73,11 +70,11 @@ public class SewerBossLevel extends SewerLevel {
 			}
 		}
 
-		if (gooAlive){
+		/*if (gooAlive){
 			Music.INSTANCE.end();
 		} else {
 			Music.INSTANCE.playTracks(SewerLevel.SEWER_TRACK_LIST, SewerLevel.SEWER_TRACK_CHANCES, false);
-		}
+		}*/
 
 	}
 
