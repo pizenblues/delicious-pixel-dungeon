@@ -20,9 +20,7 @@
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.scenes;
-
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
-import com.shatteredpixel.shatteredpixeldungeon.Chrome;
 import com.shatteredpixel.shatteredpixeldungeon.GamesInProgress;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
 import com.shatteredpixel.shatteredpixeldungeon.effects.BannerSprites;
@@ -30,9 +28,8 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Fireball;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ExitButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Icons;
-import com.shatteredpixel.shatteredpixeldungeon.ui.ClickableArea;
 import com.shatteredpixel.shatteredpixeldungeon.ui.IconButton;
-import com.shatteredpixel.shatteredpixeldungeon.windows.WndKeyBindings;
+import com.shatteredpixel.shatteredpixeldungeon.ui.ClickableArea;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndSettings;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.noosa.BitmapText;
@@ -43,12 +40,11 @@ import com.watabou.noosa.audio.Music;
 import com.watabou.utils.DeviceCompat;
 
 public class TitleScene extends PixelScene {
-
-    @Override
+	private Image background;
+	@Override
 	public void create() {
-		
 		super.create();
-		String currentClass;
+		String currentClass = "none";
 
 		Music.INSTANCE.playTracks(
 				new String[]{Assets.Music.THEME_1},
@@ -57,21 +53,19 @@ public class TitleScene extends PixelScene {
 		);
 
 		uiCamera.visible = false;
-		int w = Camera.main.width;
-		int h = Camera.main.height;
+		int maxWidth = Camera.main.width;
+		int maxHeight = Camera.main.height;
 		int topPadding = landscape() ? 50 : 30;
 		float scaleGraph = landscape() ? 0.5f : 0.85f;
 
-        Image background = new Image(TextureCache.createSolid(0xFF1f102a), 0, 0, 800, 800);
+		background = new Image(TextureCache.createSolid(0xFF1f102a), 0, 0, 800, 800);
 		background.scale.set(scaleGraph);
-		background.x = (w - background.width())/2f;
-		background.y = ((h - background.height() + topPadding)/2f);
+		background.x = (maxWidth - background.width())/2f;
+		background.y = ((maxHeight - background.height() + topPadding)/2f);
 		PixelScene.align(background);
 
 		if (GamesInProgress.checkAll().size() != 0){
 			currentClass = GamesInProgress.checkAll().get(GamesInProgress.checkAll().size() - 1).heroClass.name();
-		} else {
-			currentClass = "none";
 		}
 
 		try {
@@ -82,11 +76,11 @@ public class TitleScene extends PixelScene {
 			background.frame(0, 0, 800, 800);
 		}
 		add(background);
-		
+
 		Image title = BannerSprites.get( BannerSprites.Type.PIXEL_DUNGEON );
 		add( title );
-		float topRegion = Math.max(title.height - 6, h*0.45f);
-		title.x = (w - title.width()) / 2f;
+		float topRegion = Math.max(title.height - 6, maxHeight*0.45f);
+		title.x = (maxWidth - title.width()) / 2f;
 		title.y = landscape() ? 8 : ((topRegion - title.height() + 40) / 2f);
 		align(title);
 
@@ -119,15 +113,9 @@ public class TitleScene extends PixelScene {
 
 		IconButton btnSettings = new IconButton(Icons.get(Icons.PREFS)){
 			@Override
-			protected String hoverText() {
-				return Messages.titleCase(Messages.get(WndKeyBindings.class, "settings"));
-			}
-
-			@Override
 			public void update() {
 				super.update();
 			}
-
 			@Override
 			protected void onClick() {
 				ShatteredPixelDungeon.scene().add(new WndSettings());
@@ -143,27 +131,28 @@ public class TitleScene extends PixelScene {
 		};
 		add(btnAbout);
 
-		final int buttonHeight = 24;
-		int GAP = 3;
+		final int buttonSize = 24;
 		int clickableArea = 140;
-		int bottomPadding = 20;
+		int GAP = 3;
 
-		placeTorch(w/2, h/2 + 50);
-		btnAbout.setRect(GAP, GAP, buttonHeight, buttonHeight);
-		btnSettings.setRect(w - (buttonHeight + GAP), GAP, buttonHeight, buttonHeight);
-		btnPlay.setRect((w-120) / 2, h - clickableArea - bottomPadding, 120, clickableArea);
+		int bottomPadding = 20;
+		placeTorch(maxWidth/2, maxHeight/2 + 50);
+		btnAbout.setRect(GAP, GAP, buttonSize, buttonSize);
+		btnSettings.setRect(maxWidth - (buttonSize + GAP), GAP, buttonSize, buttonSize);
+		btnPlay.setRect((maxWidth-120) / 2, maxHeight - clickableArea - bottomPadding, 120, clickableArea);
 
 		BitmapText version = new BitmapText( "v" + Game.version, pixelFont);
 		version.measure();
 		version.hardlight( 0x888888 );
-		version.x = w - version.width() - 4;
-		version.y = h - version.height() - 2;
+		version.x = maxWidth - version.width() - 4;
+		version.y = maxHeight - version.height() - 2;
+		version.y = maxHeight - version.height() - 2;
 		add( version );
 
 		if (DeviceCompat.isDesktop()) {
 			ExitButton btnExit = new ExitButton();
-			btnExit.setPos( GAP,w - 30 );
-			btnSettings.setRect(btnExit.left(), GAP, buttonHeight, buttonHeight);
+			btnExit.setPos( GAP,maxWidth - 30 );
+			btnSettings.setRect(btnExit.left(), GAP, buttonSize, buttonSize);
 			add( btnExit );
 		}
 
@@ -175,5 +164,4 @@ public class TitleScene extends PixelScene {
 		fb.setPos( x, y );
 		add( fb );
 	}
-
 }

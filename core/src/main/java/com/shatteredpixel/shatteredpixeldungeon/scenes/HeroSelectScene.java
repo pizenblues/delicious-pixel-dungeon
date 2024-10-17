@@ -55,13 +55,16 @@ public class HeroSelectScene extends PixelScene {
 	private StyledButton startBtn;
 	private IconButton infoButton;
 	private IconButton btnExit;
-
+	int maxWidth = Camera.main.width;
+	int maxHeight = Camera.main.height;
 	@Override
 	public void create() {
 		super.create();
 		Dungeon.hero = null;
 		Badges.loadGlobal();
 		Journal.loadGlobal();
+
+		float scaleGraph = landscape() ? 0.5f : 1.2f;
 
 		background = new Image(TextureCache.createSolid(0xFF1f102a), 0, 0, 444, 250){
 			@Override
@@ -77,13 +80,12 @@ public class HeroSelectScene extends PixelScene {
 			}
 		};
 
-		background.scale.set(Camera.main.height/background.height);
-		background.x = (Camera.main.width - background.width())/2f;
-		background.y = (Camera.main.height - background.height())/2f;
+		background.scale.set(scaleGraph);
+		background.x = (maxWidth - background.width())/2f;
+		background.y = (maxHeight - background.height())/2f;
 		PixelScene.align(background);
 
 		try {
-			//loading these big jpgs fails sometimes, so we have a catch for it
 			background.texture("splashes/background.png");
 		} catch (Exception e){
 			Game.reportException(e);
@@ -158,15 +160,15 @@ public class HeroSelectScene extends PixelScene {
 		btnExit.visible = btnExit.active = !SPDSettings.intro();
 
 		if (landscape()){
-			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 86));
+			title.setPos((maxWidth - title.width()) / 2f, 16);
 		}else{
-			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 80));
+			title.setPos((maxWidth - title.width()) / 2f, 120);
 		}
 
 		float gridGap = 2;
 		float buttonWidth = 24;
-		float positionX = (Camera.main.width - (buttonWidth*5 + gridGap*4)) / 2;
-		float positionY = Camera.main.height - 55;
+		float positionX = (maxWidth - (buttonWidth*5 + gridGap*4)) / 2;
+		float positionY = maxHeight - 55;
 
 		for (StyledButton button : heroBtns) {
 			button.setRect(positionX, positionY, buttonWidth, HeroBtn.HEIGHT);
@@ -193,15 +195,15 @@ public class HeroSelectScene extends PixelScene {
 		startBtn.setSize(120, 21);
 
 		if (landscape()){
-			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 86));
+			title.setPos((maxWidth - title.width()) / 2f, 16);
 		}else{
-			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 80));
+			title.setPos((maxWidth - title.width()) / 2f, 180);
 		}
 
-		startBtn.setPos((Camera.main.width - startBtn.width())/2f, (Camera.main.height) - 30 );
+		startBtn.setPos((maxWidth - startBtn.width())/2f, maxHeight - 30 );
 		PixelScene.align(startBtn);
 		infoButton.visible = infoButton.active = true;
-		infoButton.setPos( Camera.main.width - infoButton.width() - 3, 3 );
+		infoButton.setPos( maxWidth - infoButton.width() - 3, 3 );
 	}
 
 	@Override
@@ -255,7 +257,7 @@ public class HeroSelectScene extends PixelScene {
 			} else if (GamesInProgress.selectedClass == cl) {
 				Window w = new WndHeroInfo(cl);
 				if (landscape()){
-					w.offset(Camera.main.width/6, 0);
+					w.offset(maxWidth/6, 0);
 				}
 				ShatteredPixelDungeon.scene().addToFront(w);
 			} else {
