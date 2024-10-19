@@ -30,7 +30,6 @@ import com.shatteredpixel.shatteredpixeldungeon.SPDSettings;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Journal;
-import com.shatteredpixel.shatteredpixeldungeon.effects.Fireball;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ActionIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ExitButton;
@@ -56,8 +55,7 @@ public class HeroSelectScene extends PixelScene {
 	private StyledButton startBtn;
 	private IconButton infoButton;
 	private IconButton btnExit;
-	int maxWidth = Camera.main.width;
-	int maxHeight = Camera.main.height;
+
 	@Override
 	public void create() {
 		super.create();
@@ -65,9 +63,7 @@ public class HeroSelectScene extends PixelScene {
 		Badges.loadGlobal();
 		Journal.loadGlobal();
 
-		float scaleGraph = landscape() ? 0.5f : 1.2f;
-
-		background = new Image(TextureCache.createSolid(0xFF1f102a), 0, 0, 444, 250){
+		background = new Image(TextureCache.createSolid(0xFF1f102a), 0, 0, 444, 250) {
 			@Override
 			public void update() {
 				if (GamesInProgress.selectedClass != null) {
@@ -81,14 +77,15 @@ public class HeroSelectScene extends PixelScene {
 			}
 		};
 
-		background.scale.set(scaleGraph);
-		background.x = (maxWidth - background.width())/2f;
-		background.y = (maxHeight - background.height())/2f;
+		background.scale.set(Camera.main.height / background.height);
+		background.x = (Camera.main.width - background.width()) / 2f;
+		background.y = (Camera.main.height - background.height()) / 2f;
 		PixelScene.align(background);
 
 		try {
+			//loading these big jpgs fails sometimes, so we have a catch for it
 			background.texture("splashes/background.png");
-		} catch (Exception e){
+		} catch (Exception e) {
 			Game.reportException(e);
 			background.texture(TextureCache.createSolid(0xFF1f102a));
 			background.frame(0, 0, 444, 250);
@@ -106,7 +103,7 @@ public class HeroSelectScene extends PixelScene {
 		heroDesc.visible = heroDesc.active = false;
 
 		// resets everything if not class is selected
-		startBtn = new StyledButton(Chrome.Type.RED_BUTTON, ""){
+		startBtn = new StyledButton(Chrome.Type.RED_BUTTON, "") {
 			@Override
 			protected void onClick() {
 				super.onClick();
@@ -118,7 +115,7 @@ public class HeroSelectScene extends PixelScene {
 				ActionIndicator.clearAction();
 				InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
 
-				Game.switchScene( InterlevelScene.class );
+				Game.switchScene(InterlevelScene.class);
 			}
 		};
 
@@ -128,7 +125,7 @@ public class HeroSelectScene extends PixelScene {
 		add(startBtn);
 		startBtn.visible = startBtn.active = false;
 
-		infoButton = new IconButton(Icons.get(Icons.INFO)){
+		infoButton = new IconButton(Icons.get(Icons.INFO)) {
 			@Override
 			protected void onClick() {
 				super.onClick();
@@ -148,7 +145,7 @@ public class HeroSelectScene extends PixelScene {
 		infoButton.setSize(20, 21);
 		add(infoButton);
 
-		for (HeroClass cl : HeroClass.values()){
+		for (HeroClass cl : HeroClass.values()) {
 			HeroBtn button = new HeroBtn(cl);
 			add(button);
 			heroBtns.add(button);
@@ -156,22 +153,20 @@ public class HeroSelectScene extends PixelScene {
 
 		// Initiate character selection screen
 		btnExit = new ExitButton();
-		btnExit.setPos( 3, 3 );
-		add( btnExit );
+		btnExit.setPos(3, 3);
+		add(btnExit);
 		btnExit.visible = btnExit.active = !SPDSettings.intro();
 
-		placeTorch(maxWidth/2, maxHeight/2 + 50);
-
-		if (landscape()){
-			title.setPos((maxWidth - title.width()) / 2f, 16);
-		}else{
-			title.setPos((maxWidth - title.width()) / 2f, 120);
+		if (landscape()) {
+			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 86));
+		} else {
+			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 80));
 		}
 
 		float gridGap = 2;
 		float buttonWidth = 24;
-		float positionX = (maxWidth - (buttonWidth*5 + gridGap*4)) / 2;
-		float positionY = maxHeight - 55;
+		float positionX = (Camera.main.width - (buttonWidth * 5 + gridGap * 4)) / 2;
+		float positionY = Camera.main.height - 55;
 
 		for (StyledButton button : heroBtns) {
 			button.setRect(positionX, positionY, buttonWidth, HeroBtn.HEIGHT);
@@ -179,40 +174,40 @@ public class HeroSelectScene extends PixelScene {
 		}
 	}
 
-	private void setSelectedHero(HeroClass cl){
+	private void setSelectedHero(HeroClass cl) {
 		GamesInProgress.selectedClass = cl;
 
 		try {
 			//loading these big jpgs fails sometimes, so we have a catch for it
 			background.texture(cl.splashArt());
-		} catch (Exception e){
+		} catch (Exception e) {
 			Game.reportException(e);
 			background.texture(TextureCache.createSolid(0xFF1f102a));
 			background.frame(0, 0, 444, 240);
 		}
 
-		background.hardlight(1.5f,1.5f,1.5f);
+		background.hardlight(1.5f, 1.5f, 1.5f);
 		title.text("Play as " + Messages.titleCase(cl.title()));
 		startBtn.visible = startBtn.active = true;
 		startBtn.text("Start");
 		startBtn.setSize(120, 21);
 
-		if (landscape()){
-			title.setPos((maxWidth - title.width()) / 2f, 16);
-		}else{
-			title.setPos((maxWidth - title.width()) / 2f, 180);
+		if (landscape()) {
+			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 86));
+		} else {
+			title.setPos((Camera.main.width - title.width()) / 2f, (Camera.main.height - 80));
 		}
 
-		startBtn.setPos((maxWidth - startBtn.width())/2f, maxHeight - 30 );
+		startBtn.setPos((Camera.main.width - startBtn.width()) / 2f, (Camera.main.height) - 30);
 		PixelScene.align(startBtn);
 		infoButton.visible = infoButton.active = true;
-		infoButton.setPos( maxWidth - infoButton.width() - 3, 3 );
+		infoButton.setPos(Camera.main.width - infoButton.width() - 3, 3);
 	}
 
 	@Override
 	public void update() {
 		super.update();
-		if (SPDSettings.intro() && Rankings.INSTANCE.totalNumber > 0){
+		if (SPDSettings.intro() && Rankings.INSTANCE.totalNumber > 0) {
 			SPDSettings.intro(false);
 		}
 		btnExit.visible = btnExit.active = !SPDSettings.intro();
@@ -220,24 +215,18 @@ public class HeroSelectScene extends PixelScene {
 
 	@Override
 	protected void onBackPressed() {
-		if (btnExit.active){
+		if (btnExit.active) {
 			ShatteredPixelDungeon.switchScene(TitleScene.class);
 		} else {
 			super.onBackPressed();
 		}
 	}
 
-	private void placeTorch( float x, float y ) {
-		Fireball fb = new Fireball();
-		fb.setPos( x, y );
-		add( fb );
-	}
-
 	private class HeroBtn extends StyledButton {
 		private HeroClass cl;
 		private static final int HEIGHT = 24;
 
-		HeroBtn ( HeroClass cl ){
+		HeroBtn(HeroClass cl) {
 			super(Chrome.Type.GREY_BUTTON_TR, Messages.titleCase(""), 7);
 			this.cl = cl;
 			icon(new Image(cl.spritesheet(), 0, 15, 12, 15));
@@ -246,8 +235,8 @@ public class HeroSelectScene extends PixelScene {
 		@Override
 		public void update() {
 			super.update();
-			if (cl != GamesInProgress.selectedClass){
-				if (!cl.isUnlocked()){
+			if (cl != GamesInProgress.selectedClass) {
+				if (!cl.isUnlocked()) {
 					icon.brightness(0f);
 				} else {
 					icon.brightness(0.5f);
@@ -261,12 +250,12 @@ public class HeroSelectScene extends PixelScene {
 		protected void onClick() {
 			super.onClick();
 
-			if( !cl.isUnlocked() ){
-				ShatteredPixelDungeon.scene().addToFront( new WndMessage(cl.unlockMsg()));
+			if (!cl.isUnlocked()) {
+				ShatteredPixelDungeon.scene().addToFront(new WndMessage(cl.unlockMsg()));
 			} else if (GamesInProgress.selectedClass == cl) {
 				Window w = new WndHeroInfo(cl);
-				if (landscape()){
-					w.offset(maxWidth/6, 0);
+				if (landscape()) {
+					w.offset(Camera.main.width / 6, 0);
 				}
 				ShatteredPixelDungeon.scene().addToFront(w);
 			} else {
