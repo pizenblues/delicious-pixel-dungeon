@@ -41,15 +41,12 @@ import java.util.Iterator;
 public class Bones {
 
 	private static final String BONES_FILE	= "bones.dat";
-	
 	private static final String LEVEL	= "level";
 	private static final String BRANCH	= "branch";
 	private static final String ITEM	= "item";
 	private static final String HERO_CLASS	= "hero_class";
-
 	private static int depth = -1;
 	private static int branch = -1;
-
 	private static Item item;
 	private static HeroClass heroClass;
 
