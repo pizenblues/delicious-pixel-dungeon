@@ -91,10 +91,6 @@ public class ScrollingListPane extends ScrollPane {
 		protected RenderedTextBlock label;
 		protected ColorBlock line;
 
-		public ListItem( Image icon, String text ) {
-			this(icon, null, text);
-		}
-
 		public ListItem( Image icon, String iconText, String text ) {
 			super();
 

@@ -65,16 +65,16 @@ public class ItemSpriteSheet {
 		assignItemRect(WEAPON_HOLDER,   16, 16);
 		assignItemRect(ARMOR_HOLDER,    14, 12);
 		assignItemRect(MISSILE_HOLDER,  15, 15);
-		assignItemRect(WAND_HOLDER,     14, 14);
-		assignItemRect(RING_HOLDER,     8,  10);
+		assignItemRect(WAND_HOLDER,     16, 15);
+		assignItemRect(RING_HOLDER,     9,  11);
 		assignItemRect(ARTIFACT_HOLDER, 15, 15);
 		assignItemRect(TRINKET_HOLDER,  16, 11);
-		assignItemRect(FOOD_HOLDER,     15, 14);
+		assignItemRect(FOOD_HOLDER,     15, 11);
 		assignItemRect(BOMB_HOLDER,     10, 13);
 		assignItemRect(POTION_HOLDER,   13, 14);
-		assignItemRect(SEED_HOLDER,     15, 15);
+		assignItemRect(SEED_HOLDER,     12, 11);
 		assignItemRect(SCROLL_HOLDER,   16, 14);
-		assignItemRect(STONE_HOLDER,    14, 12);
+		assignItemRect(STONE_HOLDER,    15, 15);
 		assignItemRect(ELIXIR_HOLDER,   12, 14);
 		assignItemRect(SPELL_HOLDER,    8,  16);
 	}
@@ -167,7 +167,7 @@ public class ItemSpriteSheet {
 		assignItemRect(CLOAK_SCRAP,      9,  9);
 		assignItemRect(BOW_FRAGMENT,    12,  9);
 		assignItemRect(BROKEN_HILT,      9,  9);
-		assignItemRect(TRINKET_CATA,    12, 11);
+		assignItemRect(TRINKET_CATA,    13, 14);
 	}
 	
 	private static final int BOMBS          = xy(1, 6);   //16 slots
@@ -350,7 +350,7 @@ public class ItemSpriteSheet {
 	public static final int ARMOR_HUNTRESS  = ARMOR+8;
 	public static final int ARMOR_DUELIST   = ARMOR+9;
 	static{
-		assignItemRect(ARMOR_CLOTH,     13, 12);
+		assignItemRect(ARMOR_CLOTH,     13, 11);
 		assignItemRect(ARMOR_LEATHER,   15, 13);
 		assignItemRect(ARMOR_MAIL,      15, 13);
 		assignItemRect(ARMOR_SCALE,     15, 13);
@@ -531,7 +531,7 @@ public class ItemSpriteSheet {
 	public static final int STONE_SHOCK         = STONES+11;
 	static {
 		for (int i = STONES; i < STONES+16; i++)
-			assignItemRect(i, 14, 12);
+			assignItemRect(i, 15, 15);
 	}
 
 	private static final int POTIONS        = xy(1, 22);  //16 slots
@@ -588,7 +588,7 @@ public class ItemSpriteSheet {
 	public static final int SEED_BLINDWEED      = SEEDS+11;
 	static{
 		for (int i = SEEDS; i < SEEDS+16; i++)
-			assignItemRect(i, 15, 15);
+			assignItemRect(i, 12, 11);
 	}
 	
 	private static final int BREWS          = xy(1, 25);  //8 slots
@@ -669,7 +669,7 @@ public class ItemSpriteSheet {
 		assignItemRect(RATION,          15, 11);
 		assignItemRect(PASTY,           15, 12);
 		assignItemRect(MEAT_PIE,        15, 13);
-		assignItemRect(BLANDFRUIT,      9,  14);
+		assignItemRect(BLANDFRUIT,      8,  14);
 		assignItemRect(BLAND_CHUNKS,    13,  11);
 		assignItemRect(BERRY,           10,  13);
 		assignItemRect(PHANTOM_MEAT,    15, 11);
@@ -729,7 +729,7 @@ public class ItemSpriteSheet {
 	public static final int HOLSTER     = BAGS+5;
 	public static final int VIAL        = BAGS+6;
 	static{
-		assignItemRect(WATERSKIN,   16, 14);
+		assignItemRect(WATERSKIN,   12, 14);
 		assignItemRect(BACKPACK,    16, 16);
 		assignItemRect(POUCH,       16, 16);
 		assignItemRect(HOLDER,      16, 16);
@@ -747,13 +747,13 @@ public class ItemSpriteSheet {
 	public static final int CITY_PAGE   = DOCUMENTS+5;
 	public static final int HALLS_PAGE  = DOCUMENTS+6;
 	static{
-		assignItemRect(GUIDE_PAGE,  10, 11);
-		assignItemRect(ALCH_PAGE,   10, 11);
-		assignItemRect(SEWER_PAGE,  10, 11);
-		assignItemRect(PRISON_PAGE, 10, 11);
-		assignItemRect(CAVES_PAGE,  10, 11);
-		assignItemRect(CITY_PAGE,   10, 11);
-		assignItemRect(HALLS_PAGE,  10, 11);
+		assignItemRect(GUIDE_PAGE,  15, 15);
+		assignItemRect(ALCH_PAGE,   15, 15);
+		assignItemRect(SEWER_PAGE,  15, 15);
+		assignItemRect(PRISON_PAGE, 15, 15);
+		assignItemRect(CAVES_PAGE,  15, 15);
+		assignItemRect(CITY_PAGE,   15, 15);
+		assignItemRect(HALLS_PAGE,  15, 15);
 	}
 
 	//for smaller 8x8 icons that often accompany an item sprite
@@ -789,18 +789,18 @@ public class ItemSpriteSheet {
 		public static final int RING_TENACITY   = RINGS+10;
 		public static final int RING_WEALTH     = RINGS+11;
 		static {
-			assignIconRect( RING_ACCURACY,      7, 7 );
-			assignIconRect( RING_ARCANA,        7, 7 );
-			assignIconRect( RING_ELEMENTS,      7, 7 );
-			assignIconRect( RING_ENERGY,        7, 5 );
-			assignIconRect( RING_EVASION,       7, 7 );
-			assignIconRect( RING_FORCE,         5, 6 );
-			assignIconRect( RING_FUROR,         7, 6 );
-			assignIconRect( RING_HASTE,         6, 6 );
-			assignIconRect( RING_MIGHT,         7, 7 );
-			assignIconRect( RING_SHARPSHOOT,    7, 7 );
-			assignIconRect( RING_TENACITY,      6, 6 );
-			assignIconRect( RING_WEALTH,        7, 6 );
+			assignIconRect( RING_ACCURACY,      9, 11 );
+			assignIconRect( RING_ARCANA,        9, 11);
+			assignIconRect( RING_ELEMENTS,      9, 11);
+			assignIconRect( RING_ENERGY,        9, 11);
+			assignIconRect( RING_EVASION,       9, 11);
+			assignIconRect( RING_FORCE,         9, 11);
+			assignIconRect( RING_FUROR,         9, 11);
+			assignIconRect( RING_HASTE,         9, 11);
+			assignIconRect( RING_MIGHT,         9, 11);
+			assignIconRect( RING_SHARPSHOOT,    9, 11);
+			assignIconRect( RING_TENACITY,      9, 11);
+			assignIconRect( RING_WEALTH,        9, 11);
 		}
 
 		                                                                                //16 free slots

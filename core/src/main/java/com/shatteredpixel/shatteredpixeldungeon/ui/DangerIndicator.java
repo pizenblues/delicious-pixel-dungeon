@@ -33,16 +33,11 @@ import com.watabou.noosa.Camera;
 import com.watabou.noosa.Image;
 
 public class DangerIndicator extends Tag {
-	
-	public static final int COLOR	= 0xC03838;
-	
+	public static final int COLOR	= 0xFFFFFF;
 	private BitmapText number;
 	private Image icon;
-	
 	private int enemyIndex = 0;
-	
 	private int lastNumber = -1;
-
 	public static int HEIGHT = 16;
 	
 	public DangerIndicator() {
@@ -73,15 +68,15 @@ public class DangerIndicator extends Tag {
 	protected void layout() {
 		super.layout();
 		
-		icon.x = right() - 10;
-		icon.y = y + (height - icon.height) / 2;
+		icon.x = right() - 12;
+		icon.y = y + (height - 3 - icon.height) / 2;
 		
 		placeNumber();
 	}
 	
 	private void placeNumber() {
-		number.x = right() - 11 - number.width();
-		number.y = y + (height - number.baseLine()) / 2f;
+		number.x = right() - 13 - number.width();
+		number.y = y + (height - 3 - number.baseLine()) / 2f;
 		PixelScene.align(number);
 	}
 	

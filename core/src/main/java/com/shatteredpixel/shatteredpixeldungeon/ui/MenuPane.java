@@ -44,26 +44,17 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.ui.Component;
 
 public class MenuPane extends Component {
-
 	private Image bg;
-
 	private Image depthIcon;
 	private BitmapText depthText;
 	private Button depthButton;
-
 	private Image challengeIcon;
 	private BitmapText challengeText;
 	private Button challengeButton;
-
 	private JournalButton btnJournal;
 	private MenuButton btnMenu;
-
 	private Toolbar.PickedUpItem pickedUp;
-
-	private BitmapText version;
-
 	private DangerIndicator danger;
-
 	public static final int WIDTH = 32;
 
 	@Override
@@ -134,10 +125,6 @@ public class MenuPane extends Component {
 		btnMenu = new MenuButton();
 		add( btnMenu );
 
-		version = new BitmapText( "v" + Game.version, PixelScene.pixelFont);
-		version.alpha( 0.5f );
-		add(version);
-
 		danger = new DangerIndicator();
 		add( danger );
 
@@ -151,9 +138,9 @@ public class MenuPane extends Component {
 		bg.x = x;
 		bg.y = y;
 
-		btnMenu.setPos( x + WIDTH - btnMenu.width(), y );
+		btnMenu.setPos( x + WIDTH - btnMenu.width() - 4, y );
 
-		btnJournal.setPos( btnMenu.left() - btnJournal.width() + 2, y );
+		btnJournal.setPos( btnMenu.left() - btnJournal.width() + 5, y );
 
 		depthIcon.x = btnJournal.left() - 7 + (7 - depthIcon.width())/2f - 0.1f;
 		depthIcon.y = y + 1;
@@ -181,13 +168,7 @@ public class MenuPane extends Component {
 			challengeButton.setRect(challengeIcon.x, challengeIcon.y, challengeIcon.width(), challengeIcon.height() + challengeText.height());
 		}
 
-		version.scale.set(PixelScene.align(0.5f));
-		version.measure();
-		version.x = x + WIDTH - version.width();
-		version.y = y + bg.height() + (3 - version.baseLine());
-		PixelScene.align(version);
-
-		danger.setPos( x + WIDTH - danger.width(), y + bg.height + 3 );
+		danger.setPos( x + WIDTH - danger.width(), y + bg.height + 24 );
 	}
 
 	public void pickup(Item item, int cell) {
@@ -207,19 +188,17 @@ public class MenuPane extends Component {
 	}
 
 	private static class JournalButton extends Button {
-
 		private Image bg;
 		private Image journalIcon;
 		private KeyDisplay keyIcon;
-
 		private Document flashingDoc = null;
 		private String flashingPage = null;
 
 		public JournalButton() {
 			super();
 
-			width = bg.width + 4;
-			height = bg.height + 4;
+			width = bg.width + 8;
+			height = bg.height + 8;
 		}
 
 		@Override
@@ -231,10 +210,10 @@ public class MenuPane extends Component {
 		protected void createChildren() {
 			super.createChildren();
 
-			bg = new Image( Assets.Interfaces.MENU_BTN, 2, 2, 13, 11 );
+			bg = new Image( Assets.Interfaces.MENU_BTN, 0, 0, 13, 15 );
 			add( bg );
 
-			journalIcon = new Image( Assets.Interfaces.MENU_BTN, 31, 0, 11, 7);
+			journalIcon = new Image( Assets.Interfaces.MENU_BTN, 32, 0, 5, 7);
 			add( journalIcon );
 
 			keyIcon = new KeyDisplay();
@@ -249,12 +228,12 @@ public class MenuPane extends Component {
 			bg.x = x + 2;
 			bg.y = y + 2;
 
-			journalIcon.x = bg.x + (bg.width() - journalIcon.width())/2f;
-			journalIcon.y = bg.y + (bg.height() - journalIcon.height())/2f;
+			journalIcon.x = bg.x + (bg.width() + 1 - journalIcon.width())/2f;
+			journalIcon.y = bg.y + (bg.height() - 3 - journalIcon.height())/2f;
 			PixelScene.align(journalIcon);
 
-			keyIcon.x = bg.x + 1;
-			keyIcon.y = bg.y + 1;
+			keyIcon.x = bg.x + 2;
+			keyIcon.y = bg.y;
 			keyIcon.width = bg.width - 2;
 			keyIcon.height = bg.height - 2;
 			PixelScene.align(keyIcon);
@@ -277,6 +256,7 @@ public class MenuPane extends Component {
 		}
 
 		public void updateKeyDisplay() {
+			keyIcon.updateKeys();
 			keyIcon.updateKeys();
 			keyIcon.visible = keyIcon.keyCount() > 0;
 			journalIcon.visible = !keyIcon.visible;
@@ -308,7 +288,7 @@ public class MenuPane extends Component {
 			keyIcon.am = journalIcon.am = 1;
 			if (flashingPage != null){
 				if (flashingDoc == Document.ALCHEMY_GUIDE){
-					WndJournal.last_index = 1;
+					WndJournal.last_index = 2;
 					GameScene.show( new WndJournal() );
 				} else if (flashingDoc.pageNames().contains(flashingPage)){
 					GameScene.show( new WndStory( flashingDoc.pageSprite(flashingPage),
@@ -353,7 +333,7 @@ public class MenuPane extends Component {
 		protected void createChildren() {
 			super.createChildren();
 
-			image = new Image( Assets.Interfaces.MENU_BTN, 17, 2, 12, 11 );
+			image = new Image( Assets.Interfaces.MENU_BTN, 16, 0, 14, 14 );
 			add( image );
 		}
 

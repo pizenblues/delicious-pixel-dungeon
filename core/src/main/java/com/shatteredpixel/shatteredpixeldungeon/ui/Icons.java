@@ -67,6 +67,7 @@ public enum Icons {
 	LEFTARROW,
 	RIGHTARROW,
 	CALENDAR,
+	PLUSICON,
 
 	//misc icons, mainly used for buttons, spacing for 16x16 until the smaller icons at the end
 	UNCHECKED,
@@ -119,7 +120,9 @@ public enum Icons {
 	KRISTJAN,
 	CUBE_CODE,
 	PURIGRO,
-	ARCNOR;
+	ARCNOR,
+	KEYHOLDER,
+	KEYICON;
 
 	public Image get() {
 		return get( this );
@@ -153,7 +156,6 @@ public enum Icons {
 			case SHPX:
 				icon.frame( icon.texture.uvRectBySize( 119, 0, 16, 16 ) );
 				break;
-
 			case STAIRS:
 				icon.frame( icon.texture.uvRectBySize( 0, 16, 13, 16 ) );
 				break;
@@ -172,7 +174,6 @@ public enum Icons {
 			case DUELIST:
 				icon.frame( icon.texture.uvRectBySize( 80, 16, 13, 14 ) );
 				break;
-
 			case EXIT:
 				icon.frame( icon.texture.uvRectBySize( 0, 32, 15, 11 ) );
 				break;
@@ -227,10 +228,12 @@ public enum Icons {
 			case RIGHTARROW:
 				icon.frame( icon.texture.uvRectBySize( 240, 32, 14, 9 ) );
 				break;
-			case CALENDAR:
-				icon.frame( icon.texture.uvRectBySize( 240, 16, 15, 12 ) );
+			case PLUSICON:
+				icon.frame(icon.texture.uvRectBySize( 233, 20,6,6));
 				break;
-
+			case CALENDAR:
+				icon.frame( icon.texture.uvRectBySize( 245, 20, 6, 5 ) );
+				break;
 			case UNCHECKED:
 				icon.frame( icon.texture.uvRectBySize( 0, 48, 12, 12 ) );
 				break;
@@ -247,7 +250,7 @@ public enum Icons {
 				icon.frame( icon.texture.uvRectBySize( 64, 48, 11, 11 ) );
 				break;
 			case ARROW:
-				icon.frame( icon.texture.uvRectBySize( 80, 48, 11, 11 ) );
+				icon.frame( icon.texture.uvRectBySize( 80, 48, 11, 9 ) );
 				break;
 			case INFO:
 				icon.frame( icon.texture.uvRectBySize( 96, 48, 14, 14 ) );
@@ -265,10 +268,10 @@ public enum Icons {
 				icon.frame( icon.texture.uvRectBySize( 160, 48, 14, 14 ) );
 				break;
 			case SNAKE:
-				icon.frame( icon.texture.uvRectBySize( 176, 48,  9, 13 ) );
+				icon.frame( icon.texture.uvRectBySize( 176, 48,  16, 16 ) );
 				break;
 			case BUFFS:
-				icon.frame( icon.texture.uvRectBySize( 192, 48, 16, 15 ) );
+				icon.frame( icon.texture.uvRectBySize( 192, 48, 16, 16 ) );
 				break;
 			case ENERGY:
 				icon.frame( icon.texture.uvRectBySize( 208, 48, 16, 16 ) );
@@ -300,7 +303,6 @@ public enum Icons {
 			case POTION_BANDOLIER:
 				icon.frame( icon.texture.uvRectBySize( 241, 64, 10, 10 ) );
 				break;
-
 			case TARGET:
 				icon.frame( icon.texture.uvRectBySize( 0, 64, 16, 16 ) );
 				break;
@@ -381,7 +383,12 @@ public enum Icons {
 				icon.frame( icon.texture.uvRectBySize( 160, 96, 27, 30 ) );
 				icon.scale.set(PixelScene.align(0.49f));
 				break;
-
+			case KEYHOLDER:
+				icon.frame(icon.texture.uvRectBySize(128,64,8,13));
+				break;
+			case KEYICON:
+				icon.frame(icon.texture.uvRectBySize(112,80,5,9));
+				break;
 		}
 		return icon;
 	}

@@ -85,11 +85,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class QuickRecipe extends Component {
-	
 	private ArrayList<Item> ingredients;
-	
 	private ArrayList<ItemSlot> inputs;
 	private QuickRecipe.arrow arrow;
+	private IconButton equal;
+	private IconButton plus;
 	private ItemSlot output;
 	
 	public QuickRecipe(Recipe.SimpleRecipe r){
@@ -102,6 +102,7 @@ public class QuickRecipe extends Component {
 		int cost = r.cost(inputs);
 		boolean hasInputs = true;
 		this.inputs = new ArrayList<>();
+
 		for (final Item in : inputs) {
 			anonymize(in);
 			ItemSlot curr;
@@ -130,15 +131,22 @@ public class QuickRecipe extends Component {
 			curr.showExtraInfo(false);
 			add(curr);
 			this.inputs.add(curr);
+
+
 		}
 		
 		if (cost > 0) {
-			arrow = new arrow(Icons.get(Icons.ARROW), cost);
+			plus = new IconButton(Icons.get(Icons.PLUSICON));
+			add(plus);
+			arrow = new arrow(Icons.get(Icons.ENERGY), cost);
 			arrow.hardlightText(0x44CCFF);
+			equal = new IconButton(Icons.get(Icons.CALENDAR));
+			add(equal);
 		} else {
-			arrow = new arrow(Icons.get(Icons.ARROW));
+			arrow = new arrow(Icons.get(Icons.CALENDAR));
 		}
-		if (hasInputs) {
+
+		/*if (hasInputs) {
 			arrow.icon.tint(1, 1, 0, 1);
 			if (!(ShatteredPixelDungeon.scene() instanceof AlchemyScene)) {
 				arrow.enable(false);
@@ -146,7 +154,8 @@ public class QuickRecipe extends Component {
 		} else {
 			arrow.icon.color(0, 0, 0);
 			arrow.enable(false);
-		}
+		}*/
+
 		add(arrow);
 		
 		anonymize(output);
@@ -167,22 +176,30 @@ public class QuickRecipe extends Component {
 	
 	@Override
 	protected void layout() {
-		
 		height = 16;
 		width = 0;
-
 		int padding = inputs.size() == 1 ? 8 : 0;
 
 		for (ItemSlot item : inputs){
-			item.setRect(x + width + padding, y, 16, 16);
-			width += 16 + padding;
+			item.setRect(x + width + padding, y, 18, 16);
+			width += 18 + padding;
+		}
+
+		if(plus != null){
+			plus.setRect(x + width, y, 12, 16);
+			width += 12;
+		}
+
+		arrow.setRect(x + width, y, 18, 16);
+		width += 18;
+
+		if(equal != null){
+			equal.setRect(x+width, y, 12, 16);
+			width +=12;
 		}
 		
-		arrow.setRect(x + width, y, 14, 16);
-		width += 14;
-		
-		output.setRect(x + width, y, 16, 16);
-		width += 16;
+		output.setRect(x + width, y, 18, 16);
+		width += 18;
 
 		width += padding;
 	}
@@ -197,7 +214,6 @@ public class QuickRecipe extends Component {
 	}
 	
 	public class arrow extends IconButton {
-		
 		BitmapText text;
 		
 		public arrow(){
@@ -211,7 +227,6 @@ public class QuickRecipe extends Component {
 		public arrow( Image icon, int count ){
 			super( icon );
 			hotArea.blockLevel = PointerArea.NEVER_BLOCK;
-
 			text = new BitmapText( Integer.toString(count), PixelScene.pixelFont);
 			text.measure();
 			add(text);
@@ -275,15 +290,6 @@ public class QuickRecipe extends Component {
 				}));
 				return result;
 			case 1:
-				Recipe r = new Scroll.ScrollToStone();
-				for (Class<?> cls : Generator.Category.SCROLL.classes){
-					Scroll scroll = (Scroll) Reflection.newInstance(cls);
-					if (!scroll.isKnown()) scroll.anonymize();
-					ArrayList<Item> in = new ArrayList<Item>(Arrays.asList(scroll));
-					result.add(new QuickRecipe( r, in, r.sampleOutput(in)));
-				}
-				return result;
-			case 2:
 				result.add(new QuickRecipe( new StewedMeat.oneMeat() ));
 				result.add(new QuickRecipe( new StewedMeat.twoMeat() ));
 				result.add(new QuickRecipe( new StewedMeat.threeMeat() ));
@@ -299,12 +305,21 @@ public class QuickRecipe extends Component {
 							public String name(){
 								return Messages.get(Blandfruit.class, "cooked");
 							}
-							
+
 							@Override
 							public String info() {
 								return "";
 							}
 						}));
+				return result;
+			case 2:
+				Recipe r = new Scroll.ScrollToStone();
+				for (Class<?> cls : Generator.Category.SCROLL.classes){
+					Scroll scroll = (Scroll) Reflection.newInstance(cls);
+					if (!scroll.isKnown()) scroll.anonymize();
+					ArrayList<Item> in = new ArrayList<Item>(Arrays.asList(scroll));
+					result.add(new QuickRecipe( r, in, r.sampleOutput(in)));
+				}
 				return result;
 			case 3:
 				r = new ExoticPotion.PotionToExotic();
@@ -322,7 +337,7 @@ public class QuickRecipe extends Component {
 					result.add(new QuickRecipe( r, in, r.sampleOutput(in)));
 				}
 				return result;
-			case 5:
+			/*case 5:
 				r = new Bomb.EnhanceBomb();
 				int i = 0;
 				for (Class<?> cls : Bomb.EnhanceBomb.validIngredients.keySet()){
@@ -387,6 +402,7 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new SummonElemental.Recipe()));
 				result.add(new QuickRecipe(new BeaconOfReturning.Recipe()));
 				return result;
+			 */
 		}
 	}
 	

@@ -33,25 +33,20 @@ public class Assets {
 
 	public static class Environment {
 		public static final String TERRAIN_FEATURES = "environment/terrain_features.png";
-
 		public static final String VISUAL_GRID  = "environment/visual_grid.png";
 		public static final String WALL_BLOCKING= "environment/wall_blocking.png";
-
 		public static final String TILES_SEWERS = "environment/tiles_sewers.png";
 		public static final String TILES_PRISON = "environment/tiles_prison.png";
 		public static final String TILES_CAVES  = "environment/tiles_caves.png";
 		public static final String TILES_CITY   = "environment/tiles_city.png";
 		public static final String TILES_HALLS  = "environment/tiles_halls.png";
-
 		public static final String TILES_CAVES_CRYSTAL  = "environment/tiles_caves_crystal.png";
 		public static final String TILES_CAVES_GNOLL    = "environment/tiles_caves_gnoll.png";
-
 		public static final String WATER_SEWERS = "environment/water0.png";
 		public static final String WATER_PRISON = "environment/water1.png";
 		public static final String WATER_CAVES  = "environment/water2.png";
 		public static final String WATER_CITY   = "environment/water3.png";
 		public static final String WATER_HALLS  = "environment/water4.png";
-
 		public static final String WEAK_FLOOR       = "environment/custom_tiles/weak_floor.png";
 		public static final String SEWER_BOSS       = "environment/custom_tiles/sewer_boss.png";
 		public static final String PRISON_QUEST     = "environment/custom_tiles/prison_quest.png";
@@ -70,11 +65,9 @@ public class Assets {
 	public static class Interfaces {
 		public static final String ARCS_BG  = "interfaces/arcs1.png";
 		public static final String ARCS_FG  = "interfaces/arcs2.png";
-
 		public static final String BANNERS  = "interfaces/banners.png";
 		public static final String BADGES   = "interfaces/badges.png";
 		public static final String LOCKED   = "interfaces/locked_badge.png";
-
 		public static final String CHROME   = "interfaces/chrome.png";
 		public static final String ICONS    = "interfaces/icons.png";
 		public static final String STATUS   = "interfaces/status_pane.png";
@@ -83,23 +76,17 @@ public class Assets {
 		public static final String TOOLBAR  = "interfaces/toolbar.png";
 		public static final String SHADOW   = "interfaces/shadow.png";
 		public static final String BOSSHP   = "interfaces/boss_hp.png";
-
 		public static final String SURFACE  = "interfaces/surface.png";
-
 		public static final String LOADING_SEWERS   = "interfaces/loading_sewers.png";
 		public static final String LOADING_PRISON   = "interfaces/loading_prison.png";
 		public static final String LOADING_CAVES    = "interfaces/loading_caves.png";
 		public static final String LOADING_CITY     = "interfaces/loading_city.png";
 		public static final String LOADING_HALLS    = "interfaces/loading_halls.png";
-
 		public static final String BUFFS_SMALL      = "interfaces/buffs.png";
 		public static final String BUFFS_LARGE      = "interfaces/large_buffs.png";
-
 		public static final String TALENT_ICONS     = "interfaces/talent_icons.png";
 		public static final String TALENT_BUTTON    = "interfaces/talent_button.png";
-
 		public static final String HERO_ICONS       = "interfaces/hero_icons.png";
-
 		public static final String RADIAL_MENU      = "interfaces/radial_menu.png";
 	}
 
@@ -120,33 +107,28 @@ public class Assets {
 		public static final String THEME_1              = "music/new/goblins.ogg";
 		public static final String THEME_2              = "music/theme_2.ogg";
 		public static final String THEME_FINALE         = "music/theme_finale.ogg";
-
 		public static final String SEWERS_1             = "music/new/taka.ogg";
 		public static final String SEWERS_2             = "music/new/goblins.ogg";
 		public static final String SEWERS_3             = "music/new/mistery toy.ogg";
 		public static final String SEWERS_TENSE         = "music/new/choirs.ogg";
 		public static final String SEWERS_BOSS          = "music/new/boss.ogg";
-
 		public static final String PRISON_1             = "music/new/certain.ogg";
 		public static final String PRISON_2             = "music/new/fly.ogg";
 		public static final String PRISON_3             = "music/new/cherry tomato.ogg";
 		public static final String PRISON_TENSE         = "music/new/explorer.ogg";
 		public static final String PRISON_BOSS          = "music/new/digital.ogg";
-
 		public static final String CAVES_1              = "music/new/trombone.ogg";
 		public static final String CAVES_2              = "music/new/ramp.ogg";
 		public static final String CAVES_3              = "music/new/shimmer.ogg";
 		public static final String CAVES_TENSE          = "music/new/bass and drums.ogg";
 		public static final String CAVES_BOSS           = "music/caves_boss.ogg";
 		public static final String CAVES_BOSS_FINALE    = "music/caves_boss_finale.ogg";
-
 		public static final String CITY_1               = "music/new/it crawls.ogg";
 		public static final String CITY_2               = "music/new/threads.ogg";
 		public static final String CITY_3               = "music/new/das model.ogg";
 		public static final String CITY_TENSE           = "music/new/ant.ogg";
 		public static final String CITY_BOSS            = "music/new/dark elves.ogg";
 		public static final String CITY_BOSS_FINALE     = "music/city_boss_finale.ogg";
-
 		public static final String HALLS_1              = "music/halls_1.ogg";
 		public static final String HALLS_2              = "music/halls_2.ogg";
 		public static final String HALLS_3              = "music/halls_3.ogg";
@@ -160,7 +142,6 @@ public class Assets {
 		public static final String SCRATCH = "sounds/new/scratch in.wav";
 		public static final String BADGE    = "sounds/badge.mp3";
 		public static final String GOLD     = "sounds/gold.mp3";
-
 		public static final String OPEN     = "sounds/door_open.mp3";
 		public static final String UNLOCK   = "sounds/unlock.mp3";
 		public static final String ITEM     = "sounds/item.mp3";

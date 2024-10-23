@@ -48,13 +48,10 @@ import com.watabou.utils.Random;
 import java.nio.Buffer;
 
 public class ItemSprite extends MovieClip {
-
 	public static final int SIZE	= 16;
-	
 	private static final float DROP_INTERVAL = 0.4f;
 	
 	public Heap heap;
-	
 	private Glowing glowing;
 	//FIXME: a lot of this emitter functionality isn't very well implemented.
 	//right now I want to ship 0.3.0, but should refactor in the future.

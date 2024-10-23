@@ -88,7 +88,6 @@ import com.shatteredpixel.shatteredpixeldungeon.tiles.WallBlockingTilemap;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ActionIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.ui.AttackIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Banner;
-import com.shatteredpixel.shatteredpixeldungeon.ui.BossHealthBar;
 import com.shatteredpixel.shatteredpixeldungeon.ui.CharHealthIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.ui.GameLog;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Icons;
@@ -148,9 +147,7 @@ import java.util.Comparator;
 import java.util.Locale;
 
 public class GameScene extends PixelScene {
-
 	static GameScene scene;
-
 	private SkinnedBlock water;
 	private DungeonTerrainTilemap tiles;
 	private GridTileMap visualGrid;
@@ -160,16 +157,10 @@ public class GameScene extends PixelScene {
 	private WallBlockingTilemap wallBlocking;
 	private FogOfWar fog;
 	private HeroSprite hero;
-
 	private MenuPane menu;
 	private StatusPane status;
-
-	private BossHealthBar boss;
-
 	private GameLog log;
-	
 	private static CellSelector cellSelector;
-	
 	private Group terrain;
 	private Group customTiles;
 	private Group levelVisuals;
@@ -367,11 +358,6 @@ public class GameScene extends PixelScene {
 		status.camera = uiCamera;
 		status.setRect(0, uiSize > 0 ? uiCamera.height-39 : 0, uiCamera.width, 0 );
 		add(status);
-
-		boss = new BossHealthBar();
-		boss.camera = uiCamera;
-		boss.setPos( 6 + (uiCamera.width - boss.width())/2, 20);
-		add(boss);
 
 		resume = new ResumeIndicator();
 		resume.camera = uiCamera;

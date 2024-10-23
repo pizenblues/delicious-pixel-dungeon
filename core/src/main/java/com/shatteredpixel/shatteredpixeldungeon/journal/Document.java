@@ -37,7 +37,6 @@ public enum Document {
 	
 	ADVENTURERS_GUIDE(ItemSpriteSheet.GUIDE_PAGE, false),
 	ALCHEMY_GUIDE(ItemSpriteSheet.ALCH_PAGE, false),
-
 	INTROS(Icons.STAIRS, true),
 	SEWERS_GUARD(ItemSpriteSheet.SEWER_PAGE, true),
 	PRISON_WARDEN(ItemSpriteSheet.PRISON_PAGE, true),
@@ -255,15 +254,15 @@ public enum Document {
 		
 		//given in sewers
 		ALCHEMY_GUIDE.pagesStates.put("Potions",                debug ? READ : NOT_FOUND);
-		ALCHEMY_GUIDE.pagesStates.put("Stones",                 debug ? READ : NOT_FOUND);
 		ALCHEMY_GUIDE.pagesStates.put("Energy_Food",            debug ? READ : NOT_FOUND);
+		ALCHEMY_GUIDE.pagesStates.put("Stones",                 debug ? READ : NOT_FOUND);
 		ALCHEMY_GUIDE.pagesStates.put("Exotic_Potions",         debug ? READ : NOT_FOUND);
 		ALCHEMY_GUIDE.pagesStates.put("Exotic_Scrolls",         debug ? READ : NOT_FOUND);
 		//given in prison
-		ALCHEMY_GUIDE.pagesStates.put("Bombs",                  debug ? READ : NOT_FOUND);
-		ALCHEMY_GUIDE.pagesStates.put("Weapons",                debug ? READ : NOT_FOUND);
-		ALCHEMY_GUIDE.pagesStates.put("Brews_Elixirs",          debug ? READ : NOT_FOUND);
-		ALCHEMY_GUIDE.pagesStates.put("Spells",                 debug ? READ : NOT_FOUND);
+		//ALCHEMY_GUIDE.pagesStates.put("Bombs",                  debug ? READ : NOT_FOUND);
+		//ALCHEMY_GUIDE.pagesStates.put("Weapons",                debug ? READ : NOT_FOUND);
+		//ALCHEMY_GUIDE.pagesStates.put("Brews_Elixirs",          debug ? READ : NOT_FOUND);
+		//ALCHEMY_GUIDE.pagesStates.put("Spells",                 debug ? READ : NOT_FOUND);
 
 		INTROS.pagesStates.put("Dungeon",                       READ);
 		INTROS.pagesStates.put("Sewers",                        debug ? READ : NOT_FOUND);

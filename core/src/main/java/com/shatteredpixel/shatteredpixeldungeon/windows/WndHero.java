@@ -50,13 +50,10 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class WndHero extends WndTabbed {
-	
 	private static final int WIDTH		= 120;
 	private static final int HEIGHT		= 120;
-	
 	private StatsTab stats;
 	private TalentsTab talents;
-	private BuffsTab buffs;
 
 	public static int lastIdx = 0;
 
@@ -72,11 +69,6 @@ public class WndHero extends WndTabbed {
 		talents = new TalentsTab();
 		add(talents);
 		talents.setRect(0, 0, WIDTH, HEIGHT);
-
-		buffs = new BuffsTab();
-		add( buffs );
-		buffs.setRect(0, 0, WIDTH, HEIGHT);
-		buffs.setupList();
 		
 		add( new IconTab( Icons.get(Icons.RANKINGS) ) {
 			protected void select( boolean value ) {
@@ -98,13 +90,6 @@ public class WndHero extends WndTabbed {
 				talents.visible = talents.active = selected;
 			}
 		} );
-		add( new IconTab( Icons.get(Icons.BUFFS) ) {
-			protected void select( boolean value ) {
-				super.select( value );
-				if (selected) lastIdx = 2;
-				buffs.visible = buffs.active = selected;
-			}
-		} );
 
 		layoutTabs();
 
@@ -119,7 +104,6 @@ public class WndHero extends WndTabbed {
 	public void offset(int xOffset, int yOffset) {
 		super.offset(xOffset, yOffset);
 		talents.layout();
-		buffs.layout();
 	}
 
 	private class StatsTab extends Group {
@@ -228,100 +212,5 @@ public class WndHero extends WndTabbed {
 		}
 
 	}
-	
-	private class BuffsTab extends Component {
-		
-		private static final int GAP = 2;
-		
-		private float pos;
-		private ScrollPane buffList;
-		private ArrayList<BuffSlot> slots = new ArrayList<>();
 
-		@Override
-		protected void createChildren() {
-
-			super.createChildren();
-
-			buffList = new ScrollPane( new Component() ){
-				@Override
-				public void onClick( float x, float y ) {
-					int size = slots.size();
-					for (int i=0; i < size; i++) {
-						if (slots.get( i ).onClick( x, y )) {
-							break;
-						}
-					}
-				}
-			};
-			add(buffList);
-		}
-		
-		@Override
-		protected void layout() {
-			super.layout();
-			buffList.setRect(0, 0, width, height);
-		}
-		
-		private void setupList() {
-			Component content = buffList.content();
-			for (Buff buff : Dungeon.hero.buffs()) {
-				if (buff.icon() != BuffIndicator.NONE) {
-					BuffSlot slot = new BuffSlot(buff);
-					slot.setRect(0, pos, WIDTH, slot.icon.height());
-					content.add(slot);
-					slots.add(slot);
-					pos += GAP + slot.height();
-				}
-			}
-			content.setSize(buffList.width(), pos);
-			buffList.setSize(buffList.width(), buffList.height());
-		}
-
-		private class BuffSlot extends Component {
-
-			private Buff buff;
-
-			Image icon;
-			RenderedTextBlock txt;
-
-			public BuffSlot( Buff buff ){
-				super();
-				this.buff = buff;
-
-				icon = new BuffIcon(buff, true);
-				icon.y = this.y;
-				add( icon );
-
-				txt = PixelScene.renderTextBlock( Messages.titleCase(buff.name()), 8 );
-				txt.setPos(
-						icon.width + GAP,
-						this.y + (icon.height - txt.height()) / 2
-				);
-				PixelScene.align(txt);
-				add( txt );
-
-			}
-
-			@Override
-			protected void layout() {
-				super.layout();
-				icon.y = this.y;
-				txt.maxWidth((int)(width - icon.width()));
-				txt.setPos(
-						icon.width + GAP,
-						this.y + (icon.height - txt.height()) / 2
-				);
-				PixelScene.align(txt);
-			}
-			
-			protected boolean onClick ( float x, float y ) {
-				if (inside( x, y )) {
-					GameScene.show(new WndInfoBuff(buff));
-					return true;
-				} else {
-					return false;
-				}
-			}
-		}
-	}
 }
