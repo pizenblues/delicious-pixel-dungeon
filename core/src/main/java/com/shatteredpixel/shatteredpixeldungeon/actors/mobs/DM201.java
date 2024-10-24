@@ -35,11 +35,8 @@ public class DM201 extends DM200 {
 
 	{
 		spriteClass = DM201Sprite.class;
-
 		HP = HT = 120;
-
 		properties.add(Property.IMMOVABLE);
-
 		HUNTING = new Hunting();
 	}
 

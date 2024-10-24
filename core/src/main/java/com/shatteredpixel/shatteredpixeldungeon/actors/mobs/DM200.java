@@ -36,22 +36,16 @@ import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 public class DM200 extends Mob {
-
 	{
 		spriteClass = DM200Sprite.class;
-
 		HP = HT = 80;
 		defenseSkill = 12;
-
 		EXP = 9;
 		maxLvl = 17;
-
 		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR);
 		lootChance = 0.125f; //initially, see lootChance()
-
 		properties.add(Property.INORGANIC);
 		properties.add(Property.LARGE);
-
 		HUNTING = new Hunting();
 	}
 

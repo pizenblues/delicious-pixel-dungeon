@@ -39,19 +39,14 @@ import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 public class Spinner extends Mob {
-
 	{
 		spriteClass = SpinnerSprite.class;
-
 		HP = HT = 50;
 		defenseSkill = 17;
-
 		EXP = 9;
 		maxLvl = 17;
-
 		loot = new MysteryMeat();
 		lootChance = 0.125f;
-
 		HUNTING = new Hunting();
 		FLEEING = new Fleeing();
 	}

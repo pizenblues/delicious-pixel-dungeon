@@ -40,22 +40,16 @@ import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 public class GnollTrickster extends Gnoll {
-
 	{
 		spriteClass = GnollTricksterSprite.class;
-
 		HP = HT = 20;
 		defenseSkill = 5;
-
 		EXP = 5;
-
 		WANDERING = new Wandering();
 		state = WANDERING;
-
 		//at half quantity, see createLoot()
 		loot = Generator.Category.MISSILE;
 		lootChance = 1f;
-
 		properties.add(Property.MINIBOSS);
 	}
 

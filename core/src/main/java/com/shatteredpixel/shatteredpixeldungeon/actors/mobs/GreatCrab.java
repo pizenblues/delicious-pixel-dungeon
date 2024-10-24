@@ -36,22 +36,16 @@ import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 public class GreatCrab extends Crab {
-
 	{
 		spriteClass = GreatCrabSprite.class;
-
-		HP = HT = 25;
+		HP = HT = 15;
 		defenseSkill = 0; //see damage()
 		baseSpeed = 1f;
-
 		EXP = 6;
-
 		WANDERING = new Wandering();
 		state = WANDERING;
-
 		loot = new MysteryMeat().quantity(2);
 		lootChance = 1f;
-
 		properties.add(Property.MINIBOSS);
 	}
 

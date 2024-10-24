@@ -26,17 +26,13 @@ import com.shatteredpixel.shatteredpixeldungeon.items.food.MysteryMeat;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CrabSprite;
 
 public class Crab extends Mob {
-
 	{
 		spriteClass = CrabSprite.class;
-		
 		HP = HT = 15;
 		defenseSkill = 5;
 		baseSpeed = 2f;
-		
 		EXP = 4;
 		maxLvl = 9;
-		
 		loot = new MysteryMeat();
 		lootChance = 0.167f;
 	}

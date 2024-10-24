@@ -33,7 +33,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Beam;
 import com.shatteredpixel.shatteredpixeldungeon.effects.FloatingText;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Pushing;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
@@ -55,9 +55,9 @@ public class Necromancer extends Mob {
 		
 		EXP = 7;
 		maxLvl = 14;
-		
-		loot = new PotionOfHealing();
-		lootChance = 0.2f; //see lootChance()
+
+		loot = Generator.Category.SCROLL;
+		lootChance = 0.5f; //see lootChance()
 		
 		properties.add(Property.UNDEAD);
 		

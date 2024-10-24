@@ -25,26 +25,21 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.effects.FloatingText;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.BloodyMeat;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.BatSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 
 public class Bat extends Mob {
-
 	{
 		spriteClass = BatSprite.class;
-		
 		HP = HT = 30;
 		defenseSkill = 15;
 		baseSpeed = 2f;
-		
 		EXP = 7;
 		maxLvl = 15;
-		
 		flying = true;
-		
-		loot = new PotionOfHealing();
-		lootChance = 0.1667f; //by default, see lootChance()
+		loot = new BloodyMeat();
+		lootChance = 0.2f;
 	}
 	
 	@Override

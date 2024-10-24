@@ -32,16 +32,12 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.SnakeSprite;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 
 public class Snake extends Mob {
-	
 	{
 		spriteClass = SnakeSprite.class;
-		
 		HP = HT = 4;
 		defenseSkill = 10;
-		
 		EXP = 2;
 		maxLvl = 7;
-		
 		loot = Generator.Category.SEED;
 		lootChance = 0.25f;
 	}

@@ -34,18 +34,13 @@ import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 public class FetidRat extends Rat {
-
 	{
 		spriteClass = FetidRatSprite.class;
-
 		HP = HT = 20;
 		defenseSkill = 5;
-
 		EXP = 4;
-
 		WANDERING = new Wandering();
 		state = WANDERING;
-
 		properties.add(Property.MINIBOSS);
 		properties.add(Property.DEMONIC);
 	}
