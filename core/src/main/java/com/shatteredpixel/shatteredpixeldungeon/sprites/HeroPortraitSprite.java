@@ -30,17 +30,17 @@ public class HeroPortraitSprite extends CharSprite {
         RectF frame;
 
         if (status == 0){
-            frame = avatar.texture.uvRect( 0, 0, 40, 48 );
+            frame = avatar.texture.uvRect( 0, 0, 44, 50 );
         }else if(status == 1){
-            frame = avatar.texture.uvRect( 40, 0, 80, 48 );
+            frame = avatar.texture.uvRect( 44, 0, 88, 50 );
         }else if (status == 2){
-            frame = avatar.texture.uvRect( 80, 0, 120, 48 );
+            frame = avatar.texture.uvRect( 88, 0, 132, 50 );
         }else if (status == 3) {
-            frame = avatar.texture.uvRect(120, 0, 160, 48);
+            frame = avatar.texture.uvRect(132, 0, 176, 50);
         }else if(status == 4){
-            frame = avatar.texture.uvRect( 0, 48, 40, 96 );
+            frame = avatar.texture.uvRect( 0, 50, 44, 98 );
         }else{
-            frame = avatar.texture.uvRect( 0, 0, 40, 48 );
+            frame = avatar.texture.uvRect( 0, 0, 44, 50 );
         }
 
         frame.shift( 0,0);

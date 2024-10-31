@@ -42,7 +42,6 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.NinePatch;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.noosa.ui.Component;
-import com.watabou.utils.ColorMath;
 import com.watabou.utils.GameMath;
 
 public class StatusPane extends Component {
@@ -156,8 +155,8 @@ public class StatusPane extends Component {
 		bg.y = y;
 		bg.size( 140, bg.height );
 
-		avatar.x = bg.x - avatar.width / 2f + 22;
-		avatar.y = bg.y - avatar.height / 2f + 26;
+		avatar.x = bg.x - avatar.width / 2f + 24;
+		avatar.y = bg.y - avatar.height / 2f + 28;
 		PixelScene.align(avatar);
 
 		heroInfo.setRect( x, y, 40, 40 );
@@ -166,7 +165,7 @@ public class StatusPane extends Component {
 		compass.y = avatar.y;
 		PixelScene.align(compass);
 
-		hp.x = shieldedHP.x = rawShielding.x = x + 53;
+		hp.x = shieldedHP.x = rawShielding.x = x + 59;
 		hp.y = shieldedHP.y = rawShielding.y = y + 5;
 
 		hpText.scale.set(PixelScene.align(0.5f));
@@ -175,12 +174,12 @@ public class StatusPane extends Component {
 		hpText.y -= 0.001f; //prefer to be slightly higher
 		PixelScene.align(hpText);
 
-		exp.x = 53;
+		exp.x = 59;
 		exp.y = 14;
 
 		heroInfoOnBar.setRect(heroInfo.right(), y, 32, 9);
 
-		buffs.setRect( x + 42, y + 30, 50, 8 );
+		buffs.setRect( x + 48, y + 30, 50, 8 );
 
 		busy.x = x + 1;
 		busy.y = y + 33;
@@ -189,7 +188,6 @@ public class StatusPane extends Component {
 	}
 	
 	private static final int[] warningColors = new int[]{0x660000, 0xCC0000, 0x660000};
-
 	private int oldHP = 0;
 	private int oldShield = 0;
 	private int oldMax = 0;
@@ -258,7 +256,7 @@ public class StatusPane extends Component {
 			level.scale.set(PixelScene.align(0.8f));
 			level.text( "LVL " + Integer.toString( lastLvl ) );
 			level.measure();
-			level.x = x + 42;
+			level.x = x + 48;
 			level.y = y + 22;
 			PixelScene.align(level);
 		}
@@ -267,7 +265,7 @@ public class StatusPane extends Component {
 		strength.scale.set(PixelScene.align(0.8f));
 		strength.text( "STR " + Integer.toString( currentStrength ) );
 		strength.measure();
-		strength.x = x + 60;
+		strength.x = x + 66;
 		strength.y = y + 22;
 		PixelScene.align(level);
 
