@@ -28,7 +28,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Bat;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.CrystalWisp;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.FungalSpinner;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.CockatriceFungal;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.GnollGuard;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Blacksmith;
@@ -165,7 +165,7 @@ public class MiningLevel extends CavesLevel {
 			case Blacksmith.Quest.GNOLL:
 				return new GnollGuard();
 			case Blacksmith.Quest.FUNGI:
-				return new FungalSpinner();
+				return new CockatriceFungal();
 		}
 	}
 

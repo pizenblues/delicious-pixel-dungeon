@@ -30,7 +30,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Electricity;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DM300;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Griffith;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Pylon;
 import com.shatteredpixel.shatteredpixeldungeon.effects.BlobEmitter;
@@ -307,7 +307,7 @@ public class CavesBossLevel extends Level {
 		PixelScene.shake( 3, 0.7f );
 		Sample.INSTANCE.play( Assets.Sounds.ROCKS );
 
-		DM300 boss = new DM300();
+		Griffith boss = new Griffith();
 		boss.state = boss.WANDERING;
 		do {
 			boss.pos = pointToCell(Random.element(mainArena.getPoints()));
@@ -390,8 +390,8 @@ public class CavesBossLevel extends Level {
 		if (customArenaVisuals != null) customArenaVisuals.updateState();
 		int pylonsRemaining = 0;
 		for (Mob m : mobs){
-			if (m instanceof DM300){
-				((DM300) m).loseSupercharge();
+			if (m instanceof Griffith){
+				((Griffith) m).loseSupercharge();
 				PylonEnergy.energySourceSprite = m.sprite;
 			} else if (m instanceof Pylon){
 				pylonsRemaining++;
@@ -826,7 +826,7 @@ public class CavesBossLevel extends Level {
 					if (off[cell] > 0){
 
 						Char ch = Actor.findChar(cell);
-						if (ch != null && !(ch instanceof DM300) && !ch.flying) {
+						if (ch != null && !(ch instanceof Griffith) && !ch.flying) {
 							Sample.INSTANCE.play( Assets.Sounds.LIGHTNING );
 							ch.damage( Char.combatRoll(6, 12), new Electricity());
 							ch.sprite.flash();
@@ -838,7 +838,7 @@ public class CavesBossLevel extends Level {
 								}
 								Statistics.bossScores[2] -= 200;
 								if ( !ch.isAlive()) {
-									Dungeon.fail(DM300.class);
+									Dungeon.fail(Griffith.class);
 									GLog.n(Messages.get(Electricity.class, "ondeath"));
 								}
 							}
@@ -864,7 +864,7 @@ public class CavesBossLevel extends Level {
 						if (c instanceof Pylon && c.alignment != Char.Alignment.NEUTRAL){
 							energySourceSprite = c.sprite;
 							break;
-						} else if (c instanceof DM300){
+						} else if (c instanceof Griffith){
 							energySourceSprite = c.sprite;
 						}
 					}

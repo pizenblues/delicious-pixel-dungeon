@@ -45,25 +45,25 @@ public class Bestiary {
 			case 1: default:
 				//3x rat, 1x snake
 				return new ArrayList<>(Arrays.asList(
-						Rat.class, Rat.class, Rat.class,
-						Snake.class));
+						Mushroom.class, Mushroom.class, Mushroom.class,
+						SlimeSmall.class));
 			case 2:
 				//2x rat, 1x snake, 2x gnoll
-				return new ArrayList<>(Arrays.asList(Rat.class, Rat.class,
-						Snake.class,
-						Gnoll.class, Gnoll.class));
+				return new ArrayList<>(Arrays.asList(Mushroom.class, Mushroom.class,
+						SlimeSmall.class,
+						Orc.class, Orc.class));
 			case 3:
 				//1x rat, 1x snake, 3x gnoll, 1x swarm, 1x crab
-				return new ArrayList<>(Arrays.asList(Rat.class,
-						Snake.class,
-						Gnoll.class, Gnoll.class, Gnoll.class,
-						Swarm.class,
-						Crab.class));
+				return new ArrayList<>(Arrays.asList(Mushroom.class,
+						SlimeSmall.class,
+						Orc.class, Orc.class, Orc.class,
+						Insects.class,
+						Escorpion.class));
 			case 4: case 5:
 				//1x gnoll, 1x swarm, 2x crab, 2x slime
-				return new ArrayList<>(Arrays.asList(Gnoll.class,
-						Swarm.class,
-						Crab.class, Crab.class,
+				return new ArrayList<>(Arrays.asList(Orc.class,
+						Insects.class,
+						Escorpion.class, Escorpion.class,
 						Slime.class, Slime.class));
 				
 			// Prison
@@ -71,26 +71,26 @@ public class Bestiary {
 				//3x skeleton, 1x thief, 1x swarm
 				return new ArrayList<>(Arrays.asList(Skeleton.class, Skeleton.class, Skeleton.class,
 						Thief.class,
-						Swarm.class));
+						Insects.class));
 			case 7:
 				//3x skeleton, 1x thief, 1x DM-100, 1x guard
 				return new ArrayList<>(Arrays.asList(Skeleton.class, Skeleton.class, Skeleton.class,
 						Thief.class,
-						DM100.class,
-						Guard.class));
+						OrcSorcerer.class,
+						OrcGuard.class));
 			case 8:
 				//2x skeleton, 1x thief, 2x DM-100, 2x guard, 1x necromancer
 				return new ArrayList<>(Arrays.asList(Skeleton.class, Skeleton.class,
 						Thief.class,
-						DM100.class, DM100.class,
-						Guard.class, Guard.class,
+						OrcSorcerer.class, OrcSorcerer.class,
+						OrcGuard.class, OrcGuard.class,
 						Necromancer.class));
 			case 9: case 10:
 				//1x skeleton, 1x thief, 2x DM-100, 2x guard, 2x necromancer
 				return new ArrayList<>(Arrays.asList(Skeleton.class,
 						Thief.class,
-						DM100.class, DM100.class,
-						Guard.class, Guard.class,
+						OrcSorcerer.class, OrcSorcerer.class,
+						OrcGuard.class, OrcGuard.class,
 						Necromancer.class, Necromancer.class));
 				
 			// Caves
@@ -106,14 +106,14 @@ public class Bestiary {
 						Bat.class, Bat.class,
 						Brute.class, Brute.class,
 						Shaman.random(),
-						Spinner.class));
+						Cockatrice.class));
 			case 13:
 				//1x bat, 2x brute, 2x shaman, 2x spinner, 1x DM-200
 				return new ArrayList<>(Arrays.asList(
 						Bat.class,
 						Brute.class, Brute.class,
 						Shaman.random(), Shaman.random(),
-						Spinner.class, Spinner.class,
+						Cockatrice.class, Cockatrice.class,
 						DM200.class));
 			case 14: case 15:
 				//1x bat, 1x brute, 2x shaman, 2x spinner, 2x DM-300
@@ -121,7 +121,7 @@ public class Bestiary {
 						Bat.class,
 						Brute.class,
 						Shaman.random(), Shaman.random(),
-						Spinner.class, Spinner.class,
+						Cockatrice.class, Cockatrice.class,
 						DM200.class, DM200.class));
 				
 			// City
@@ -158,25 +158,25 @@ public class Bestiary {
 			case 21:
 				//2x succubus, 1x evil eye
 				return new ArrayList<>(Arrays.asList(
-						Succubus.class, Succubus.class,
+						Dryad.class, Dryad.class,
 						Eye.class));
 			case 22:
 				//1x succubus, 1x evil eye
 				return new ArrayList<>(Arrays.asList(
-						Succubus.class,
+						Dryad.class,
 						Eye.class));
 			case 23:
 				//1x succubus, 2x evil eye, 1x scorpio
 				return new ArrayList<>(Arrays.asList(
-						Succubus.class,
+						Dryad.class,
 						Eye.class, Eye.class,
-						Scorpio.class));
+						BlackPhillip.class));
 			case 24: case 25: case 26:
 				//1x succubus, 2x evil eye, 3x scorpio
 				return new ArrayList<>(Arrays.asList(
-						Succubus.class,
+						Dryad.class,
 						Eye.class, Eye.class,
-						Scorpio.class, Scorpio.class, Scorpio.class));
+						BlackPhillip.class, BlackPhillip.class, BlackPhillip.class));
 		}
 		
 	}
@@ -205,7 +205,7 @@ public class Bestiary {
 				
 			// City
 			case 19:
-				if (Random.Float() < 0.025f) rotation.add(Succubus.class);
+				if (Random.Float() < 0.025f) rotation.add(Dryad.class);
 				return;
 		}
 	}
@@ -216,10 +216,10 @@ public class Bestiary {
 		for (int i = 0; i < rotation.size(); i++){
 			if (Random.Float() < altChance) {
 				Class<? extends Mob> cl = rotation.get(i);
-				if (cl == Rat.class) {
-					cl = Albino.class;
+				if (cl == Mushroom.class) {
+					cl = MushroomAlbino.class;
 				} else if (cl == Slime.class) {
-					cl = CausticSlime.class;
+					cl = SlimeCaustic.class;
 				} else if (cl == Thief.class) {
 					cl = Bandit.class;
 				} else if (cl == Necromancer.class){
@@ -230,7 +230,7 @@ public class Bestiary {
 					cl = DM201.class;
 				} else if (cl == Monk.class) {
 					cl = Senior.class;
-				} else if (cl == Scorpio.class) {
+				} else if (cl == BlackPhillip.class) {
 					cl = Acidic.class;
 				}
 				rotation.set(i, cl);

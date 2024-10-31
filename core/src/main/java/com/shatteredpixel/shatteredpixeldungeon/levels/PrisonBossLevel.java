@@ -33,7 +33,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Regrowth;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.StormCloud;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Doom;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Tengu;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Hag;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
@@ -87,7 +87,7 @@ public class PrisonBossLevel extends Level {
 	}
 	
 	private State state;
-	private Tengu tengu;
+	private Hag hag;
 
 	@Override
 	public void playLevelMusic() {
@@ -123,7 +123,7 @@ public class PrisonBossLevel extends Level {
 	public void storeInBundle( Bundle bundle ) {
 		super.storeInBundle(bundle);
 		bundle.put( STATE, state );
-		bundle.put( TENGU, tengu );
+		bundle.put( TENGU, hag);
 		bundle.put( STORED_ITEMS, storedItems);
 		bundle.put(TRIGGERED, triggered );
 	}
@@ -135,11 +135,11 @@ public class PrisonBossLevel extends Level {
 		
 		//in some states tengu won't be in the world, in others he will be.
 		if (state == State.START || state == State.FIGHT_PAUSE) {
-			tengu = (Tengu)bundle.get( TENGU );
+			hag = (Hag)bundle.get( TENGU );
 		} else {
 			for (Mob mob : mobs){
-				if (mob instanceof Tengu) {
-					tengu = (Tengu) mob;
+				if (mob instanceof Hag) {
+					hag = (Hag) mob;
 					break;
 				}
 			}
@@ -336,7 +336,7 @@ public class PrisonBossLevel extends Level {
 		}
 		
 		for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])){
-			if (mob != tengu && (safeArea == null || !safeArea.inside(cellToPoint(mob.pos)))){
+			if (mob != hag && (safeArea == null || !safeArea.inside(cellToPoint(mob.pos)))){
 				mob.destroy();
 				if (mob.sprite != null)
 					mob.sprite.killAndErase();
@@ -412,10 +412,10 @@ public class PrisonBossLevel extends Level {
 				Mob.holdAllies(this, doorPos);
 				Mob.restoreAllies(this, Dungeon.hero.pos, doorPos);
 				
-				tengu.state = tengu.HUNTING;
-				tengu.pos = tenguPos;
-				GameScene.add( tengu );
-				tengu.notice();
+				hag.state = hag.HUNTING;
+				hag.pos = tenguPos;
+				GameScene.add(hag);
+				hag.notice();
 				
 				state = State.FIGHT_START;
 
@@ -434,12 +434,12 @@ public class PrisonBossLevel extends Level {
 				setMapPause();
 				cleanMapState();
 
-				Doom d = tengu.buff(Doom.class);
-				Actor.remove(tengu);
-				mobs.remove(tengu);
+				Doom d = hag.buff(Doom.class);
+				Actor.remove(hag);
+				mobs.remove(hag);
 				TargetHealthIndicator.instance.target(null);
-				tengu.sprite.kill();
-				if (d != null) tengu.add(d);
+				hag.sprite.kill();
+				if (d != null) hag.add(d);
 				
 				GameScene.flash(0x80FFFFFF);
 				Sample.INSTANCE.play(Assets.Sounds.BLAST);
@@ -456,11 +456,11 @@ public class PrisonBossLevel extends Level {
 				setMapArena();
 				cleanMapState();
 				
-				tengu.state = tengu.HUNTING;
-				tengu.pos = (arena.left + arena.width()/2) + width()*(arena.top+2);
-				GameScene.add(tengu);
-				tengu.timeToNow();
-				tengu.notice();
+				hag.state = hag.HUNTING;
+				hag.pos = (arena.left + arena.width()/2) + width()*(arena.top+2);
+				GameScene.add(hag);
+				hag.timeToNow();
+				hag.notice();
 				
 				GameScene.flash(0x80FFFFFF);
 				Sample.INSTANCE.play(Assets.Sounds.BLAST);
@@ -478,8 +478,8 @@ public class PrisonBossLevel extends Level {
 				Dungeon.hero.sprite.place(Dungeon.hero.pos);
 				Camera.main.snapTo(Dungeon.hero.sprite.center());
 				
-				tengu.pos = pointToCell(tenguCellCenter);
-				tengu.sprite.place(tengu.pos);
+				hag.pos = pointToCell(tenguCellCenter);
+				hag.sprite.place(hag.pos);
 				
 				//remove all mobs, but preserve allies
 				ArrayList<Mob> allies = new ArrayList<>();
@@ -500,14 +500,14 @@ public class PrisonBossLevel extends Level {
 					mobs.add(m);
 				}
 				
-				tengu.die(Dungeon.hero);
+				hag.die(Dungeon.hero);
 				
 				clearEntities(tenguCell);
 				cleanMapState();
 				
 				for (Item item : storedItems) {
-					if (!(item instanceof Tengu.BombAbility.BombItem)
-						&& !(item instanceof Tengu.ShockerAbility.ShockerItem)) {
+					if (!(item instanceof Hag.BombAbility.BombItem)
+						&& !(item instanceof Hag.ShockerAbility.ShockerItem)) {
 						drop(item, randomTenguCellPos());
 					}
 				}
@@ -556,7 +556,7 @@ public class PrisonBossLevel extends Level {
 	
 	@Override
 	protected void createMobs() {
-		tengu = new Tengu(); //We want to keep track of tengu independently of other mobs, he's not always in the level.
+		hag = new Hag(); //We want to keep track of tengu independently of other mobs, he's not always in the level.
 	}
 	
 	public Actor addRespawner() {
@@ -588,7 +588,7 @@ public class PrisonBossLevel extends Level {
 		items.addAll(storedItems);
 
 		for (Item i : items.toArray(new Item[0])){
-			if (i instanceof Tengu.BombAbility.BombItem || i instanceof Tengu.ShockerAbility.ShockerItem){
+			if (i instanceof Hag.BombAbility.BombItem || i instanceof Hag.ShockerAbility.ShockerItem){
 				items.remove(i);
 			}
 		}
@@ -624,7 +624,7 @@ public class PrisonBossLevel extends Level {
 	
 	public void placeTrapsInTenguCell(float fill){
 		
-		Point tenguPoint = cellToPoint(tengu.pos);
+		Point tenguPoint = cellToPoint(hag.pos);
 		Point heroPoint = cellToPoint(Dungeon.hero.pos);
 		
 		PathFinder.setMapSize(7, 7);

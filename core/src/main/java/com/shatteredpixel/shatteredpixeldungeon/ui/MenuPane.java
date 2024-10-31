@@ -138,9 +138,9 @@ public class MenuPane extends Component {
 		bg.x = x;
 		bg.y = y;
 
-		btnMenu.setPos( x + WIDTH - btnMenu.width() - 4, y );
+		btnMenu.setPos( x + WIDTH - btnMenu.width() - 2, y );
 
-		btnJournal.setPos( btnMenu.left() - btnJournal.width() + 5, y );
+		btnJournal.setPos( btnMenu.left() - btnJournal.width() + 6, y );
 
 		depthIcon.x = btnJournal.left() - 7 + (7 - depthIcon.width())/2f - 0.1f;
 		depthIcon.y = y + 1;
@@ -210,7 +210,7 @@ public class MenuPane extends Component {
 		protected void createChildren() {
 			super.createChildren();
 
-			bg = new Image( Assets.Interfaces.MENU_BTN, 0, 0, 13, 15 );
+			bg = new Image( Assets.Interfaces.MENU_BTN, 0, 0, 15, 17 );
 			add( bg );
 
 			journalIcon = new Image( Assets.Interfaces.MENU_BTN, 32, 0, 5, 7);
@@ -333,7 +333,7 @@ public class MenuPane extends Component {
 		protected void createChildren() {
 			super.createChildren();
 
-			image = new Image( Assets.Interfaces.MENU_BTN, 16, 0, 14, 14 );
+			image = new Image( Assets.Interfaces.MENU_BTN, 16, 0, 14, 16 );
 			add( image );
 		}
 

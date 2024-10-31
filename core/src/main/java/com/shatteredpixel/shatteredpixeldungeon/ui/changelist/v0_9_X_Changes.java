@@ -24,7 +24,7 @@ package com.shatteredpixel.shatteredpixeldungeon.ui.changelist;
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroSubClass;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Spinner;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Cockatrice;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.ChaliceOfBlood;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfEnergy;
@@ -37,8 +37,8 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.FistSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.GolemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.SpawnerSprite;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.SpinnerSprite;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.DemonWombSprite;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.CockatriceSprite;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Icons;
 import com.shatteredpixel.shatteredpixeldungeon.ui.TalentIcon;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
@@ -183,7 +183,7 @@ public class v0_9_X_Changes {
 		changes.hardlight(CharSprite.POSITIVE);
 		changeInfos.add(changes);
 
-		changes.addButton(new ChangeButton(new Image(new SpawnerSprite()), "Demon Spawner Buffs",
+		changes.addButton(new ChangeButton(new Image(new DemonWombSprite()), "Demon Spawner Buffs",
 				"I'm making a few tweaks to demon spawner mechanics to increase the overall difficulty of the demon halls, to help compensate for the new abilities:\n\n" +
 				"_-_ Demon spawners no longer result in overall lower enemy density in the demon halls\n" +
 				"_-_ EXP awarded for defeating a demon spawner down to 15 from 25." ));
@@ -518,7 +518,7 @@ public class v0_9_X_Changes {
 				"_-_ Now grants 2/3 healing when hero is below 50% health, down from 3/5\n" +
 				"_-_ The full 3/5 heal is still available if the hero is below 25% health"));
 
-		changes.addButton( new ChangeButton( new Image(new SpinnerSprite()), Messages.get(Spinner.class, "name"),
+		changes.addButton( new ChangeButton( new Image(new CockatriceSprite()), Messages.get(Cockatrice.class, "name"),
 				"I'm pulling down the damage of _Cave Spinners_ slightly to address player frustration:\n\n" +
 				"_-_ Melee damage down to 10-20 from 10-25"));
 

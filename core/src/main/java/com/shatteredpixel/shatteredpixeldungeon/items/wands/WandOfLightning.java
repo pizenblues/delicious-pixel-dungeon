@@ -27,7 +27,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.Statistics;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DwarfKing;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DarkElf;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Lightning;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.SparkParticle;
@@ -143,7 +143,7 @@ public class WandOfLightning extends DamageWand {
 
 		Char ch = Actor.findChar( cell );
 		if (ch != null) {
-			if (ch instanceof DwarfKing){
+			if (ch instanceof DarkElf){
 				Statistics.qualifiedForBossChallengeBadge = false;
 			}
 

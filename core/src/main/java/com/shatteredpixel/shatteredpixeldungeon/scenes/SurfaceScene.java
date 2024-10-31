@@ -37,7 +37,7 @@ import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.EarthGuardianSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.GhostSprite;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.RatSprite;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.MushroomSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.WardSprite;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Archs;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RedButton;
@@ -425,7 +425,7 @@ public class SurfaceScene extends PixelScene {
 		}
 	}
 	
-	private static class Pet extends RatSprite {
+	private static class Pet extends MushroomSprite {
 		
 		public void jump() {
 			play( run );

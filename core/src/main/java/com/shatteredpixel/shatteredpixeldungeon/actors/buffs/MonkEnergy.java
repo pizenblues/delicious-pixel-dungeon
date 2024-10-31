@@ -29,9 +29,9 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Ghoul;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.RipperDemon;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Ripper;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Wraith;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.YogDzewa;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Monstrosity;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfForce;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfBlastWave;
@@ -154,8 +154,8 @@ public class MonkEnergy extends Buff implements ActionIndicator.Action {
 		if (Char.hasProp(enemy, Char.Property.BOSS))            energyGain = 5;
 		else if (Char.hasProp(enemy, Char.Property.MINIBOSS))   energyGain = 3;
 		else if (enemy instanceof Ghoul)                        energyGain = 0.5f;
-		else if (enemy instanceof RipperDemon)                  energyGain = 0.5f;
-		else if (enemy instanceof YogDzewa.Larva)               energyGain = 0.5f;
+		else if (enemy instanceof Ripper)                  energyGain = 0.5f;
+		else if (enemy instanceof Monstrosity.Larva)               energyGain = 0.5f;
 		else if (enemy instanceof Wraith)                       energyGain = 0.5f;
 		else                                                    energyGain = 1;
 

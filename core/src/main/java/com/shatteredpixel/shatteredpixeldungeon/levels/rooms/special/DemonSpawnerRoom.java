@@ -24,7 +24,7 @@ package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special;
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.Statistics;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DemonSpawner;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DemonWomb;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
@@ -47,7 +47,7 @@ public class DemonSpawnerRoom extends SpecialRoom {
 		Door door = entrance();
 		door.set(Door.Type.UNLOCKED);
 
-		DemonSpawner spawner = new DemonSpawner();
+		DemonWomb spawner = new DemonWomb();
 		spawner.pos = cx + cy * level.width();
 		level.mobs.add( spawner );
 
@@ -96,7 +96,7 @@ public class DemonSpawnerRoom extends SpecialRoom {
 					cell = tileX + (tileY + i / tileW) * Dungeon.level.width();
 				}
 
-				if (Dungeon.level.findMob(cell) instanceof DemonSpawner){
+				if (Dungeon.level.findMob(cell) instanceof DemonWomb){
 					data[i-1] = 5 + 4*8;
 					data[i] = 6 + 4*8;
 					data[i+1] = 7 + 4*8;

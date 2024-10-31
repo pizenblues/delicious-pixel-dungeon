@@ -21,7 +21,7 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard;
 
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Piranha;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Fishmen;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
@@ -65,11 +65,11 @@ public class AquariumRoom extends StandardRoom {
 		int numFish = (minDim - 4)/3; //1-3 fish, depending on room size
 		
 		for (int i=0; i < numFish; i++) {
-			Piranha piranha = Piranha.random();
+			Fishmen fishmen = Fishmen.random();
 			do {
-				piranha.pos = level.pointToCell(random(3));
-			} while (level.map[piranha.pos] != Terrain.WATER|| level.findMob( piranha.pos ) != null);
-			level.mobs.add( piranha );
+				fishmen.pos = level.pointToCell(random(3));
+			} while (level.map[fishmen.pos] != Terrain.WATER|| level.findMob( fishmen.pos ) != null);
+			level.mobs.add(fishmen);
 		}
 		
 		for (Door door : connected.values()) {

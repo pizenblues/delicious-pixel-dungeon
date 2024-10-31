@@ -23,7 +23,7 @@ package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special;
 
 import com.shatteredpixel.shatteredpixeldungeon.Challenges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Piranha;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Fishmen;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
@@ -90,11 +90,11 @@ public class PoolRoom extends SpecialRoom {
 		level.addItemToSpawn( new PotionOfInvisibility() );
 		
 		for (int i=0; i < NPIRANHAS; i++) {
-			Piranha piranha = Piranha.random();
+			Fishmen fishmen = Fishmen.random();
 			do {
-				piranha.pos = level.pointToCell(random());
-			} while (level.map[piranha.pos] != Terrain.WATER|| level.findMob( piranha.pos ) != null);
-			level.mobs.add( piranha );
+				fishmen.pos = level.pointToCell(random());
+			} while (level.map[fishmen.pos] != Terrain.WATER|| level.findMob( fishmen.pos ) != null);
+			level.mobs.add(fishmen);
 		}
 	}
 	

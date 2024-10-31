@@ -23,7 +23,7 @@ package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special;
 
 import com.shatteredpixel.shatteredpixeldungeon.Challenges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.CrystalMimic;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.MimicCrystal;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mimic;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
@@ -76,7 +76,7 @@ public class CrystalVaultRoom extends SpecialRoom {
 		if (altChance > 0.1f) altChance = (altChance+0.1f)/2f; //rat skull is 1/2 as effective here
 		altChance *= MimicTooth.mimicChanceMultiplier(); //mimic tooth has full effectiveness
 		if (Random.Float() < altChance){
-			level.mobs.add(Mimic.spawnAt(i2Pos, CrystalMimic.class, i2));
+			level.mobs.add(Mimic.spawnAt(i2Pos, MimicCrystal.class, i2));
 		} else {
 			level.drop(i2, i2Pos).type = Heap.Type.CRYSTAL_CHEST;
 		}

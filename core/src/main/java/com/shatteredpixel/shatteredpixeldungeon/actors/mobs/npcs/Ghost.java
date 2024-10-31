@@ -27,9 +27,9 @@ import com.shatteredpixel.shatteredpixeldungeon.Statistics;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.AscensionChallenge;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.FetidRat;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.GnollTrickster;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.GreatCrab;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.MushroomFetid;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.OrcKing;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.EscorpionMother;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
@@ -169,13 +169,13 @@ public class Ghost extends NPC {
 
 			switch (Quest.type){
 				case 1: default:
-					questBoss = new FetidRat();
+					questBoss = new MushroomFetid();
 					txt_quest = Messages.get(this, "rat_1", Messages.titleCase(Dungeon.hero.name())); break;
 				case 2:
-					questBoss = new GnollTrickster();
+					questBoss = new OrcKing();
 					txt_quest = Messages.get(this, "gnoll_1", Messages.titleCase(Dungeon.hero.name())); break;
 				case 3:
-					questBoss = new GreatCrab();
+					questBoss = new EscorpionMother();
 					txt_quest = Messages.get(this, "crab_1", Messages.titleCase(Dungeon.hero.name())); break;
 			}
 

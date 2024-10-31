@@ -292,12 +292,12 @@ public class Mimic extends Mob {
 
 	public static Mimic spawnAt( int pos, Class mimicType, boolean useDecks, Item... items){
 		Mimic m;
-		if (mimicType == GoldenMimic.class){
-			m = new GoldenMimic();
-		} else if (mimicType == CrystalMimic.class) {
-			m = new CrystalMimic();
-		} else if (mimicType == EbonyMimic.class) {
-			m = new EbonyMimic();
+		if (mimicType == MimicGolden.class){
+			m = new MimicGolden();
+		} else if (mimicType == MimicCrystal.class) {
+			m = new MimicCrystal();
+		} else if (mimicType == MimicEbony.class) {
+			m = new MimicEbony();
 		} else {
 			m = new Mimic();
 		}

@@ -22,8 +22,8 @@
 package com.shatteredpixel.shatteredpixeldungeon.ui.changelist;
 
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DM300;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DwarfKing;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Griffith;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DarkElf;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.TalismanOfForesight;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfEnergy;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth;
@@ -42,18 +42,18 @@ import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.ChangesScene;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.PixelScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.DM100Sprite;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.DM300Sprite;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.DM100;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.GriffithSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ElementalSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.GuardSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.KingSprite;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.DarkElfSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.NecromancerSprite;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.ShamanSprite;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.SpawnerSprite;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.OrcSorcererSprite;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.DemonWombSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.StatueSprite;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.YogSprite;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.MonstrositySprite;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIcon;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Icons;
@@ -488,7 +488,7 @@ public class v0_8_X_Changes {
 				"\n" +
 				"At over 6 months v0.8.0 also took longer than any other update and it could have easily been released as 3 smaller updates instead. I felt similarly about v0.7.0, and since then I've tried to structure content releases so that updates don't take longer than about 3 months."));
 
-		changes.addButton( new ChangeButton(new Image(new DM100Sprite()), "Misc Enemies",
+		changes.addButton( new ChangeButton(new Image(new DM100()), "Misc Enemies",
 				"_DM-100s_ have been added to the prison to replace gnoll shamans. They behave very similarly to prison shamans, but have a few stat tweaks:\n" +
 				"_-_ Health increased to 20 from 18.\n" +
 				"_-_ Removed bonus damage vs enemies in water.\n" +
@@ -497,7 +497,7 @@ public class v0_8_X_Changes {
 				"_Golden and Crystal Mimics_ have also been added! Golden mimics have higher stats but a better reward, and crystal mimics will try to run away with their loot! Neither require a key to open.\n\n"+
 				"_Armored Statues_ have been added as a rare variant to regular statues. These statues have much higher defense and HP, but will give you both a weapon and armor if you kill them."));
 
-		changes.addButton( new ChangeButton(new Image(new ShamanSprite.Purple()), "Caves",
+		changes.addButton( new ChangeButton(new Image(new OrcSorcererSprite.Purple()), "Caves",
 				"Vision range in the caves is now the same as other regions.\n\n" +
 				"_Bats_ have had their damage reduced by 13%, and heal for less when they attack. This should make them less oppressive in the early caves.\n\n" +
 				"_Gnoll Brutes_ now deal ~8% less damage, and rage at 0 hp instead of 1/4 HP. This rage grants them shielding that slowly fades over time. When the shield runs out, they die.\n\n" +
@@ -505,9 +505,9 @@ public class v0_8_X_Changes {
 				"_Spinners_ are now 20% more evasive, 10% more accurate, and now spit their webs toward the hero from a distance. Their webs block projectiles, but can be cleared.\n\n" +
 				"_DM-200s_ are a new enemy in the later parts of the caves. They are too big to move into tunnels and doors, but make up for it with high stats and a toxic gas attack."));
 
-		Image i = new Image(new DM300Sprite());
+		Image i = new Image(new GriffithSprite());
 		i.scale.set(PixelScene.align(0.74f));
-		changes.addButton( new ChangeButton(i, Messages.get(DM300.class, "name"),
+		changes.addButton( new ChangeButton(i, Messages.get(Griffith.class, "name"),
 				"The DM-300 fight has been reworked! DM-300 now has redesigned abilities, a new boss arena, and multiple phases!\n\n" +
 				"As a part of this rework, DM-300's direct stats have been adjusted:\n" +
 				"_-_ Health increased to 300 from 200\n" +
@@ -522,7 +522,7 @@ public class v0_8_X_Changes {
 				"_Warlocks_ now deal ~21% less damage in melee, but have a nasty new debuff. They inflict 'degraded', which temporarily weakens heavily upgraded gear.\n\n" +
 				"_Golems_ have been entirely reworked and are now large enemies like DM-200s. Unlike DM-200s they have no ranged attacks, but instead use dwarven teleportation magic to compensate for their low mobility."));
 
-		changes.addButton( new ChangeButton(new Image(new KingSprite()), Messages.get(DwarfKing.class, "name"),
+		changes.addButton( new ChangeButton(new Image(new DarkElfSprite()), Messages.get(DarkElf.class, "name"),
 				"The Dwarf King fight has received a full rework! His fight still heavily features minion summoning, but now also features new abilities, a new arena, and multiple phases!\n\n" +
 				"As a part of this fight rework DK's stats have been adjusted:\n" +
 				"_-_ Damage reduced by ~40%\n" +
@@ -530,7 +530,7 @@ public class v0_8_X_Changes {
 				"_-_ Armor reduced by ~30%\n" +
 				"_-_ Evasion reduced by ~12%"));
 
-		changes.addButton( new ChangeButton(new Image(new SpawnerSprite()), "Demon Halls",
+		changes.addButton( new ChangeButton(new Image(new DemonWombSprite()), "Demon Halls",
 				"Floor 21 is now a regular demon halls floor\n\n" +
 				"_Ripper Demons_ are a new basic enemy. They have high damage attacks and a leap ability, but have weaker defensive stats. Instead of spawning normally, they are created by the next enemy...\n\n" +
 				"_Demon Spawners_ exist in special rooms within the demon halls, and create a steady stream of ripper demons as long as they are alive. Spawners do not return once killed, and award a bunch of EXP and a guaranteed potion of healing.\n\n" +
@@ -541,7 +541,7 @@ public class v0_8_X_Changes {
 				"_-_ Scorpios now drop potions which are more likely to be rare. They cannot drop healing.\n" +
 				"_-_ Acidic scorpios now inflict ooze and don't reflect damage."));
 
-		i = new Image(new YogSprite());
+		i = new Image(new MonstrositySprite());
 		i.scale.set(0.8f);
 		changes.addButton( new ChangeButton(i, "Yog-Dzewa",
 				"The Yog-Dzewa fight has been reworked! The key ingredients (eye, fists, and larva) are still present, but the specific stats, mechanics, and pacing of the fight have been almost totally redone.\n\n" +

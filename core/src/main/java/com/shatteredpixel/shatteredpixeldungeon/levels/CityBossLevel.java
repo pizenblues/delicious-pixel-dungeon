@@ -27,7 +27,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.Statistics;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DwarfKing;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DarkElf;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Imp;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
@@ -222,11 +222,11 @@ public class CityBossLevel extends Level {
 	//returns a random pedestal that doesn't already have a summon inbound on it
 	public int getSummoningPos(){
 		Mob king = getKing();
-		HashSet<DwarfKing.Summoning> summons = king.buffs(DwarfKing.Summoning.class);
+		HashSet<DarkElf.Summoning> summons = king.buffs(DarkElf.Summoning.class);
 		ArrayList<Integer> positions = new ArrayList<>();
 		for (int pedestal : pedestals) {
 			boolean clear = true;
-			for (DwarfKing.Summoning s : summons) {
+			for (DarkElf.Summoning s : summons) {
 				if (s.getPos() == pedestal) {
 					clear = false;
 					break;
@@ -245,7 +245,7 @@ public class CityBossLevel extends Level {
 
 	private Mob getKing(){
 		for (Mob m : mobs){
-			if (m instanceof DwarfKing) return m;
+			if (m instanceof DarkElf) return m;
 		}
 		return null;
 	}
@@ -313,7 +313,7 @@ public class CityBossLevel extends Level {
 		Mob.holdAllies(this, doorPos);
 		Mob.restoreAllies(this, Dungeon.hero.pos, doorPos);
 
-		DwarfKing boss = new DwarfKing();
+		DarkElf boss = new DarkElf();
 		boss.state = boss.WANDERING;
 		boss.pos = pointToCell(arena.center());
 		GameScene.add( boss );

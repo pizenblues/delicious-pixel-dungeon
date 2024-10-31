@@ -57,12 +57,12 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vertigo;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vulnerable;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Weakness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Bee;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DwarfKing;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DarkElf;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mimic;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Piranha;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Fishmen;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Statue;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Swarm;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Insects;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Wraith;
 import com.shatteredpixel.shatteredpixeldungeon.effects.MagicMissile;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.MagesStaff;
@@ -135,7 +135,7 @@ public class WandOfCorruption extends Wand {
 
 			Mob enemy = (Mob) ch;
 
-			if (enemy instanceof DwarfKing){
+			if (enemy instanceof DarkElf){
 				Statistics.qualifiedForBossChallengeBadge = false;
 			}
 
@@ -145,12 +145,12 @@ public class WandOfCorruption extends Wand {
 			float enemyResist;
 			if (ch instanceof Mimic || ch instanceof Statue){
 				enemyResist = 1 + Dungeon.depth;
-			} else if (ch instanceof Piranha || ch instanceof Bee) {
+			} else if (ch instanceof Fishmen || ch instanceof Bee) {
 				enemyResist = 1 + Dungeon.depth/2f;
 			} else if (ch instanceof Wraith) {
 				//divide by 5 as wraiths are always at full HP and are therefore ~5x harder to corrupt
 				enemyResist = (1f + Dungeon.scalingDepth()/4f) / 5f;
-			} else if (ch instanceof Swarm){
+			} else if (ch instanceof Insects){
 				//child swarms don't give exp, so we force this here.
 				enemyResist = 1 + AscensionChallenge.AscensionCorruptResist(enemy);
 				if (enemyResist == 1) enemyResist = 1 + 3;

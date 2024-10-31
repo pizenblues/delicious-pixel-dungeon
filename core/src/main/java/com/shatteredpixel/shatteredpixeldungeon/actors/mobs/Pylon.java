@@ -133,7 +133,7 @@ public class Pylon extends Mob {
 	}
 
 	private void shockChar( Char ch ){
-		if (ch != null && !(ch instanceof DM300)){
+		if (ch != null && !(ch instanceof Griffith)){
 			ch.sprite.flash();
 			ch.damage(Char.combatRoll(10, 20), new Electricity());
 
@@ -141,7 +141,7 @@ public class Pylon extends Mob {
 				Statistics.qualifiedForBossChallengeBadge = false;
 				Statistics.bossScores[2] -= 100;
 				if (!ch.isAlive()) {
-					Dungeon.fail(DM300.class);
+					Dungeon.fail(Griffith.class);
 					GLog.n(Messages.get(Electricity.class, "ondeath"));
 				}
 			}

@@ -23,7 +23,7 @@ package com.shatteredpixel.shatteredpixeldungeon.sprites;
 
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.YogFist;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.MonstrosityMinion;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Beam;
 import com.shatteredpixel.shatteredpixeldungeon.effects.MagicMissile;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
@@ -130,7 +130,7 @@ public abstract class FistSprite extends MobSprite {
 				new Callback() {
 					@Override
 					public void call() {
-						((YogFist)ch).onZapComplete();
+						((MonstrosityMinion)ch).onZapComplete();
 					}
 				} );
 		Sample.INSTANCE.play( Assets.Sounds.ZAP );
@@ -268,7 +268,7 @@ public abstract class FistSprite extends MobSprite {
 		public void zap( int cell ) {
 			super.zap( cell, null );
 
-			((YogFist)ch).onZapComplete();
+			((MonstrosityMinion)ch).onZapComplete();
 			parent.add( new Beam.LightRay(center(), DungeonTilemap.raisedTileCenterToWorld(cell)));
 		}
 		@Override

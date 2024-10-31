@@ -69,7 +69,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.warrior.En
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mimic;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Monk;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Snake;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.SlimeSmall;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CheckedCell;
 import com.shatteredpixel.shatteredpixeldungeon.effects.FloatingText;
@@ -1521,7 +1521,7 @@ public class Hero extends Char {
 					} else if (distance(target) > distance(m)) {
 						target = m;
 					}
-					if (m instanceof Snake && Dungeon.level.distance(m.pos, pos) <= 4
+					if (m instanceof SlimeSmall && Dungeon.level.distance(m.pos, pos) <= 4
 							&& !Document.ADVENTURERS_GUIDE.isPageRead(Document.GUIDE_EXAMINING)){
 						GLog.p(Messages.get(Guidebook.class, "hint"));
 						GameScene.flashForDocument(Document.ADVENTURERS_GUIDE, Document.GUIDE_EXAMINING);

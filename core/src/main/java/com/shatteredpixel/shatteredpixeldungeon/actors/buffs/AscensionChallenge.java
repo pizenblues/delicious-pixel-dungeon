@@ -30,28 +30,28 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.Ratmogrify;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Bat;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Brute;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Crab;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DM100;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Escorpion;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.OrcSorcerer;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DM200;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Elemental;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Eye;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Ghoul;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Gnoll;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Orc;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Golem;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Guard;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.OrcGuard;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Monk;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Necromancer;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Rat;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.RipperDemon;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Scorpio;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mushroom;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Ripper;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.BlackPhillip;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Shaman;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Skeleton;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Slime;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Snake;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Spinner;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Succubus;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Swarm;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.SlimeSmall;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Cockatrice;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Dryad;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Insects;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Thief;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Warlock;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Shopkeeper;
@@ -69,23 +69,23 @@ public class AscensionChallenge extends Buff {
 
 	private static HashMap<Class<?extends Mob>, Float> modifiers = new HashMap<>();
 	static {
-		modifiers.put(Rat.class,            10f);
-		modifiers.put(Snake.class,          9f);
-		modifiers.put(Gnoll.class,          9f);
-		modifiers.put(Swarm.class,          8.5f);
-		modifiers.put(Crab.class,           8f);
+		modifiers.put(Mushroom.class,            10f);
+		modifiers.put(SlimeSmall.class,          9f);
+		modifiers.put(Orc.class,          9f);
+		modifiers.put(Insects.class,          8.5f);
+		modifiers.put(Escorpion.class,           8f);
 		modifiers.put(Slime.class,          8f);
 
 		modifiers.put(Skeleton.class,       5f);
 		modifiers.put(Thief.class,          5f);
-		modifiers.put(DM100.class,          4.5f);
-		modifiers.put(Guard.class,          4f);
+		modifiers.put(OrcSorcerer.class,          4.5f);
+		modifiers.put(OrcGuard.class,          4f);
 		modifiers.put(Necromancer.class,    4f);
 
 		modifiers.put(Bat.class,            2.5f);
 		modifiers.put(Brute.class,          2.25f);
 		modifiers.put(Shaman.class,         2.25f);
-		modifiers.put(Spinner.class,        2f);
+		modifiers.put(Cockatrice.class,        2f);
 		modifiers.put(DM200.class,          2f);
 
 		modifiers.put(Ghoul.class,          1.67f);
@@ -94,10 +94,10 @@ public class AscensionChallenge extends Buff {
 		modifiers.put(Monk.class,           1.5f);
 		modifiers.put(Golem.class,          1.33f);
 
-		modifiers.put(RipperDemon.class,    1.2f);
-		modifiers.put(Succubus.class,       1.2f);
+		modifiers.put(Ripper.class,    1.2f);
+		modifiers.put(Dryad.class,       1.2f);
 		modifiers.put(Eye.class,            1.1f);
-		modifiers.put(Scorpio.class,        1.1f);
+		modifiers.put(BlackPhillip.class,        1.1f);
 	}
 
 	public static float statModifier(Char ch){
@@ -180,7 +180,7 @@ public class AscensionChallenge extends Buff {
 		if (!found) return;
 
 		float oldStacks = chal.stacks;
-		if (enemy instanceof Ghoul || enemy instanceof RipperDemon){
+		if (enemy instanceof Ghoul || enemy instanceof Ripper){
 			chal.stacks -= 0.5f;
 		} else {
 			chal.stacks -= 1;
@@ -213,7 +213,7 @@ public class AscensionChallenge extends Buff {
 			return m.EXP;
 		}
 
-		if (m instanceof RipperDemon){
+		if (m instanceof Ripper){
 			return 10; //reduced due to their numbers
 		} else if (m instanceof Ghoul){
 			return 7; //half of 13, rounded up

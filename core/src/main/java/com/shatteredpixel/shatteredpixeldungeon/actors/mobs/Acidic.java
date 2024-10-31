@@ -29,7 +29,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.AcidicSprite;
 
-public class Acidic extends Scorpio {
+public class Acidic extends BlackPhillip {
 
 	{
 		spriteClass = AcidicSprite.class;

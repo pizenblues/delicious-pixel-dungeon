@@ -34,7 +34,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Invisibility;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Rat;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mushroom;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.ClassArmor;
@@ -42,7 +42,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.MasterThievesArm
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.RatSprite;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.MushroomSprite;
 import com.shatteredpixel.shatteredpixeldungeon.ui.HeroIcon;
 import com.shatteredpixel.shatteredpixeldungeon.ui.TargetHealthIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
@@ -104,19 +104,19 @@ public class Ratmogrify extends ArmorAbility {
 				while (ratsToSpawn > 0 && spawnPoints.size() > 0) {
 					int index = Random.index( spawnPoints );
 
-					Rat rat = new Rat();
-					rat.alignment = Char.Alignment.ALLY;
-					rat.state = rat.HUNTING;
-					Buff.affect(rat, AscensionChallenge.AscensionBuffBlocker.class);
-					GameScene.add( rat );
-					ScrollOfTeleportation.appear( rat, spawnPoints.get( index ) );
+					Mushroom mushroom = new Mushroom();
+					mushroom.alignment = Char.Alignment.ALLY;
+					mushroom.state = mushroom.HUNTING;
+					Buff.affect(mushroom, AscensionChallenge.AscensionBuffBlocker.class);
+					GameScene.add(mushroom);
+					ScrollOfTeleportation.appear(mushroom, spawnPoints.get( index ) );
 
 					spawnPoints.remove( index );
 					ratsToSpawn--;
 				}
 
 			}
-		} else if (ch.alignment != Char.Alignment.ENEMY || !(ch instanceof Mob) || ch instanceof Rat){
+		} else if (ch.alignment != Char.Alignment.ENEMY || !(ch instanceof Mob) || ch instanceof Mushroom){
 			GLog.w(Messages.get(this, "cant_transform"));
 			return;
 		} else if (ch instanceof TransmogRat){
@@ -197,7 +197,7 @@ public class Ratmogrify extends ArmorAbility {
 	public static class TransmogRat extends Mob {
 
 		{
-			spriteClass = RatSprite.class;
+			spriteClass = MushroomSprite.class;
 
 			//always false, as we derive stats from what we are transmogging from (which was already added)
 			firstAdded = false;

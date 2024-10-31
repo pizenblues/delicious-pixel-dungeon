@@ -25,7 +25,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.effects.BlobEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.GooSprite;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.RedDragonSprite;
 
 public class GooWarn extends Blob {
 
@@ -74,7 +74,7 @@ public class GooWarn extends Blob {
 	@Override
 	public void use( BlobEmitter emitter ) {
 		super.use( emitter );
-		emitter.pour(GooSprite.GooParticle.FACTORY, 0.03f );
+		emitter.pour(RedDragonSprite.GooParticle.FACTORY, 0.03f );
 	}
 
 	@Override

@@ -187,7 +187,7 @@ public class Ghoul extends Mob {
 				} else if (buff instanceof AllyBuff
 						|| buff instanceof ChampionEnemy
 						|| buff instanceof MasterThievesArmband.StolenTracker
-						|| buff instanceof DwarfKing.KingDamager) {
+						|| buff instanceof DarkElf.KingDamager) {
 					//don't remove
 				} else {
 					buff.detach();

@@ -48,11 +48,11 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroSubClass;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.huntress.SpiritHawk;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Bestiary;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Fishmen;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.GnollGeomancer;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mimic;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Piranha;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.YogFist;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.MonstrosityMinion;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Blacksmith;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Sheep;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.FlowParticle;
@@ -1144,8 +1144,8 @@ public abstract class Level implements Bundlable {
 			}
 		}
 
-		if (ch.isAlive() && ch instanceof Piranha && !water[ch.pos]){
-			((Piranha) ch).dieOnLand();
+		if (ch.isAlive() && ch instanceof Fishmen && !water[ch.pos]){
+			((Fishmen) ch).dieOnLand();
 		}
 	}
 	
@@ -1255,7 +1255,7 @@ public abstract class Level implements Bundlable {
 			//grass is see-through by some specific entities, but not during the fungi quest
 			if (!(Dungeon.level instanceof  MiningLevel) || Blacksmith.Quest.Type() != Blacksmith.Quest.FUNGI){
 				if ((c instanceof Hero && ((Hero) c).subClass == HeroSubClass.WARDEN)
-						|| c instanceof YogFist.SoiledFist || c instanceof GnollGeomancer) {
+						|| c instanceof MonstrosityMinion.SoiledFist || c instanceof GnollGeomancer) {
 					if (blocking == null) {
 						System.arraycopy(Dungeon.level.losBlocking, 0, modifiableBlocking, 0, modifiableBlocking.length);
 						blocking = modifiableBlocking;

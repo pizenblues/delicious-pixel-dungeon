@@ -39,11 +39,11 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.AscensionChallenge;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ChampionEnemy;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DemonSpawner;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DemonWomb;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Ghoul;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mimic;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Snake;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.SlimeSmall;
 import com.shatteredpixel.shatteredpixeldungeon.effects.BannerSprites;
 import com.shatteredpixel.shatteredpixeldungeon.effects.BlobEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.EmoIcon;
@@ -477,7 +477,7 @@ public class GameScene extends PixelScene {
 				int spawnersAbove = Statistics.spawnersAlive;
 				if (spawnersAbove > 0 && Dungeon.depth <= 25) {
 					for (Mob m : Dungeon.level.mobs) {
-						if (m instanceof DemonSpawner && ((DemonSpawner) m).spawnRecorded) {
+						if (m instanceof DemonWomb && ((DemonWomb) m).spawnRecorded) {
 							spawnersAbove--;
 						}
 					}
@@ -1519,7 +1519,7 @@ public class GameScene extends PixelScene {
 			GameScene.show( new WndHero() );
 		} else if ( o instanceof Mob && ((Mob) o).isActive() ){
 			GameScene.show(new WndInfoMob((Mob) o));
-			if (o instanceof Snake && !Document.ADVENTURERS_GUIDE.isPageRead(Document.GUIDE_SURPRISE_ATKS)){
+			if (o instanceof SlimeSmall && !Document.ADVENTURERS_GUIDE.isPageRead(Document.GUIDE_SURPRISE_ATKS)){
 				GLog.p(Messages.get(Guidebook.class, "hint"));
 				GameScene.flashForDocument(Document.ADVENTURERS_GUIDE, Document.GUIDE_SURPRISE_ATKS);
 			}

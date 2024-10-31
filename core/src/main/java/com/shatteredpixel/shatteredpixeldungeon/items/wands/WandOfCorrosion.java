@@ -30,7 +30,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.CorrosiveGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Ooze;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DwarfKing;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DarkElf;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.MagicMissile;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
@@ -67,7 +67,7 @@ public class WandOfCorrosion extends Wand {
 			if (ch != null) {
 				wandProc(ch, chargesPerCast());
 
-				if (i == 0 && ch instanceof DwarfKing){
+				if (i == 0 && ch instanceof DarkElf){
 					Statistics.qualifiedForBossChallengeBadge = false;
 				}
 			}

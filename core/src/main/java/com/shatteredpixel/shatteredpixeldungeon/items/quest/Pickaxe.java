@@ -32,10 +32,10 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Bat;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Bee;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Crab;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Scorpio;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Spinner;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Swarm;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Escorpion;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.BlackPhillip;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Cockatrice;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Insects;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Blacksmith;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
@@ -218,11 +218,11 @@ public class Pickaxe extends MeleeWeapon {
 			public void call() {
 				int damageBoost = 0;
 				if (Char.hasProp(enemy, Char.Property.INORGANIC)
-						|| enemy instanceof Swarm
+						|| enemy instanceof Insects
 						|| enemy instanceof Bee
-						|| enemy instanceof Crab
-						|| enemy instanceof Spinner
-						|| enemy instanceof Scorpio) {
+						|| enemy instanceof Escorpion
+						|| enemy instanceof Cockatrice
+						|| enemy instanceof BlackPhillip) {
 					//+(8+2*lvl) damage, equivalent to +100% damage
 					damageBoost = augment.damageFactor(8 + 2*buffedLvl());
 				}

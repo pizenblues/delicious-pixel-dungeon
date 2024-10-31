@@ -31,7 +31,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.AscensionChallenge;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.YogDzewa;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Monstrosity;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Pushing;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.FlameParticle;
@@ -252,7 +252,7 @@ public class HallsBossLevel extends Level {
 
 		Dungeon.observe();
 
-		YogDzewa boss = new YogDzewa();
+		Monstrosity boss = new Monstrosity();
 		boss.pos = exit() + width*3;
 
 		//push any char that is already here away
@@ -317,8 +317,8 @@ public class HallsBossLevel extends Level {
 	public void restoreFromBundle(Bundle bundle) {
 		super.restoreFromBundle(bundle);
 		for (Mob m : mobs){
-			if (m instanceof YogDzewa){
-				((YogDzewa) m).updateVisibility(this);
+			if (m instanceof Monstrosity){
+				((Monstrosity) m).updateVisibility(this);
 			}
 		}
 	}

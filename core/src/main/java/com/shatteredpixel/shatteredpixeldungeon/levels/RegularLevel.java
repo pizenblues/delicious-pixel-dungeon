@@ -31,8 +31,8 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.SacrificialFire;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.EbonyMimic;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.GoldenMimic;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.MimicEbony;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.MimicGolden;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mimic;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Statue;
@@ -72,7 +72,6 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.exit.ExitR
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.BlazingTrap;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.BurningTrap;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.ChillingTrap;
-import com.shatteredpixel.shatteredpixeldungeon.levels.traps.DisintegrationTrap;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.ExplosiveTrap;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.FrostTrap;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.PitfallTrap;
@@ -415,7 +414,7 @@ public abstract class RegularLevel extends Level {
 
 				float mimicChance = 1/10f * MimicTooth.mimicChanceMultiplier();
 				if (Dungeon.depth > 1 && Random.Float() < mimicChance && findMob(cell) == null){
-					mobs.add(Mimic.spawnAt(cell, GoldenMimic.class, toDrop));
+					mobs.add(Mimic.spawnAt(cell, MimicGolden.class, toDrop));
 				} else {
 					Heap dropped = drop(toDrop, cell);
 					if (heaps.get(cell) == dropped) {
@@ -656,7 +655,7 @@ public abstract class RegularLevel extends Level {
 				}
 
 				int pos = Random.element(candidateCells);
-				mobs.add(Mimic.spawnAt(pos, EbonyMimic.class, false));
+				mobs.add(Mimic.spawnAt(pos, MimicEbony.class, false));
 			}
 		Random.popGenerator();
 

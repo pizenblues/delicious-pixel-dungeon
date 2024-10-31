@@ -40,7 +40,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Frost;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Hex;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Recharging;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.GoldenMimic;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.MimicGolden;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mimic;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Sheep;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
@@ -394,7 +394,7 @@ public class CursedWand {
 					}
 				}
 
-				Mimic mimic = Mimic.spawnAt(spawnCell, GoldenMimic.class, false);
+				Mimic mimic = Mimic.spawnAt(spawnCell, MimicGolden.class, false);
 				mimic.stopHiding();
 				mimic.alignment = Char.Alignment.ENEMY;
 				//play vfx/sfx manually as mimic isn't in the scene yet

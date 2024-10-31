@@ -26,16 +26,16 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Acidic;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Albino;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.MushroomAlbino;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.ArmoredBrute;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Bandit;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Bestiary;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.CausticSlime;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.SlimeCaustic;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.DM201;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Elemental;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Fishmen;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mimic;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Piranha;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Senior;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Statue;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Wraith;
@@ -59,7 +59,7 @@ public class DistortionTrap extends Trap{
 	}
 
 	private static final ArrayList<Class<?extends Mob>> RARE = new ArrayList<>(Arrays.asList(
-			Albino.class, CausticSlime.class,
+			MushroomAlbino.class, SlimeCaustic.class,
 			Bandit.class,
 			ArmoredBrute.class, DM201.class,
 			Elemental.ChaosElemental.class, Senior.class,
@@ -120,7 +120,7 @@ public class DistortionTrap extends Trap{
 							continue; //wraiths spawn themselves, no need to do more
 						case 1:
 							//yes it's intended that these are likely to die right away
-							mob = Piranha.random();
+							mob = Fishmen.random();
 							break;
 						case 2:
 							mob = Mimic.spawnAt(point, false);

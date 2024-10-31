@@ -24,7 +24,7 @@ package com.shatteredpixel.shatteredpixeldungeon.sprites;
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.watabou.noosa.TextureFilm;
 
-public class AcidicSprite extends ScorpioSprite {
+public class AcidicSprite extends BlackPhillipSprite {
 	
 	public AcidicSprite() {
 		super();
